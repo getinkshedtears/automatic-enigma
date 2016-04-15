@@ -49,8 +49,6 @@
 
 	'use strict';
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -59,346 +57,47 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _rrtr = __webpack_require__(/*! rrtr */ 166);
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
+	var _about = __webpack_require__(/*! ./components/about */ 223);
+	
+	var _about2 = _interopRequireDefault(_about);
+	
+	var _character = __webpack_require__(/*! ./components/character */ 225);
+	
+	var _character2 = _interopRequireDefault(_character);
+	
+	var _characters = __webpack_require__(/*! ./components/characters */ 245);
+	
+	var _characters2 = _interopRequireDefault(_characters);
+	
+	var _contact = __webpack_require__(/*! ./components/contact */ 246);
+	
+	var _contact2 = _interopRequireDefault(_contact);
+	
+	var _landing = __webpack_require__(/*! ./components/landing */ 247);
+	
+	var _landing2 = _interopRequireDefault(_landing);
+	
+	var _posts = __webpack_require__(/*! ./components/posts */ 248);
+	
+	var _posts2 = _interopRequireDefault(_posts);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var Store = __webpack_require__(/*! ./store */ 226);
+	var Actions = __webpack_require__(/*! ./actions */ 241);
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Store = __webpack_require__(/*! ./store */ 223);
-	var Actions = __webpack_require__(/*! ./actions */ 238);
-	
-	var Landing = function (_React$Component) {
-	    _inherits(Landing, _React$Component);
-	
-	    function Landing(props) {
-	        _classCallCheck(this, Landing);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Landing).call(this, props));
-	
-	        _this.state = Store.getState();
-	
-	        _this.getView = _this.getView.bind(_this);
-	        _this._onChange = _this._onChange.bind(_this);
-	
-	        Store.listen(_this._onChange);
-	        return _this;
-	    }
-	
-	    _createClass(Landing, [{
-	        key: '_onChange',
-	        value: function _onChange() {
-	            this.setState(Store.getState());
-	        }
-	    }, {
-	        key: 'getView',
-	        value: function getView() {
-	            switch (this.state.view) {
-	                case 'title':
-	                    return _react2.default.createElement(Title, { updateView: this.updateView, open: this.state.open, toggleOpen: this.toggleOpen });
-	                case 'about':
-	                    return _react2.default.createElement(Fullscreen, { close: this.updateView, view: this.state.view });
-	                default:
-	                    return true;
-	            }
-	        }
-	    }, {
-	        key: 'updateView',
-	        value: function updateView(view) {
-	            Actions.updateView(view);
-	        }
-	    }, {
-	        key: 'toggleOpen',
-	        value: function toggleOpen() {
-	            Actions.toggleOpen();
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.getView()
-	            );
-	        }
-	    }]);
-	
-	    return Landing;
-	}(_react2.default.Component);
-	
-	var Title = function (_React$Component2) {
-	    _inherits(Title, _React$Component2);
-	
-	    function Title(props) {
-	        _classCallCheck(this, Title);
-	
-	        var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Title).call(this, props));
-	
-	        _this2.onMouseOver = _this2.onMouseOver.bind(_this2);
-	        _this2.getClassWrapper = _this2.getClassWrapper.bind(_this2);
-	        return _this2;
-	    }
-	
-	    _createClass(Title, [{
-	        key: 'getClassWrapper',
-	        value: function getClassWrapper() {
-	            if (this.props.open) {
-	                return 'title-wrapper-open';
-	            } else return 'title-wrapper-closed';
-	        }
-	    }, {
-	        key: 'onMouseOver',
-	        value: function onMouseOver() {
-	            this.props.toggleOpen();
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: this.getClassWrapper() },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'title', onMouseOver: this.onMouseOver },
-	                        'getinkshedtears'
-	                    )
-	                ),
-	                _react2.default.createElement(Categories, { open: this.props.open, updateView: this.props.updateView })
-	            );
-	        }
-	    }]);
-	
-	    return Title;
-	}(_react2.default.Component);
-	
-	var Categories = function (_React$Component3) {
-	    _inherits(Categories, _React$Component3);
-	
-	    function Categories(props) {
-	        _classCallCheck(this, Categories);
-	
-	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Categories).call(this, props));
-	
-	        _this3.state = {
-	            categories: ['about', 'characters', 'posts', 'contact'],
-	            active: null
-	        };
-	
-	        _this3.getClassWrapper = _this3.getClassWrapper.bind(_this3);
-	        _this3.getCategories = _this3.getCategories.bind(_this3);
-	        _this3.updateView = _this3.updateView.bind(_this3);
-	        _this3.activate = _this3.activate.bind(_this3);
-	        _this3.deactivate = _this3.deactivate.bind(_this3);
-	        _this3.getClassCat = _this3.getClassCat.bind(_this3);
-	        return _this3;
-	    }
-	
-	    _createClass(Categories, [{
-	        key: 'activate',
-	        value: function activate(i) {
-	            this.setState({ active: i });
-	        }
-	    }, {
-	        key: 'deactivate',
-	        value: function deactivate() {
-	            this.setState({ active: null });
-	        }
-	    }, {
-	        key: 'getClassWrapper',
-	        value: function getClassWrapper() {
-	            if (this.props.open) {
-	                return 'category-wrapper-visible';
-	            } else return 'category-wrapper-invisible';
-	        }
-	    }, {
-	        key: 'getClassCat',
-	        value: function getClassCat(i) {
-	            if (this.state.active != null) {
-	                if (this.state.active === i) {
-	                    return 'category-active';
-	                } else return 'category-inactive';
-	            } else return 'category';
-	        }
-	    }, {
-	        key: 'getCategories',
-	        value: function getCategories() {
-	            return this.state.categories.map(function (cat, index) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    { className: 'text-wrapper', key: index },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: this.getClassCat(index), onMouseEnter: this.activate.bind(null, index), onMouseLeave: this.deactivate },
-	                        _react2.default.createElement(
-	                            _rrtr.Link,
-	                            { to: cat },
-	                            cat
-	                        )
-	                    )
-	                );
-	            }.bind(this));
-	        }
-	    }, {
-	        key: 'updateView',
-	        value: function updateView(view) {
-	            this.props.updateView(view);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: this.getClassWrapper() },
-	                this.getCategories()
-	            );
-	        }
-	    }]);
-	
-	    return Categories;
-	}(_react2.default.Component);
-	
-	var Fullscreen = function (_React$Component4) {
-	    _inherits(Fullscreen, _React$Component4);
-	
-	    function Fullscreen(props) {
-	        _classCallCheck(this, Fullscreen);
-	
-	        var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Fullscreen).call(this, props));
-	
-	        _this4.getContents = _this4.getContents.bind(_this4);
-	        return _this4;
-	    }
-	
-	    _createClass(Fullscreen, [{
-	        key: 'getContents',
-	        value: function getContents() {
-	            switch (this.props.view) {
-	                case 'about':
-	                    return _react2.default.createElement(About, null);
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'fullscreen' },
-	                _react2.default.createElement('div', { className: 'exit', onClick: this.props.close.bind(null, 'title') }),
-	                this.getContents()
-	            );
-	        }
-	    }]);
-	
-	    return Fullscreen;
-	}(_react2.default.Component);
-	
-	var About = function (_React$Component5) {
-	    _inherits(About, _React$Component5);
-	
-	    function About(props) {
-	        _classCallCheck(this, About);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(About).call(this, props));
-	    }
-	
-	    _createClass(About, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'fullscreen' },
-	                _react2.default.createElement(
-	                    _rrtr.Link,
-	                    { to: '/' },
-	                    _react2.default.createElement('div', { className: 'exit' })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'fullscreen-interior' },
-	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'text-header' },
-	                        ' Gist '
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'important' },
-	                            'Pronunciation:'
-	                        ),
-	                        ' /dʒɪst/'
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'important' },
-	                            'Forms'
-	                        ),
-	                        ': 20- Claire, 21- Darknepenthe 21- Nepenthe 21- Someboldseer 21- Getinkshedtears'
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'important' },
-	                            'N'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'important' },
-	                            '1.'
-	                        ),
-	                        ' The main or essential part of a matter.'
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'important' },
-	                            '2.'
-	                        ),
-	                        ' An acronym taken from the second, third, fourth, and fifth words of a Boris Pasternak poem which begins, in Russian, Февраль. Достать чернил и плакать!, and which a particular translation renders as "February. Get ink, shed tears!"'
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'important' },
-	                            '3.'
-	                        ),
-	                        ' The would-be lexicographer: 29 year-old cynic, English major, bitter full-time spreadsheet drone, part-time collaborative writer. The attached pages are presented as her roleplaying curriculum vitae, should you have an interest in being part of that last thing.'
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return About;
-	}(_react2.default.Component);
 	
 	_reactDom2.default.render(_react2.default.createElement(
-	    _rrtr.Router,
-	    { history: _rrtr.browserHistory },
-	    _react2.default.createElement(_rrtr.Route, { path: '/', component: Landing }),
-	    _react2.default.createElement(_rrtr.Route, { path: '/about', component: About })
+	  _reactRouter.Router,
+	  { history: _reactRouter.browserHistory },
+	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _landing2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/characters', component: _characters2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/characters/:name', component: _character2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/posts', component: _posts2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _contact2.default })
 	), document.getElementById('anchor'));
 
 /***/ },
@@ -20853,9 +20552,9 @@
 
 /***/ },
 /* 166 */
-/*!*****************************!*\
-  !*** ./~/rrtr/lib/index.js ***!
-  \*****************************/
+/*!*************************************!*\
+  !*** ./~/react-router/lib/index.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* components */
@@ -20937,11 +20636,11 @@
 	
 	exports.useRoutes = _useRoutes3['default'];
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
 	exports.createRoutes = _RouteUtils.createRoutes;
 	
-	var _RouterContext2 = __webpack_require__(/*! ./RouterContext */ 199);
+	var _RouterContext2 = __webpack_require__(/*! ./RouterContext */ 200);
 	
 	var _RouterContext3 = _interopRequireDefault(_RouterContext2);
 	
@@ -20953,7 +20652,7 @@
 	
 	exports.RoutingContext = _RoutingContext3['default'];
 	
-	var _PropTypes2 = __webpack_require__(/*! ./PropTypes */ 198);
+	var _PropTypes2 = __webpack_require__(/*! ./PropTypes */ 199);
 	
 	var _PropTypes3 = _interopRequireDefault(_PropTypes2);
 	
@@ -20997,9 +20696,9 @@
 
 /***/ },
 /* 167 */
-/*!******************************!*\
-  !*** ./~/rrtr/lib/Router.js ***!
-  \******************************/
+/*!**************************************!*\
+  !*** ./~/react-router/lib/Router.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -21028,13 +20727,13 @@
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 198);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 199);
 	
-	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 199);
+	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 200);
 	
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
 	var _RouterUtils = __webpack_require__(/*! ./RouterUtils */ 202);
 	
@@ -21216,9 +20915,9 @@
 
 /***/ },
 /* 168 */
-/*!***************************************************!*\
-  !*** ./~/rrtr/~/history/lib/createHashHistory.js ***!
-  \***************************************************/
+/*!***********************************************************!*\
+  !*** ./~/react-router/~/history/lib/createHashHistory.js ***!
+  \***********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -21471,9 +21170,9 @@
 
 /***/ },
 /* 169 */
-/*!*************************************!*\
-  !*** ./~/rrtr/~/warning/browser.js ***!
-  \*************************************/
+/*!*********************************************!*\
+  !*** ./~/react-router/~/warning/browser.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21541,9 +21240,9 @@
 
 /***/ },
 /* 170 */
-/*!***************************************!*\
-  !*** ./~/rrtr/~/invariant/browser.js ***!
-  \***************************************/
+/*!***********************************************!*\
+  !*** ./~/react-router/~/invariant/browser.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21602,9 +21301,9 @@
 
 /***/ },
 /* 171 */
-/*!*****************************************!*\
-  !*** ./~/rrtr/~/history/lib/Actions.js ***!
-  \*****************************************/
+/*!*************************************************!*\
+  !*** ./~/react-router/~/history/lib/Actions.js ***!
+  \*************************************************/
 /***/ function(module, exports) {
 
 	/**
@@ -21641,9 +21340,9 @@
 
 /***/ },
 /* 172 */
-/*!*******************************************!*\
-  !*** ./~/rrtr/~/history/lib/PathUtils.js ***!
-  \*******************************************/
+/*!***************************************************!*\
+  !*** ./~/react-router/~/history/lib/PathUtils.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -21697,9 +21396,9 @@
 
 /***/ },
 /* 173 */
-/*!******************************************************!*\
-  !*** ./~/rrtr/~/history/lib/ExecutionEnvironment.js ***!
-  \******************************************************/
+/*!**************************************************************!*\
+  !*** ./~/react-router/~/history/lib/ExecutionEnvironment.js ***!
+  \**************************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21710,9 +21409,9 @@
 
 /***/ },
 /* 174 */
-/*!******************************************!*\
-  !*** ./~/rrtr/~/history/lib/DOMUtils.js ***!
-  \******************************************/
+/*!**************************************************!*\
+  !*** ./~/react-router/~/history/lib/DOMUtils.js ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21793,9 +21492,9 @@
 
 /***/ },
 /* 175 */
-/*!*************************************************!*\
-  !*** ./~/rrtr/~/history/lib/DOMStateStorage.js ***!
-  \*************************************************/
+/*!*********************************************************!*\
+  !*** ./~/react-router/~/history/lib/DOMStateStorage.js ***!
+  \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/*eslint-disable no-empty */
@@ -21875,9 +21574,9 @@
 
 /***/ },
 /* 176 */
-/*!**************************************************!*\
-  !*** ./~/rrtr/~/history/lib/createDOMHistory.js ***!
-  \**************************************************/
+/*!**********************************************************!*\
+  !*** ./~/react-router/~/history/lib/createDOMHistory.js ***!
+  \**********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -21924,9 +21623,9 @@
 
 /***/ },
 /* 177 */
-/*!***********************************************!*\
-  !*** ./~/rrtr/~/history/lib/createHistory.js ***!
-  \***********************************************/
+/*!*******************************************************!*\
+  !*** ./~/react-router/~/history/lib/createHistory.js ***!
+  \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22221,9 +21920,9 @@
 
 /***/ },
 /* 178 */
-/*!************************************************!*\
-  !*** ./~/rrtr/~/history/~/deep-equal/index.js ***!
-  \************************************************/
+/*!********************************************************!*\
+  !*** ./~/react-router/~/history/~/deep-equal/index.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var pSlice = Array.prototype.slice;
@@ -22324,9 +22023,9 @@
 
 /***/ },
 /* 179 */
-/*!***************************************************!*\
-  !*** ./~/rrtr/~/history/~/deep-equal/lib/keys.js ***!
-  \***************************************************/
+/*!***********************************************************!*\
+  !*** ./~/react-router/~/history/~/deep-equal/lib/keys.js ***!
+  \***********************************************************/
 /***/ function(module, exports) {
 
 	exports = module.exports = typeof Object.keys === 'function'
@@ -22342,9 +22041,9 @@
 
 /***/ },
 /* 180 */
-/*!***********************************************************!*\
-  !*** ./~/rrtr/~/history/~/deep-equal/lib/is_arguments.js ***!
-  \***********************************************************/
+/*!*******************************************************************!*\
+  !*** ./~/react-router/~/history/~/deep-equal/lib/is_arguments.js ***!
+  \*******************************************************************/
 /***/ function(module, exports) {
 
 	var supportsArgumentsClass = (function(){
@@ -22371,9 +22070,9 @@
 
 /***/ },
 /* 181 */
-/*!********************************************!*\
-  !*** ./~/rrtr/~/history/lib/AsyncUtils.js ***!
-  \********************************************/
+/*!****************************************************!*\
+  !*** ./~/react-router/~/history/lib/AsyncUtils.js ***!
+  \****************************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22437,9 +22136,9 @@
 
 /***/ },
 /* 182 */
-/*!************************************************!*\
-  !*** ./~/rrtr/~/history/lib/createLocation.js ***!
-  \************************************************/
+/*!********************************************************!*\
+  !*** ./~/react-router/~/history/lib/createLocation.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22497,9 +22196,9 @@
 
 /***/ },
 /* 183 */
-/*!***************************************************!*\
-  !*** ./~/rrtr/~/history/lib/runTransitionHook.js ***!
-  \***************************************************/
+/*!***********************************************************!*\
+  !*** ./~/react-router/~/history/lib/runTransitionHook.js ***!
+  \***********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22530,9 +22229,9 @@
 
 /***/ },
 /* 184 */
-/*!*******************************************!*\
-  !*** ./~/rrtr/~/history/lib/deprecate.js ***!
-  \*******************************************/
+/*!***************************************************!*\
+  !*** ./~/react-router/~/history/lib/deprecate.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22558,9 +22257,9 @@
 
 /***/ },
 /* 185 */
-/*!********************************************!*\
-  !*** ./~/rrtr/~/history/lib/useQueries.js ***!
-  \********************************************/
+/*!****************************************************!*\
+  !*** ./~/react-router/~/history/lib/useQueries.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22743,9 +22442,9 @@
 
 /***/ },
 /* 186 */
-/*!**************************************************!*\
-  !*** ./~/rrtr/~/history/~/query-string/index.js ***!
-  \**************************************************/
+/*!**********************************************************!*\
+  !*** ./~/react-router/~/history/~/query-string/index.js ***!
+  \**********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22818,9 +22517,9 @@
 
 /***/ },
 /* 187 */
-/*!**********************************************************************!*\
-  !*** ./~/rrtr/~/history/~/query-string/~/strict-uri-encode/index.js ***!
-  \**********************************************************************/
+/*!******************************************************************************!*\
+  !*** ./~/react-router/~/history/~/query-string/~/strict-uri-encode/index.js ***!
+  \******************************************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22833,9 +22532,9 @@
 
 /***/ },
 /* 188 */
-/*!***********************************************!*\
-  !*** ./~/rrtr/lib/createTransitionManager.js ***!
-  \***********************************************/
+/*!*******************************************************!*\
+  !*** ./~/react-router/lib/createTransitionManager.js ***!
+  \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22868,7 +22567,7 @@
 	
 	var _getComponents2 = _interopRequireDefault(_getComponents);
 	
-	var _matchRoutes = __webpack_require__(/*! ./matchRoutes */ 196);
+	var _matchRoutes = __webpack_require__(/*! ./matchRoutes */ 197);
 	
 	var _matchRoutes2 = _interopRequireDefault(_matchRoutes);
 	
@@ -23148,9 +22847,9 @@
 
 /***/ },
 /* 189 */
-/*!*************************************!*\
-  !*** ./~/rrtr/lib/routerWarning.js ***!
-  \*************************************/
+/*!*********************************************!*\
+  !*** ./~/react-router/lib/routerWarning.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23193,9 +22892,9 @@
 
 /***/ },
 /* 190 */
-/*!********************************************!*\
-  !*** ./~/rrtr/lib/computeChangedRoutes.js ***!
-  \********************************************/
+/*!****************************************************!*\
+  !*** ./~/react-router/lib/computeChangedRoutes.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23278,9 +22977,9 @@
 
 /***/ },
 /* 191 */
-/*!************************************!*\
-  !*** ./~/rrtr/lib/PatternUtils.js ***!
-  \************************************/
+/*!********************************************!*\
+  !*** ./~/react-router/lib/PatternUtils.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23506,9 +23205,9 @@
 
 /***/ },
 /* 192 */
-/*!***************************************!*\
-  !*** ./~/rrtr/lib/TransitionUtils.js ***!
-  \***************************************/
+/*!***********************************************!*\
+  !*** ./~/react-router/lib/TransitionUtils.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23640,9 +23339,9 @@
 
 /***/ },
 /* 193 */
-/*!**********************************!*\
-  !*** ./~/rrtr/lib/AsyncUtils.js ***!
-  \**********************************/
+/*!******************************************!*\
+  !*** ./~/react-router/lib/AsyncUtils.js ***!
+  \******************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23738,9 +23437,9 @@
 
 /***/ },
 /* 194 */
-/*!********************************!*\
-  !*** ./~/rrtr/lib/isActive.js ***!
-  \********************************/
+/*!****************************************!*\
+  !*** ./~/react-router/lib/isActive.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23880,9 +23579,9 @@
 
 /***/ },
 /* 195 */
-/*!*************************************!*\
-  !*** ./~/rrtr/lib/getComponents.js ***!
-  \*************************************/
+/*!*********************************************!*\
+  !*** ./~/react-router/lib/getComponents.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23894,6 +23593,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	var _AsyncUtils = __webpack_require__(/*! ./AsyncUtils */ 193);
+	
+	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 196);
 	
 	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 189);
 	
@@ -23908,26 +23609,36 @@
 	  var getComponent = route.getComponent || route.getComponents;
 	  if (getComponent) {
 	    var _ret = (function () {
-	      // By assumption, location is a POJSO, and can be spread into the router
-	      // state. The merging means that we can't use deprecateObjectProperties.
+	      var nextStateWithLocation = _extends({}, nextState);
 	      var location = nextState.location;
 	
-	      var nextStateWithLocation = _extends({}, nextState, location);
+	      if (process.env.NODE_ENV !== 'production' && _deprecateObjectProperties.canUseMembrane) {
+	        var _loop = function (prop) {
+	          if (!Object.prototype.hasOwnProperty.call(location, prop)) {
+	            return 'continue';
+	          }
 	
-	      if (process.env.NODE_ENV !== 'production') {
-	        if (typeof Proxy === 'function') {
-	          nextStateWithLocation = new Proxy(nextStateWithLocation, {
-	            get: function get(target, name) {
-	              if (Object.prototype.hasOwnProperty.call(location, name)) {
-	                process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, 'Accessing location properties from the first argument to `getComponent` and `getComponents` is deprecated. That argument is now the router state rather than the location. To access the location, use `state.location`.') : undefined;
-	              }
-	              return target[name];
+	          Object.defineProperty(nextStateWithLocation, prop, {
+	            get: function get() {
+	              process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, 'Accessing location properties from the first argument to `getComponent` and `getComponents` is deprecated. That argument is now the router state (`nextState`) rather than the location. To access the location, use `nextState.location`.') : undefined;
+	              return location[prop];
 	            }
 	          });
+	        };
+	
+	        // I don't use deprecateObjectProperties here because I want to keep the
+	        // same code path between development and production, in that we just
+	        // assign extra properties to the copy of the state object in both cases.
+	        for (var prop in location) {
+	          var _ret2 = _loop(prop);
+	
+	          if (_ret2 === 'continue') continue;
 	        }
+	      } else {
+	        Object.assign(nextStateWithLocation, location);
 	      }
 	
-	      getComponent(nextStateWithLocation, callback);
+	      getComponent.call(route, nextStateWithLocation, callback);
 	      return {
 	        v: undefined
 	      };
@@ -23958,9 +23669,91 @@
 
 /***/ },
 /* 196 */
-/*!***********************************!*\
-  !*** ./~/rrtr/lib/matchRoutes.js ***!
-  \***********************************/
+/*!*********************************************************!*\
+  !*** ./~/react-router/lib/deprecateObjectProperties.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 189);
+	
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+	
+	var canUseMembrane = false;
+	
+	exports.canUseMembrane = canUseMembrane;
+	// No-op by default.
+	var deprecateObjectProperties = function deprecateObjectProperties(object) {
+	  return object;
+	};
+	
+	if (process.env.NODE_ENV !== 'production') {
+	  try {
+	    if (Object.defineProperty({}, 'x', { get: function get() {
+	        return true;
+	      } }).x) {
+	      exports.canUseMembrane = canUseMembrane = true;
+	    }
+	    /* eslint-disable no-empty */
+	  } catch (e) {}
+	  /* eslint-enable no-empty */
+	
+	  if (canUseMembrane) {
+	    deprecateObjectProperties = function (object, message) {
+	      // Wrap the deprecated object in a membrane to warn on property access.
+	      var membrane = {};
+	
+	      var _loop = function (prop) {
+	        if (!Object.prototype.hasOwnProperty.call(object, prop)) {
+	          return 'continue';
+	        }
+	
+	        if (typeof object[prop] === 'function') {
+	          // Can't use fat arrow here because of use of arguments below.
+	          membrane[prop] = function () {
+	            process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
+	            return object[prop].apply(object, arguments);
+	          };
+	          return 'continue';
+	        }
+	
+	        // These properties are non-enumerable to prevent React dev tools from
+	        // seeing them and causing spurious warnings when accessing them. In
+	        // principle this could be done with a proxy, but support for the
+	        // ownKeys trap on proxies is not universal, even among browsers that
+	        // otherwise support proxies.
+	        Object.defineProperty(membrane, prop, {
+	          get: function get() {
+	            process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
+	            return object[prop];
+	          }
+	        });
+	      };
+	
+	      for (var prop in object) {
+	        var _ret = _loop(prop);
+	
+	        if (_ret === 'continue') continue;
+	      }
+	
+	      return membrane;
+	    };
+	  }
+	}
+	
+	exports['default'] = deprecateObjectProperties;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
+
+/***/ },
+/* 197 */
+/*!*******************************************!*\
+  !*** ./~/react-router/lib/matchRoutes.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23981,7 +23774,7 @@
 	
 	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 191);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
 	function getChildRoutes(route, location, callback) {
 	  if (route.childRoutes) {
@@ -24186,10 +23979,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 197 */
-/*!**********************************!*\
-  !*** ./~/rrtr/lib/RouteUtils.js ***!
-  \**********************************/
+/* 198 */
+/*!******************************************!*\
+  !*** ./~/react-router/lib/RouteUtils.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24309,10 +24102,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 198 */
-/*!*********************************!*\
-  !*** ./~/rrtr/lib/PropTypes.js ***!
-  \*********************************/
+/* 199 */
+/*!*****************************************!*\
+  !*** ./~/react-router/lib/PropTypes.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24336,9 +24129,11 @@
 	
 	var history = shape({
 	  listen: func.isRequired,
-	  pushState: func.isRequired,
-	  replaceState: func.isRequired,
-	  go: func.isRequired
+	  push: func.isRequired,
+	  replace: func.isRequired,
+	  go: func.isRequired,
+	  goBack: func.isRequired,
+	  goForward: func.isRequired
 	});
 	
 	exports.history = history;
@@ -24360,20 +24155,28 @@
 	var routes = oneOfType([route, arrayOf(route)]);
 	
 	exports.routes = routes;
+	var router = shape({
+	  push: func.isRequired,
+	  replace: func.isRequired,
+	  go: func.isRequired,
+	  goBack: func.isRequired,
+	  goForward: func.isRequired,
+	  setRouteLeaveHook: func.isRequired,
+	  isActive: func.isRequired
+	});
+	
+	exports.router = router;
 	exports['default'] = {
-	  falsy: falsy,
 	  history: history,
 	  location: location,
-	  component: component,
-	  components: components,
-	  route: route
+	  router: router
 	};
 
 /***/ },
-/* 199 */
-/*!*************************************!*\
-  !*** ./~/rrtr/lib/RouterContext.js ***!
-  \*************************************/
+/* 200 */
+/*!*********************************************!*\
+  !*** ./~/react-router/lib/RouterContext.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24392,7 +24195,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 200);
+	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 196);
 	
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 	
@@ -24400,7 +24203,7 @@
 	
 	var _getRouteParams2 = _interopRequireDefault(_getRouteParams);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
 	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 189);
 	
@@ -24533,94 +24336,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 200 */
-/*!*************************************************!*\
-  !*** ./~/rrtr/lib/deprecateObjectProperties.js ***!
-  \*************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	exports.__esModule = true;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _routerWarning = __webpack_require__(/*! ./routerWarning */ 189);
-	
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-	
-	// No-op by default.
-	var deprecateObjectProperties = function deprecateObjectProperties(object) {
-	  return object;
-	};
-	
-	if (process.env.NODE_ENV !== 'production') {
-	  var useMembrane = false;
-	
-	  try {
-	    if (Object.defineProperty({}, 'x', { get: function get() {
-	        return true;
-	      } }).x) {
-	      useMembrane = true;
-	    }
-	    /* eslint-disable no-empty */
-	  } catch (e) {}
-	  /* eslint-enable no-empty */
-	
-	  if (useMembrane) {
-	    deprecateObjectProperties = function (object, message) {
-	      // Wrap the deprecated object in a membrane to warn on property access.
-	      var membrane = {};
-	
-	      var _loop = function (prop) {
-	        if (!Object.prototype.hasOwnProperty.call(object, prop)) {
-	          return 'continue';
-	        }
-	
-	        if (typeof object[prop] === 'function') {
-	          // Can't use fat arrow here because of use of arguments below.
-	          membrane[prop] = function () {
-	            process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
-	            return object[prop].apply(object, arguments);
-	          };
-	          return 'continue';
-	        }
-	
-	        // These properties are non-enumerable to prevent React dev tools from
-	        // seeing them and causing spurious warnings when accessing them. In
-	        // principle this could be done with a proxy, but support for the
-	        // ownKeys trap on proxies is not universal, even among browsers that
-	        // otherwise support proxies.
-	        Object.defineProperty(membrane, prop, {
-	          configurable: false,
-	          enumerable: false,
-	          get: function get() {
-	            process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
-	            return object[prop];
-	          }
-	        });
-	      };
-	
-	      for (var prop in object) {
-	        var _ret = _loop(prop);
-	
-	        if (_ret === 'continue') continue;
-	      }
-	
-	      return membrane;
-	    };
-	  }
-	}
-	
-	exports['default'] = deprecateObjectProperties;
-	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
-
-/***/ },
 /* 201 */
-/*!**************************************!*\
-  !*** ./~/rrtr/lib/getRouteParams.js ***!
-  \**************************************/
+/*!**********************************************!*\
+  !*** ./~/react-router/lib/getRouteParams.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24654,9 +24373,9 @@
 
 /***/ },
 /* 202 */
-/*!***********************************!*\
-  !*** ./~/rrtr/lib/RouterUtils.js ***!
-  \***********************************/
+/*!*******************************************!*\
+  !*** ./~/react-router/lib/RouterUtils.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24670,7 +24389,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 200);
+	var _deprecateObjectProperties = __webpack_require__(/*! ./deprecateObjectProperties */ 196);
 	
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 	
@@ -24696,9 +24415,9 @@
 
 /***/ },
 /* 203 */
-/*!****************************!*\
-  !*** ./~/rrtr/lib/Link.js ***!
-  \****************************/
+/*!************************************!*\
+  !*** ./~/react-router/lib/Link.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24792,7 +24511,6 @@
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      onlyActiveOnIndex: false,
-	      className: '',
 	      style: {}
 	    };
 	  },
@@ -24852,7 +24570,13 @@
 	
 	      if (activeClassName || activeStyle != null && !isEmptyObject(activeStyle)) {
 	        if (router.isActive(_location2, onlyActiveOnIndex)) {
-	          if (activeClassName) props.className += props.className === '' ? activeClassName : ' ' + activeClassName;
+	          if (activeClassName) {
+	            if (props.className) {
+	              props.className += ' ' + activeClassName;
+	            } else {
+	              props.className = activeClassName;
+	            }
+	          }
 	
 	          if (activeStyle) props.style = _extends({}, props.style, activeStyle);
 	        }
@@ -24870,9 +24594,9 @@
 
 /***/ },
 /* 204 */
-/*!*********************************!*\
-  !*** ./~/rrtr/lib/IndexLink.js ***!
-  \*********************************/
+/*!*****************************************!*\
+  !*** ./~/react-router/lib/IndexLink.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24908,9 +24632,9 @@
 
 /***/ },
 /* 205 */
-/*!*************************************!*\
-  !*** ./~/rrtr/lib/IndexRedirect.js ***!
-  \*************************************/
+/*!*********************************************!*\
+  !*** ./~/react-router/lib/IndexRedirect.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24935,7 +24659,7 @@
 	
 	var _Redirect2 = _interopRequireDefault(_Redirect);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 198);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 199);
 	
 	var _React$PropTypes = _react2['default'].PropTypes;
 	var string = _React$PropTypes.string;
@@ -24981,9 +24705,9 @@
 
 /***/ },
 /* 206 */
-/*!********************************!*\
-  !*** ./~/rrtr/lib/Redirect.js ***!
-  \********************************/
+/*!****************************************!*\
+  !*** ./~/react-router/lib/Redirect.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25000,11 +24724,11 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
 	var _PatternUtils = __webpack_require__(/*! ./PatternUtils */ 191);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 198);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 199);
 	
 	var _React$PropTypes = _react2['default'].PropTypes;
 	var string = _React$PropTypes.string;
@@ -25093,9 +24817,9 @@
 
 /***/ },
 /* 207 */
-/*!**********************************!*\
-  !*** ./~/rrtr/lib/IndexRoute.js ***!
-  \**********************************/
+/*!******************************************!*\
+  !*** ./~/react-router/lib/IndexRoute.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25116,9 +24840,9 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 198);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 199);
 	
 	var func = _react2['default'].PropTypes.func;
 	
@@ -25163,9 +24887,9 @@
 
 /***/ },
 /* 208 */
-/*!*****************************!*\
-  !*** ./~/rrtr/lib/Route.js ***!
-  \*****************************/
+/*!*************************************!*\
+  !*** ./~/react-router/lib/Route.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25182,9 +24906,9 @@
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 198);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 199);
 	
 	var _React$PropTypes = _react2['default'].PropTypes;
 	var string = _React$PropTypes.string;
@@ -25228,9 +24952,9 @@
 
 /***/ },
 /* 209 */
-/*!*******************************!*\
-  !*** ./~/rrtr/lib/History.js ***!
-  \*******************************/
+/*!***************************************!*\
+  !*** ./~/react-router/lib/History.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25243,7 +24967,7 @@
 	
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 	
-	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 198);
+	var _PropTypes = __webpack_require__(/*! ./PropTypes */ 199);
 	
 	/**
 	 * A mixin that adds the "history" instance variable to components.
@@ -25267,9 +24991,9 @@
 
 /***/ },
 /* 210 */
-/*!*********************************!*\
-  !*** ./~/rrtr/lib/Lifecycle.js ***!
-  \*********************************/
+/*!*****************************************!*\
+  !*** ./~/react-router/lib/Lifecycle.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25345,9 +25069,9 @@
 
 /***/ },
 /* 211 */
-/*!************************************!*\
-  !*** ./~/rrtr/lib/RouteContext.js ***!
-  \************************************/
+/*!********************************************!*\
+  !*** ./~/react-router/lib/RouteContext.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25400,9 +25124,9 @@
 
 /***/ },
 /* 212 */
-/*!*********************************!*\
-  !*** ./~/rrtr/lib/useRoutes.js ***!
-  \*********************************/
+/*!*****************************************!*\
+  !*** ./~/react-router/lib/useRoutes.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25460,9 +25184,9 @@
 
 /***/ },
 /* 213 */
-/*!**************************************!*\
-  !*** ./~/rrtr/lib/RoutingContext.js ***!
-  \**************************************/
+/*!**********************************************!*\
+  !*** ./~/react-router/lib/RoutingContext.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25475,7 +25199,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 199);
+	var _RouterContext = __webpack_require__(/*! ./RouterContext */ 200);
 	
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 	
@@ -25501,9 +25225,9 @@
 
 /***/ },
 /* 214 */
-/*!*****************************!*\
-  !*** ./~/rrtr/lib/match.js ***!
-  \*****************************/
+/*!*************************************!*\
+  !*** ./~/react-router/lib/match.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25528,7 +25252,7 @@
 	
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 	
-	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 197);
+	var _RouteUtils = __webpack_require__(/*! ./RouteUtils */ 198);
 	
 	var _RouterUtils = __webpack_require__(/*! ./RouterUtils */ 202);
 	
@@ -25591,9 +25315,9 @@
 
 /***/ },
 /* 215 */
-/*!*******************************************!*\
-  !*** ./~/rrtr/lib/createMemoryHistory.js ***!
-  \*******************************************/
+/*!***************************************************!*\
+  !*** ./~/react-router/lib/createMemoryHistory.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25632,9 +25356,9 @@
 
 /***/ },
 /* 216 */
-/*!*********************************************!*\
-  !*** ./~/rrtr/~/history/lib/useBasename.js ***!
-  \*********************************************/
+/*!*****************************************************!*\
+  !*** ./~/react-router/~/history/lib/useBasename.js ***!
+  \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25775,9 +25499,9 @@
 
 /***/ },
 /* 217 */
-/*!*****************************************************!*\
-  !*** ./~/rrtr/~/history/lib/createMemoryHistory.js ***!
-  \*****************************************************/
+/*!*************************************************************!*\
+  !*** ./~/react-router/~/history/lib/createMemoryHistory.js ***!
+  \*************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25938,9 +25662,9 @@
 
 /***/ },
 /* 218 */
-/*!****************************************!*\
-  !*** ./~/rrtr/lib/useRouterHistory.js ***!
-  \****************************************/
+/*!************************************************!*\
+  !*** ./~/react-router/lib/useRouterHistory.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25970,9 +25694,9 @@
 
 /***/ },
 /* 219 */
-/*!**************************************!*\
-  !*** ./~/rrtr/lib/browserHistory.js ***!
-  \**************************************/
+/*!**********************************************!*\
+  !*** ./~/react-router/lib/browserHistory.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25994,9 +25718,9 @@
 
 /***/ },
 /* 220 */
-/*!******************************************************!*\
-  !*** ./~/rrtr/~/history/lib/createBrowserHistory.js ***!
-  \******************************************************/
+/*!**************************************************************!*\
+  !*** ./~/react-router/~/history/lib/createBrowserHistory.js ***!
+  \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -26179,9 +25903,9 @@
 
 /***/ },
 /* 221 */
-/*!*******************************************!*\
-  !*** ./~/rrtr/lib/createRouterHistory.js ***!
-  \*******************************************/
+/*!***************************************************!*\
+  !*** ./~/react-router/lib/createRouterHistory.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26206,9 +25930,9 @@
 
 /***/ },
 /* 222 */
-/*!***********************************!*\
-  !*** ./~/rrtr/lib/hashHistory.js ***!
-  \***********************************/
+/*!*******************************************!*\
+  !*** ./~/react-router/lib/hashHistory.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26230,6 +25954,297 @@
 
 /***/ },
 /* 223 */
+/*!*********************************!*\
+  !*** ./app/components/about.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var About = function (_React$Component) {
+	    _inherits(About, _React$Component);
+	
+	    function About(props) {
+	        _classCallCheck(this, About);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(About).call(this, props));
+	    }
+	
+	    _createClass(About, [{
+	        key: 'content',
+	        value: function content() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'name' },
+	                    ' Gist '
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'fullscreen-interior' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'important' },
+	                            'Pronunciation:'
+	                        ),
+	                        ' /dʒɪst/'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'important' },
+	                            'Forms'
+	                        ),
+	                        ': 20- Claire, 21- Darknepenthe 21- Nepenthe 21- Someboldseer 21- Getinkshedtears'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'important' },
+	                            'N'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'important' },
+	                            '1.'
+	                        ),
+	                        ' The main or essential part of a matter.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'important' },
+	                            '2.'
+	                        ),
+	                        ' An acronym taken from the second, third, fourth, and fifth words of a Boris Pasternak poem which begins, in Russian, Февраль. Достать чернил и плакать!, and which a particular translation renders as "February. Get ink, shed tears!"'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'important' },
+	                            '3.'
+	                        ),
+	                        ' The would-be lexicographer: 29 year-old cynic, English major, bitter full-time spreadsheet drone, part-time collaborative writer. The attached pages are presented as her roleplaying curriculum vitae, should you have an interest in being part of that last thing.'
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_fullscreen2.default, { content: this.content });
+	        }
+	    }]);
+	
+	    return About;
+	}(_react2.default.Component);
+	
+	module.exports = About;
+
+/***/ },
+/* 224 */
+/*!**************************************!*\
+  !*** ./app/components/fullscreen.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Fullscreen = function (_React$Component) {
+	    _inherits(Fullscreen, _React$Component);
+	
+	    function Fullscreen(props) {
+	        _classCallCheck(this, Fullscreen);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Fullscreen).call(this, props));
+	    }
+	
+	    _createClass(Fullscreen, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'fullscreen' },
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/' },
+	                    _react2.default.createElement('div', { className: 'exit' })
+	                ),
+	                this.props.content()
+	            );
+	        }
+	    }]);
+	
+	    return Fullscreen;
+	}(_react2.default.Component);
+	
+	module.exports = Fullscreen;
+
+/***/ },
+/* 225 */
+/*!*************************************!*\
+  !*** ./app/components/character.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _actions = __webpack_require__(/*! ../actions */ 241);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _charstrip = __webpack_require__(/*! ./charstrip */ 244);
+	
+	var _charstrip2 = _interopRequireDefault(_charstrip);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Character = function (_React$Component) {
+	    _inherits(Character, _React$Component);
+	
+	    function Character(props) {
+	        _classCallCheck(this, Character);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Character).call(this, props));
+	
+	        _actions2.default.setCharacter(_this.props.params.name);
+	
+	        _this.state = _store2.default.getState();
+	
+	        _this.getClass = _this.getClass.bind(_this);
+	        _this.content = _this.content.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	        _this.renderBio = _this.renderBio.bind(_this);
+	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	        return _this;
+	    }
+	
+	    _createClass(Character, [{
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(newProps) {
+	            _actions2.default.setCharacter(newProps.params.name);
+	            var myDiv = document.getElementById('bio');
+	            myDiv.scrollTop = 0;
+	        }
+	    }, {
+	        key: 'renderBio',
+	        value: function renderBio() {
+	            return { __html: this.state.activeCharacter.biography };
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getClass',
+	        value: function getClass() {
+	            if (this.state.charStripOpen) {
+	                return 'char-wrapper-open';
+	            } else return 'char-wrapper-closed';
+	        }
+	    }, {
+	        key: 'content',
+	        value: function content() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: this.getClass() },
+	                _react2.default.createElement('div', { className: 'interior-resize', id: 'bio', dangerouslySetInnerHTML: this.renderBio() }),
+	                _react2.default.createElement(_charstrip2.default, null)
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_fullscreen2.default, { content: this.content });
+	        }
+	    }]);
+	
+	    return Character;
+	}(_react2.default.Component);
+	
+	module.exports = Character;
+
+/***/ },
+/* 226 */
 /*!**********************!*\
   !*** ./app/store.js ***!
   \**********************/
@@ -26241,8 +26256,10 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var alt = __webpack_require__(/*! ./alt */ 224);
-	var Actions = __webpack_require__(/*! ./actions */ 238);
+	var alt = __webpack_require__(/*! ./alt */ 227);
+	var Actions = __webpack_require__(/*! ./actions */ 241);
+	var Characters = __webpack_require__(/*! ./data/characters */ 242);
+	var Posts = __webpack_require__(/*! ./data/posts */ 243);
 	
 	var Store = function () {
 	    function Store() {
@@ -26250,10 +26267,16 @@
 	
 	        this.view = 'title';
 	        this.open = false;
+	        this.characters = Characters;
+	        this.posts = Posts;
+	        this.activeCharacter = Characters[0];
+	        this.charStripOpen = true;
 	
 	        this.bindListeners({
 	            handleUpdateView: Actions.UPDATE_VIEW,
-	            handleToggleOpen: Actions.TOGGLE_OPEN
+	            handleToggleOpen: Actions.TOGGLE_OPEN,
+	            handleSetCharacter: Actions.SET_CHARACTER,
+	            handleToggleStrip: Actions.TOGGLE_STRIP
 	        });
 	    }
 	
@@ -26267,6 +26290,22 @@
 	        value: function handleToggleOpen() {
 	            this.open = !this.open;
 	        }
+	    }, {
+	        key: 'handleToggleStrip',
+	        value: function handleToggleStrip() {
+	            this.charStripOpen = !this.charStripOpen;
+	        }
+	    }, {
+	        key: 'handleSetCharacter',
+	        value: function handleSetCharacter(name) {
+	            var character = null;
+	            for (var i = 0; i < this.characters.length; i++) {
+	                if (this.characters[i].id === name) {
+	                    character = this.characters[i];
+	                }
+	            }
+	            this.activeCharacter = character;
+	        }
 	    }]);
 	
 	    return Store;
@@ -26275,7 +26314,7 @@
 	module.exports = alt.createStore(Store, 'Store');
 
 /***/ },
-/* 224 */
+/* 227 */
 /*!********************!*\
   !*** ./app/alt.js ***!
   \********************/
@@ -26283,13 +26322,13 @@
 
 	'use strict';
 	
-	var Alt = __webpack_require__(/*! alt */ 225);
+	var Alt = __webpack_require__(/*! alt */ 228);
 	var alt = new Alt();
 	
 	module.exports = alt;
 
 /***/ },
-/* 225 */
+/* 228 */
 /*!****************************!*\
   !*** ./~/alt/lib/index.js ***!
   \****************************/
@@ -26301,25 +26340,25 @@
 	  value: true
 	});
 	
-	var _flux = __webpack_require__(/*! flux */ 226);
+	var _flux = __webpack_require__(/*! flux */ 229);
 	
-	var _StateFunctions = __webpack_require__(/*! ./utils/StateFunctions */ 229);
+	var _StateFunctions = __webpack_require__(/*! ./utils/StateFunctions */ 232);
 	
 	var StateFunctions = _interopRequireWildcard(_StateFunctions);
 	
-	var _functions = __webpack_require__(/*! ./functions */ 230);
+	var _functions = __webpack_require__(/*! ./functions */ 233);
 	
 	var fn = _interopRequireWildcard(_functions);
 	
-	var _store = __webpack_require__(/*! ./store */ 231);
+	var _store = __webpack_require__(/*! ./store */ 234);
 	
 	var store = _interopRequireWildcard(_store);
 	
-	var _AltUtils = __webpack_require__(/*! ./utils/AltUtils */ 232);
+	var _AltUtils = __webpack_require__(/*! ./utils/AltUtils */ 235);
 	
 	var utils = _interopRequireWildcard(_AltUtils);
 	
-	var _actions = __webpack_require__(/*! ./actions */ 236);
+	var _actions = __webpack_require__(/*! ./actions */ 239);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -26674,7 +26713,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 226 */
+/* 229 */
 /*!*******************************!*\
   !*** ./~/alt/~/flux/index.js ***!
   \*******************************/
@@ -26689,11 +26728,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 227);
+	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 230);
 
 
 /***/ },
-/* 227 */
+/* 230 */
 /*!****************************************!*\
   !*** ./~/alt/~/flux/lib/Dispatcher.js ***!
   \****************************************/
@@ -26718,7 +26757,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 228);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 231);
 	
 	var _prefix = 'ID_';
 	
@@ -26933,7 +26972,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 228 */
+/* 231 */
 /*!**********************************************!*\
   !*** ./~/alt/~/flux/~/fbjs/lib/invariant.js ***!
   \**********************************************/
@@ -26991,7 +27030,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 229 */
+/* 232 */
 /*!*******************************************!*\
   !*** ./~/alt/lib/utils/StateFunctions.js ***!
   \*******************************************/
@@ -27007,7 +27046,7 @@
 	exports.saveInitialSnapshot = saveInitialSnapshot;
 	exports.filterSnapshots = filterSnapshots;
 	
-	var _functions = __webpack_require__(/*! ../functions */ 230);
+	var _functions = __webpack_require__(/*! ../functions */ 233);
 	
 	var fn = _interopRequireWildcard(_functions);
 	
@@ -27071,7 +27110,7 @@
 	}
 
 /***/ },
-/* 230 */
+/* 233 */
 /*!********************************!*\
   !*** ./~/alt/lib/functions.js ***!
   \********************************/
@@ -27115,7 +27154,7 @@
 	}
 
 /***/ },
-/* 231 */
+/* 234 */
 /*!**********************************!*\
   !*** ./~/alt/lib/store/index.js ***!
   \**********************************/
@@ -27131,19 +27170,19 @@
 	exports.createStoreFromObject = createStoreFromObject;
 	exports.createStoreFromClass = createStoreFromClass;
 	
-	var _AltUtils = __webpack_require__(/*! ../utils/AltUtils */ 232);
+	var _AltUtils = __webpack_require__(/*! ../utils/AltUtils */ 235);
 	
 	var utils = _interopRequireWildcard(_AltUtils);
 	
-	var _functions = __webpack_require__(/*! ../functions */ 230);
+	var _functions = __webpack_require__(/*! ../functions */ 233);
 	
 	var fn = _interopRequireWildcard(_functions);
 	
-	var _AltStore = __webpack_require__(/*! ./AltStore */ 233);
+	var _AltStore = __webpack_require__(/*! ./AltStore */ 236);
 	
 	var _AltStore2 = _interopRequireDefault(_AltStore);
 	
-	var _StoreMixin = __webpack_require__(/*! ./StoreMixin */ 235);
+	var _StoreMixin = __webpack_require__(/*! ./StoreMixin */ 238);
 	
 	var _StoreMixin2 = _interopRequireDefault(_StoreMixin);
 	
@@ -27335,7 +27374,7 @@
 	}
 
 /***/ },
-/* 232 */
+/* 235 */
 /*!*************************************!*\
   !*** ./~/alt/lib/utils/AltUtils.js ***!
   \*************************************/
@@ -27357,7 +27396,7 @@
 	exports.fsa = fsa;
 	exports.dispatch = dispatch;
 	
-	var _functions = __webpack_require__(/*! ../functions */ 230);
+	var _functions = __webpack_require__(/*! ../functions */ 233);
 	
 	var fn = _interopRequireWildcard(_functions);
 	
@@ -27459,7 +27498,7 @@
 	function NoopClass() {}
 
 /***/ },
-/* 233 */
+/* 236 */
 /*!*************************************!*\
   !*** ./~/alt/lib/store/AltStore.js ***!
   \*************************************/
@@ -27471,11 +27510,11 @@
 	  value: true
 	});
 	
-	var _functions = __webpack_require__(/*! ../functions */ 230);
+	var _functions = __webpack_require__(/*! ../functions */ 233);
 	
 	var fn = _interopRequireWildcard(_functions);
 	
-	var _transmitter = __webpack_require__(/*! transmitter */ 234);
+	var _transmitter = __webpack_require__(/*! transmitter */ 237);
 	
 	var _transmitter2 = _interopRequireDefault(_transmitter);
 	
@@ -27618,7 +27657,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 234 */
+/* 237 */
 /*!*************************************************!*\
   !*** ./~/alt/~/transmitter/dist/transmitter.js ***!
   \*************************************************/
@@ -27669,7 +27708,7 @@
 
 
 /***/ },
-/* 235 */
+/* 238 */
 /*!***************************************!*\
   !*** ./~/alt/lib/store/StoreMixin.js ***!
   \***************************************/
@@ -27681,11 +27720,11 @@
 	  value: true
 	});
 	
-	var _transmitter = __webpack_require__(/*! transmitter */ 234);
+	var _transmitter = __webpack_require__(/*! transmitter */ 237);
 	
 	var _transmitter2 = _interopRequireDefault(_transmitter);
 	
-	var _functions = __webpack_require__(/*! ../functions */ 230);
+	var _functions = __webpack_require__(/*! ../functions */ 233);
 	
 	var fn = _interopRequireWildcard(_functions);
 	
@@ -27913,7 +27952,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 236 */
+/* 239 */
 /*!************************************!*\
   !*** ./~/alt/lib/actions/index.js ***!
   \************************************/
@@ -27926,15 +27965,15 @@
 	});
 	exports['default'] = makeAction;
 	
-	var _functions = __webpack_require__(/*! ../functions */ 230);
+	var _functions = __webpack_require__(/*! ../functions */ 233);
 	
 	var fn = _interopRequireWildcard(_functions);
 	
-	var _AltUtils = __webpack_require__(/*! ../utils/AltUtils */ 232);
+	var _AltUtils = __webpack_require__(/*! ../utils/AltUtils */ 235);
 	
 	var utils = _interopRequireWildcard(_AltUtils);
 	
-	var _isPromise = __webpack_require__(/*! is-promise */ 237);
+	var _isPromise = __webpack_require__(/*! is-promise */ 240);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -28003,7 +28042,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 237 */
+/* 240 */
 /*!*************************************!*\
   !*** ./~/alt/~/is-promise/index.js ***!
   \*************************************/
@@ -28017,7 +28056,7 @@
 
 
 /***/ },
-/* 238 */
+/* 241 */
 /*!************************!*\
   !*** ./app/actions.js ***!
   \************************/
@@ -28029,7 +28068,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var alt = __webpack_require__(/*! ./alt */ 224);
+	var alt = __webpack_require__(/*! ./alt */ 227);
 	
 	var Actions = function () {
 	    function Actions() {
@@ -28046,12 +28085,762 @@
 	        value: function toggleOpen() {
 	            return true;
 	        }
+	    }, {
+	        key: 'setCharacter',
+	        value: function setCharacter(name) {
+	            console.log('update character to ' + name);
+	            return name;
+	        }
+	    }, {
+	        key: 'toggleStrip',
+	        value: function toggleStrip() {
+	            return true;
+	        }
 	    }]);
 	
 	    return Actions;
 	}();
 	
 	module.exports = alt.createActions(Actions);
+
+/***/ },
+/* 242 */
+/*!********************************!*\
+  !*** ./app/data/characters.js ***!
+  \********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var never = {
+	        title: 'Never',
+	        image: 'images/21.jpg',
+	        name: 'Never Amirbeyov',
+	        id: 'never',
+	        biography: '<center><b>Four Common Misconceptions Surrounding Never Amirbeyov, And Their Confutations</b>' + '<p>(which are unlikely to be issued from the wolf’s maw)</p></center>' + '<hr>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">Thirty-two years ago, someone had the poor judgment to name a child after the negation of time and possibility.</span>' + '<div>' + '<span style="width: 15%; float: left; display: inline padding-bottom: 15px;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline padding-bottom: 15px;">' + '<p>Never Amirbeyov does not exist.  Not in the registers, anyway.  For officiality, for the bureaucracy, he is what his parents called him: Enver.  A real name, appropriated from an old acquaintance in an old country.  There was a story once, about what deeds consummated the original Enver’s right to a namesake.  It’s forgotten now, slipped in and drowned somewhere along the passage of time.  No one has called the tributary Enver by his given name these fifteen years.</p>' + '<p>The “Never” that has replaced it derives from the (presumably) innocent misreading of a classmate or a teacher or a government official.  He doesn’t remember, but he liked it.  It stuck -- and lucky the lapsus linguae was in English: he might have been Enfer.  Not that anything would have been different if he had.  Even the natural distorters of ligament and bone cannot hope to remake themselves with a word.</p>' + '<p style="border-top: 1px dashed black; width: 50%; margin-left: 25%; padding-bottom: 10px;"></p>' + '</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">Never is some kind of Russian.</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline;">' + '<p>The theory arises, and not unsoundly, from the Slavic sonance of his surname and the fact that he exercises a blunted version of the Russian language (last honed in earnest while his mother, who -- he <i>might</i> mention -- enjoyed others’ tongues but not other tongues, was still in the picture) in situations calling for obfuscation.  But he is second-generation New Victorian, born and raised.</p>' + '<p>Likewise, his people were not Russians, but Azeri desert hounds.  His line is deep rooted; Mazdeans and Khurramites, acculturated over generations beside the Caspian.  When the dakhmas they had scavenged for thousands of years fell out of fashion, they were obliged to employ subtler, more modern means of finding meals, and thus turned respectable.  Though not without their idiosyncrasies, their clannish tendencies, their inexorable canons, as a tribe they weathered the upheavals with their mundane neighbors none the wiser to their common ancestry with the Bardi.  So they preferred it, and so it was that, despite the changing attitudes of the world, Never’s upbringing stressed keeping head down and heritage bottled.  A sense of oppression was what stirred the first feelings of rancor in him, but that came after.</p>' + '<p>Before, nearly a century ago, Never’s late father returned to Shirvan from Volgograd, bearing a freshly-minted degree in pathological anatomy from the University there.  Second doctor in the family, the elder already operating a practice in Sumqayit with a fat wife and a squalling whelp.  The younger was to marry up: a black-eyed girl from Baku, a few offshoots of the extended family tree away.  She danced with the Çınar Ensemble, and her father was a deputy in the Milli Məclis.  It was all arranged.  Instead, he stole away with a young cousin, a striking girl at whose altar he had worshipped since he was twelve years old.  Their unsanctified coupling shattered taboo, and to avoid reprisal they travelled East, to Krasnoyarsk, where a friend of a friend helped the groom to attain a job performing autopsies at the municipal hospital.</p>' + '<p>This is History 101.  Never, despite his contempt for the good old days -- a reaction to the dogmatic traditionalism his parents, particularly his father, managed to maintain even in the heterodox surroundings of New Victoria -- memorized it by rote when he was too small to know insurgence.  It is as much a part of him as the Ahuna Vairya, de trop but indelible.  What ensued, the details surrounding their southward immigration three decades after this cosmogony, invariably failed to follow in the telling.  He assumes that the circumstances were similar to the ones that caused his family’s eventual disintegration.</p>' + '<p style="border-top: 1px dashed black; width: 50%; margin-left: 25%; padding-bottom: 10px;"></p>' + '</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">The Ossuary is a pawn shop.</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline;">' + '<p>The Ossuary is a crooked two-story construct wedged incongruously between the sleeker, more modern pillars of Wan Chai.  Never, not versed in patina or provenance, swapped its apparent business model from antique dealing to pawnbrokery when he took charge, though it remains marked only by a worn sign painted 骨董.  The 董 is faded just beyond legibility, and hence the name.</p>' + '<p>The real lifeblood of The Ossuary pulses beneath the above-ground facade, in the sepulchral basement room which, in the building’s long-ago incarnation as a tea shop, stored heaps of dried longjing and biluochun.  At present, on irregular nights, it houses the entertainment and the often-cruel games of chance which the grinning Never arranges for a carefully-curated flock of guests.  Some are neck-deep already, without hope of paying their debts the usual way.  Some have simply grown bored of the spinning of roulette wheels at the usual casinos and are titillated by the thought not only of exclusivity but of losing something more precious than cash -- though they lose that, too.  The remainder are there for the spectacle.  Come and see.</p>' + '<p style="border-top: 1px dashed black; width: 50%; margin-left: 25%; padding-bottom: 10px;"></p>' + '</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">Never is the proprietor of The Ossuary.</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline;">' + '<p>Here is how Never wiled away his formative years: tormenting his older sister; earning below-average grades (a lack of effort here, a lack of aptitude there) and classmates\' mixed admiration (pretty eyes and an offhanded disregard for authority); resenting his mother’s abandonment; butting heads with his staid father; barely governing both the hungers that plague his kind and the waves of temper, the startling outbursts, that were his alone; and generally wending his way toward, if not a bad end, then at least not having lived up to expectations.  Here is how his father spent Never’s formative years: gambling away his livelihood.</p>' + '<p>One Spring morning, under the assumption that doing so would be preferable to facing his accrued debts, the latter offed himself, and never mind how he managed it.  The point is that, while he escaped responsibility, all obligations were transferred to the survivors, and “the survivors” boiled down to Never -- his mother having run off with another man when he was nine, and his sister abroad for her work -- a reality that came to light when the thugs arrived to declaim the amount still outstanding.</p>' + '<p>He was nineteen, living a jobless, aimless existence with a put-upon girlfriend.  Lacking both the means and the wherewithal to flee the newfound onus, and struggling with the quandary of procuring flesh without his pathologist father’s providing it, he accepted his creditors’ offer to work off his debts with them.  The arrangement began with picayune tasks but evolved, gradually, into an enforcer’s role, and here the boredom, the frustration, the umbrage, the strain against reticence that he had forever been tamping found outlet.  How much more difficult it is, to repair a hemorrhage than to cause one.  Even now it continues to issue with tumultuous ebb and flow.  In the best of moods, he is a hazardous thing, affable enough, in his blunt irreverence, right up until the moment that he isn’t.</p>' + '<p>These days, he is no longer in debt, but he is still in thrall.  His authority over The Ossuary is an extension of this long-ago agreement, a reward for past services, granted when the previous owner was rendered incapable of carrying out the job.  He tends the shop, both above and below; manages it; hires and fires; and lives on the second floor.  His name (the legal version) appears on the lease.  Still, he likes it there, likes the illusions: propriety, control, respect.  All achievements he was tempered to want but stood steadfastly against working for when he was younger.  But he does not operate without the oversight of a higher power.  The leash is long, yes, but anytime he makes the mistake of feeling like an independent entity, a glance down at his left hand -- the last two fingers missing -- is a reminder of how no-one is free.  </p>' + '</span></div></div>'
+	};
+	
+	var anais = {
+	        title: 'Anais',
+	        name: 'Anais Saavedra',
+	        id: 'anais',
+	        image: 'images/anais.jpg',
+	        biography: '<center><h2>Wednesday, 6:45 AM</h2></center>' + '<p>Eight matched coffee cups in the kitchen cabinet, arranged in two rows of four, handles facing out.  She takes the cup from the right front, careful not to jostle the others out of formation.  Crooked lines and uneven spaces bother her sometimes.  Streaks on windows, loose threads, dog-eared pages in books, sticky fingers, clumps of mascara: they make her uncomfortable, but only sometimes.  Still, what dishevelment she can stomach today presents a threat of chafing against her sensibilities tomorrow, and she has learned over three decades that it is always preferable to maintain order than be overwhelmed when her captious streak rears up.  Her home is the distillation of this philosophy.' + '<p>The apartment became hers after her father’s death.  They had not spoken in ten years, not after she became a novelty more than a daughter, but he left her the penthouse and whatever it contained.  Penance, probably.  For reasons that she cannot quite define, she was compelled to accept.  She took a sabbatical from the Los Angeles firm where she was on the way to become partner, moved across the continent, and began clearing the place out.</p>' + '<p>Two months on, and she has nearly managed to scrub Renato Saavedra’s residual presence away, though it had occupied every nook and cranny, sunk into the grain of the floors and crept into the upholstery like a stink.  His coffee cups were unmatched, faded and chipped.  She threw them out.  She replaced the excess of old furniture with a few pieces, angular and sleek.  One photograph remains on the wall in the living room, a family portrait taken in 2018 in which her six year-old self is smiling.  It hangs beside her LLM diploma.</p>' + '<p>A whole cadre of fanatics exists who would be scandalized at the systematic erasure of the vestiges of their golden idol from the place he called home.  These people have been her enemies for as long as she can recall, and with spite guarded in her heart she has ripped and recycled stacks of correspondences, donated signed first editions to second-hand stores, and burned a half-finished manuscript that, though she did not read it in full, seemed to involve a politician reincarnated as a Patagonian weasel -- the same fabulist garbage about which he always wrote, and which garnered him the accolades on which he thrived.</p>' + '<p>She pours coffee and lifts the cup to her lips with one hand, sips its contents while she frees her hair from a mesh of pins and elastic with the other.  Her curls tumble down, limp with sweat from her morning jog.  Time and again she has eyed the mirror and wondered if it wouldn\'t be easier to just crop it all off, but vanity stays her hand in the end.  She cannot loose herself from a concept of beauty that was outmoded years before she learned it: her mother insisted until her dying day that a woman’s hair is her greatest asset, that one day Anais’s would serve her well, better than her eyes, which would be a pretty shade of blue if only they weren\'t so grim; better than her lips, which were too thin for such a wide mouth.  Emma’s influence, too, that her daughter cannot bear to be seen in public without a varnish of makeup, without ironing her blouse and polishing the scuffs from her shoes.  A smudge of plum-colored lipstick remains on the edge of the cup, which she wipes away with her thumb.</p>' + '<p>The sun is simpering above the skyline now.  Her cup is a quarter full, three-quarters empty.  She places it on the kitchen table and goes to evict the man who is still asleep under her crumpled sheets.  Before sunrise he was a diversion, but the break of day paints him a nuisance, and she does not brook a nuisance.</p>' + '<p><b><center>Postscript</center></b><br>A few words about thanatotic impression</p>' + '<p>If Anais is within a ten foot (or so) radius of a person at the moment of his death, she is stamped with an indelible record of him within herself, which quickly fades into a collection of his more salient memories integrated into her own history in such a way that it becomes difficult for her to tell, without examination, if she actually experienced something she remembers.  She gains nothing useful from this phenomenon -- no skills, no talents, no significant knowledge -- just a cache of scattered, foreign memories.</p>' + '<p>The opportunity for this “power” to manifest does not arise often -- in fact three times in her life -- which is just as well.  It was not until the second time, when she was 24 and in law school, that it was classified.  She views it with a profound ambivalence, because even while the results are unsettling and potentially life-disrupting, they come part and parcel with a kind of voyeuristic thrill to which no other experience is comparable.</p>'
+	};
+	
+	var edmund = {
+	        title: 'Edmund',
+	        name: 'Edmund Bly',
+	        id: 'edmund',
+	        image: 'images/bly.jpg',
+	        biography: '<p><b>APPEARANCE</b>: Here is Edmund, tall and still trim at fifty-one, possessing of serious grey eyes and thinning hair a shade lighter than those eyes. He is distinguished, with a face reminiscent of old Roman busts of Cicero. He is the kind of man whom the viewer may expect to open his mouth and quote Plutarch or Prufrock with equal ease. You will find that he does not disappoint on these accounts, although the latter gains unwieldy stiffness when recited in Edmund\'s impeccable RP (would you ever have guessed he was born and raised in the North?).</p>' + '<p>Propriety is his second skin. Straight-legged trousers and waistcoats, subdued jackets and loud neckties: these comprise his chameleon-flesh. His point of reference is about ten years out of date, but it becomes him. Lay him bare and see a different story: his body is a tapestry dedicated to his fascination with the alteration of human form. Everyone who places stock in the Divine Spark has their reasons; its validation of his long-standing obsession with the human physiology is a large part of Edmund\'s.</p>' + '<p>Witness, covering the whole of his back, plate seventeen from Blake\'s Book of Urizen, recreated with painstaking detail in the Japanese irezumi style (nara ink chiseled into the skin, monochrome greenish-blue). Ventral, from collarbone to pelvis and snaking down his left thigh, a Maori ta moko: a labyrinth of black, lyrical lines tracing his contours. Across both canvasses, it is possible to make out the scars of failed experiments with kavadi which, when practiced correctly, leaves no marks.</p>' + '<p>See the audacious apadrayva piercing [quick fourth-wall-breaking interruption: if you do not know, do not Google this at work], and below, the raised crocodile-skin pattern that covers the upper part of his right leg, done to emulate the style of natives of Australia. Notice how his hands and feet are bare, his face and neck, his calves and lower arms. This may someday change, if ever he no longer values the ability to hide himself. At present, though, it is important to be able to slip on the suit so you may see him as the experienced, educated gentleman that, of course, he is.</p>' + '<p><center><h2>Snapshots, 1894-present</h2></center>' + '<center><i>1894</i></center>' + '<p>The sun burnishes the countryside on a summer day: Edmund is five and tiger-wild, crashing through the bushes of the copse. He ignores his mother\'s demands that he slow down and stay on the path. He will stop only to catch his breath and wonder at the burning of the skin of his face where whipping branches have left their marks.</p>' + '<p>When you ask him, at age 51, about his earliest memory, he may defer to some pleasantry -- an opera or a thunderstorm over the ocean -- but this is how it happened:</p>' + '<p>They are summering with one of her cousins, and are walking this afternoon to a nearby estate, their destination separated from their host\'s land by a well-rutted vein of road down which, right now, a man in a surrey is goading his horse faster. They arrive at the intersection of the footpath and this road after the moment of collision. One girl has managed to evade the hooves and narrow wheels bearing down on her and her companion. She is crouched by the tree line, blanched and silent. The other lacked her friend\'s fortune and now lies some yards away.</p>' + '<p>The events that passed between the accident and Edmund\'s eventual realization that he was safe in bed have long been lost to time. What he remembers, his mind\'s eye renders as a Caravaggio, in colors bolder and detail more vivid than the scene could have realized in life. She is older than he-- twelve, maybe thirteen -- round-faced, dark. Around her, scattered daisies. The whole of her body is twisted into an unnatural pose that can only be the product of a broken back and dislocated joints. One arm is bent at such an angle as to have disappeared beneath her back. Her stillness is nearly complete, but that from her gaping mouth issues, along with a growing stream of blood, a soft, watery wail. She is speckled all over with patches of blood soaked through gingham and the shadows cast by the leaves of the tree above. She predicates all things.</p>' + '<center><i>1901</i></center>' + '<p>The boy on the train is tall for his age, child-skinny yet but with the beginnings of a musculature that is already helping to distinguish him in football, in rugby, and in the less-approved arena of the schoolyard fistfight. A stranger asks him if he is heading home for Christmas. He tells her "yes," omitting that there is no Christmas celebration at his home.</p>' + '<p>He still answers to "Ed." There will come a time when he sheds any acknowledgment of the nickname, deciding it lacks dignity. For now, he is the twelve year-old that the other public school boys refer to as "Ed" or "Bly" or (sometimes congenially, sometimes no) as "the bastard." This last is not out of any circumstance of birth, but mostly because King Lear still burns fresh in their schoolboy minds, and because some take his confidence as a personal affront.</p>' + '<p>Edmund doesn\'t mind. He does, and will always, possess a preternatural sense of where he stands with others, of how far he can go: his teachers appreciate his cleverness and retention; his peers, for the most part, will rise to follow when he rallies -- as they will shy from he raised hand. Besides this, he liked Edmund, though he preferred the fool. He finds that he can rattle off the fool\'s speeches to great effect.</p>' + '<p>He preferred even more Titus Andronicus, which he came across in the library and read in the secret, stomach-tingling way that children interact with the Verboten. When he lies awake in the dormitory at night and does what boys do, he finds his thoughts all run in rivulets toward Lavinia.</p>' + '<center><i>1909</i></center>' + '<p>The beauty of being a younger son: that he is not required to take over the duties of the father. In later years, secretive fits of self-doubt will drive Edmund to wonder if Freudian thinking isn\'t entirely without merit. He does, after all, hate his father, a feeling which seems to be the foundation of psychoanalysis.</p>' + '<p>Fifteen and granted the unsought burden of the Gnostic Mysteries, that feeling is particularly strong. Until now, he has lived with only half-conscious knowledge that he is not a member of the Church of England. Here is the old man, in his study, expounding on rites and degradation, isolation, enlightenment. Edmund listens, absorbs, and concludes that he will allow this secret world to be John\'s domain, as it would be his lot to take over the family business, if a family business there were. No divine spark will interfere with the mundane arrangements that Edmund has already made for his life (university, medical school, a good marriage, a prestigious career), only he is aware of an unpleasant sensation that this new cognizance will one day swallow him whole.</p>' + '<center><i>1915</i></center>' + '<p>In the year since his enlistment, Edmund has led a schizophrenic existence, a carousel ride going round and round between the tense camaraderie of the officers\' lounge (off-kilter sounds of orchestras shrunk to fit the Victrola make him yearn for the wide-open acoustics of the concert hall), and the waking-nightmare world of the battlefield (faceless soldiers; limbs rank with gangrene; good men choking and choking and choking on a lung\'s-worth of gas).</p>' + '<p>He was fresh out of medical school in 1914. From Downing College to Cambridge, from Cambridge to St. Bartholomew\'s Hospital, from Bart\'s to the Western Front. His surgical work had been done, for the most part, on cadavers. There is no danger in ruining dead flesh. If he pauses and thinks, it is strange to have become even this inured to working on writhing, bellowing bodies. He still bolts up at night, his head echoing revenant dreams.</p>' + '<p>A terror of mortality: he cannot admit it to another living soul, but that is the black worm twisting in his gut. In times of war or turbulence, it cannot be strange for men to turn back to the faith of their fathers. This is his thought while he writes to John for books and guidance.</p>' + '<center><i>1917</i></center>' + '<p>The letter takes him by surprise: the nurse from the Paris hospital would like him to know that he is a going to be a father, if he does not object. Instinct tells him that he will not be an ideal father, or even a good one. In a fit of sympathy, he cannot bring himself to object.</p>' + '<p>The next time he finds himself in Paris, he marries her (a kind British girl called Charlotte) under the authority of an army chaplain.</p>' + '<center><i>1918</i></center>' + '<p>Fog lies heavy across the meadows of Picardy. Amiens is in the East, but you might not know if you hadn\'t, a lifetime ago, passed the RAMC entrance test, which included geography beside the obvious categories of physiology and surgery. They say the Allies have pushed five miles westward still, having managed to take the Huns by surprise. They are ahead in this battle, and morale is high, but still the casualties flow in. The ones who can be carted off to the evacuating zone are dutifully carted, leaving the worst-off in the "collecting zone" for immediate care.</p>' + '<p>Captain Bly (he is well aware of the historical implications of his title in combination with his name) occupies the collecting zone nearest the front lines, where a triage station has been erected. He has scrambled for hours to suture gaping wounds, to excise bullets, to sever shattered appendages that he knows will not heal, to fill up with opium the men who will not go home.</p>' + '<p>In the auditorium of his mind, the arrhythmia of artillery is overlaid by the sound of Lucrezia Bori singing Strauss. One heavy thump marks the explosion of a shell nearby. They bring him a man who is dead or unconscious and scrabble away. A quick examination determines that this man does not need immediate care and should be bused on to a real hospital. But no one is watching. The surgeon drags his scalpel from above the man\'s right eyebrow, across his nose, and down his cheek. A trail of blood blooms.</p>' + '<p>It is not sadism, to leave this mark or the other marks. It is a gift. No one need know who from. He hastens to the next patient.</p>' + '<center><i>1921</i></center>' + '<p>The ward reeks of sickness, stale bodies, plaster. This is the last year of Edmund\'s commission. He will be free, soon, to abandon the domain of shell-shocked phantoms and seek out more illuminating climes. He has assurance from St. Bart\'s that there is a place for him on staff. He has sketched out plans for solitary travel to far-off places.</p>' + '<p>That pang of apology is for his younger self, who dreamed sane dreams that will not be fulfilled. He could never make to understand the boy he was, who spent no time contemplating divinity and who never looked across a smoldering battlefield dotted with the bodies of familiar men. That naive version of him still rears its head sometimes, makes him wonder if his quest for gnosis isn\'t wrong, somehow, or if he isn\'t going about it in all the wrong ways (progress overtakes the Hippocratic oath; his skill with a scalpel is honed often without the knowledge of the sleeping whetstone -- is there anything more stunning than the cartography of veins?). It troubles him. He will rid himself of trouble by pushing forward, forging farther.</p>' + '<p>News arrived not long ago that John is dead. Edmund may mourn eventually, but the immediate effect of the brother\'s death is the solution to a problem looming over the estate. John is their focus, and they will not pursue the matter if John is dead. Everything feels open.</p>' + '<center><i>1927</i></center>' + '<p>On the occasions that Charlotte and Edmund Bly accepted the social invitations extended by his colleagues, it was never clear to either of them if she was the ghost on his arm, or he on hers. She did a poorer job of hiding it. Onlookers who sensed her dissatisfaction could not bring themselves to blame her considerate, articulate husband, even in light of his obvious distaste for ever being in the wrong. How easy to overlook the foibles of a proud and talented man! It is she about whom they whispered when she turned away.</p>' + '<p>She shed innumerable tears over his expanding "pagan" practices; his abandonment of her to search for truth; his venomous strikes when he was home, when her nature as a human stumbling block made itself most obvious. Had he not been blinded by her situation ten years ago, he would have seen that she would not understand him. Had she not been in her predicament, she might have thought twice before marrying a surgeon with a temper. But it makes no difference now. She is dead before the breaking point. Pneumonia.</p>' + '<p>The boy (it was Edmund who insisted he be called Enoch, yet he has never managed to think of him as anything but "the boy") is old enough to make do with his nurses and a growing stable of tutors. He has always been a stranger to his father. There is no reason to change that.</p>' + '<center><i>1938</i></center>' + '<p>The house is something out of a gothic novel, a shadowy Chateau de Silling against the backdrop of a grey ocean. It never seemed so bleak when Edmund was young, but it is more haunted now.</p>' + '<p>While Europe rumbles fitfully toward another war, the triumvirate omits no effort in its quest to create their retreat in these drafty hallways. Their status, foundation of the community to come, is unquestioned. Edmund looks forward to sharing his experience with hungry seekers.</p>'
+	};
+	
+	var byron = {
+	        title: 'Byron',
+	        name: 'Byron Fields',
+	        id: 'byron',
+	        image: 'images/fields.jpg',
+	        biography: '<h2><center>Спасибо, родному Сталину за счастливое детство!</center></h2>' + '<p>Grigori Gavrilovich Volkov is a death’s head moth, his son’s ruination.</p>' + '<p>The metamorphosis from soft-bellied, soft-spoken poet to state threat begins on February 13th, 1917, when Anya Mikhailovna Volkova leaves to buy bread and never comes home to her husband and newborn son.  The vulturenecked neighbor who, a few days later, returns Anya’s wire-rimmed glasses, wrapped in a blood-speckled handkerchief, testifies that he saw her stumble into a partisan scuffle; that she was twice shot by an undiscriminating Bolshevik – once in the shoulder, and once in the head.  With no contradictory stories emerging from any quarter, and no body returned for burial, this account is inimitably engraved into Volkov canon; it is the fable that haunts all the other fables that Grigori whispers in his motherless son’s ear to lull him to sleep at night.  It is a chrysalis.</p>' + '<p>They (capital T, always capital) suggest, strongly, that his work could do more to glorify the state.  He is already so hollow that if he rips any more glorification from his belly he will collapse inward.  Instead he takes a job laying bricks: Пролетарии всех стран, соединяйтесь!  But a writer writes, and his scribblings continue, sore and shaking, by the light of little candle stubs in a corner of his increasingly unkempt apartment.  Before the revolution, he wrote calligraphed odes to sunsets and songbirds, the kind of verses that well-bred ladies memorized beneath the outspread arms of elm trees in summer.  After, his skies are blotted and his birds have pierced breasts and the Tsaritsa and her children have been relieved of poems and whatever else occupied the long halls of their memory before Russia was stained red.  His <i>nouvel oeuvre</i> is published piecemeal in the underground journals that an insurgence-minded literati pass among one another and use to warm their fingers when they are done.  He adopts a pseudonym, but everyone knows the hand behind the swirling, hypnagogic polemics that turn stranger and more virulent with the passing years.</p>' + '<p>Dima grows up with no direct knowledge of the untroubled world he reads about -- and summarily rejects -- in his papa\'s musty library.  His microcosm, all that makes up the known universe, is that Ulitsa Volodarskovo apartment which, while he calls it home, is divided in half to make space for new families; the exhausted mutterings of an inattentive father; the soot-tinged streets of Petrograd and its crowds that reek of fear; the snarling boys at the state-run school where he learns his letters and his arithmetic, his history and his survival of the fittest.  How he retains with almost no effort the lion’s share of everything he sees, reads, hears, is kept close.  The failing marks he earns come with effort.  (Intelligent, opines a gouty instructor to a colleague, but truant, easily distracted, prone to outbursts and to brawls -- a troublesome boy.)</p>' + '<p>Time trudges by.  Gaunt waifs, the remnants of the purged, have begun to infest the streets like lice.  Housewives spit беспризорные like a curse.  The strays pick pockets and steal scraps from dogs.  Evenings, in a show of latent prescience, Dima learns their names and their rough cant.  He takes to running and sparring with them instead of going home.  He harbors a young boy’s envy of their ostensible freedom, but little comprehension of their travails.  When his father hears who his son\'s playmates are, he beats him, crying, <i>you do not belong with them</i>.  Madman\'s truth.</p>' + '<p>When the wolves come (sharp-toothed and lean in sheepskin dusters), no-one is surprised.  They make no excuses as they wrench the poet from his cloister.  Nevermind the boy, eleven years old, curls unshorn, watching from the kitchen doorway in a sleep-muted daze.  Their concern is agitators, not agitators’ brats.  At break of dawn the landlady trots to city hall and reports an orphan taking up valuable space in her building.  In the afternoon a middle-aged man tries to ferry Dmitri Volkov, whom he finds sitting on the floor, waiting for his father, to an orphanage (he will be fed and well looked after; the Party cares for its lost children, мой маленький товарищ), but the boy snarls, slips away and loses himself in the bedlam of crowded streets and backstreets, in the land of hollow-cheeked children who christen him ягненочка: with no home to return to when the sun sets, he is not as bold as he was.  With no rublei to be had from him, they are not so friendly.  They function as a network of packs, and he soon learns his place is at the bottom.  He had a kind of fierceness among schoolboys, but among the unclaimed he is not fierce enough to rise far.  Jungle law: he attacks what is smaller than him, cringes before what is not.  For weeks he weeps, until snow falls and the fountain of his grief freezes over and forms something smooth and impenetrable (В грозных айсбергах марсово поле, И Лебяжья лежит в хрусталях … How quickly he would trade all his useless memories, lines and smells and faces, for a few minutes’ peace of mind.)</p>' + '<p>He is fifteen when the doctor spots him pawing through a dustbin, although he looks younger and feels older and cannot claim any number of years for himself with any certainty, and anyway the doctor does not ask his age, only if he is hungry, which he has been for a thousand days.  More.  It is not the first time he has traded his pride for a morsel (or a swallow, or a stale cigarette).  In truth he has no pride left to trade.  The doctor takes him, not to a fetid alleyway, but to his home, to his study -- the walls of books stir something nostalgic in the boy as he braces himself against the desk -- and it is rough first, then gentle, and the lambkin for his trouble is fed chicken soup the doctor’s daughter cooked, and before he is turned out he is told to come again.</p>' + '<p>Dima does go back again, and again he is used and petted and fed and sent away, and so it continues.  The longer it goes on the more they talk -- and the man becomes <i>the doctor</i> instead of <i>the pervert</i>, извращенец.  He works at City Hospital No. 40, he knows the names of all bones and muscles, his wife is dead, his son moved with the government to Moscow, his daughter toils long hours in the post office, after he is cruel he is tender.  When Dima tells him his father’s name (his tongue has not formed those sounds in what feels like a lifetime), there is something so ugly in the doctor’s laugh that it turns Dima crimson and determined to never speak it out loud again.</p>' + '<p>Listen, the doctor says one day, the Party wants me in Moscow, and you can stay here and rot in the gutter, or you can come with me, the strings are mine for pulling.  You can be my assistant; no worse than those whelps out of medical school.  No one else will do this for you.  Dima does not now, nor will he ever, understand the doctor’s motivations.  One thing he does understand and very well is that between all the world’s knowledge and a warm bed, he would rather have the latter.  Why ask questions whose answers don’t matter?  Petrograd, Leningrad, whatever they call the city anymore, it holds nothing for him.  He agrees.</p>' + '<p>The Moscow project is sinister: in a cramped laboratory on Varsonofevskii Pereulok, they test poisons.  On rats, on birds, on dogs, on prisoners.  This is classified work -- Dima must be sworn in as an agent of the NKVD to perform it, though he does little but clean flasks and take dictation and bite his tongue when the doctor runs fingers along his arm.  Some of the other young men, those medical school whelps, shudder to see the shadow of death creep into the eyes of the living -- but Dima has seen this enough in the sunken eyes of his starving packmates that it does not occur to him to turn away.  An observant officer takes notice of the young man’s callousness and proposes a change of situation.  Yagoda is looking for recruits to serve the cause of the nation.</p>' + '<p>They say with dark humor that the Lubyanka is the tallest building in Moscow, since you can see Siberia from the basement. In defiance of all logic, Dima finds himself somewhere in its viscera, sludging through competency exams and tests of fitness, pledging his allegiance again and again to the state, aiming a pistol at a target, repeating banal phrases in broken English.  He absorbs as he as always absorbed and asks no questions.  A good soldier, his sense of <i>why</i> has been excised somewhere along the way like those fleshy organs -- миндалины, червеобразный отросток -- that are apt to cause more harm than good if left intact.  Preventative, to cut them out before they fester.</p>' + '<p>Pulp novels will take “espionage” and drape it with black velvet romanticism.  Cloak and dagger, spy versus spy.  Dima perceives nothing romantic in his existence, which consists of short stretches in foreign countries -- Germany, France, England -- conveying sensitive information and eliminating Socialism’s many and varied foes, sometimes gaudily and sometimes with the poisons he assisted the doctor (purged in 1938 with 3000 others) to concoct and test, all while a war gnaws away at the integrity of an entire world.  But he is alive, clean, fed.  Fastidious in his spartan flat and forever aware of the alternatives.  Other men his age are scattering pieces of themselves along the western front, but the skillful are too valuable to waste on the battlefield.</p>' + '<p>Not a stretch, to characterize Dima as skilled.  His English is idiomatic, his French passable, his aim precise, his conscience a chasm with no bottom; he can shuffle fictitious personal details back and forth with the dexterity of a cardshark dealing a hand of poker, and he comports himself in a manner almost universally perceived as non-threatening until the very moment he becomes a threat.  Some of his colleagues possess oily charm, and they are sent to make friends and turn politicians.  Some sweat devastation from their pores, and they have other uses.  Dmitri’s ilk are sent on operations that must be handled sleekly, with few ripples.  This is what makes the Canadian disaster such a surprise.</p>' + '<p>Or maybe not so much a surprise.  ведь, the girl is a walking disaster, wildcat in gypsyflesh.  Disaster breeds disaster.  Once before he dealt with her and came away with cuts and bruises for his troubles.  His fault, perhaps.  They tried to use him to teach, but he is no teacher; lacks the aura of authority one needs to command.  She could smell deficiency on him like an animal, no different from the feral children of his youth.  Knowing does little to diminish his indisposition to work with her again.  Stronger: he could strangle her in her sleep and not regret it, if he were not so bound by injunction.  Neither does she seem pleased by the situation.  Nevertheless, there he is between her and a hot lump of lead, pulled like a tide into the line of fire.  He knows better than to ask why.  As the bullet bores into his belly (flash of the morgue in the Специальный кабинет, some gulag trash on a table with his stomach butterflied open, intestines and all on display, and if you ever doubted, you know there can be nothing secret or sacred in the world) he supposes that’s the end of it.  She’ll leave him like a shrugged burden and carry on her duty.  It could have ended worse, in an old capitol alleyway.</p>' + '<p>In twenty-six years, no one taught him religion.  He has no prayers or expectations of either salvation or damnation.  The dead die.  They rot.  Still.  When he wakes, for a few minutes before lucidity blooms, he wonders if this is something that comes after life.  Heaven, Hell, he knows the words in three languages, and he knows that it will not be the former which lies waiting on the other side of his eyelids.  The same as he has met each new unfolding in his life, he faces this without the faintest glimmer of having any choice in the matter.  But there is no esoteric judgment or punishment to meet him, only a dark room and, blurry, the girl, whose face he watches for uncountable seconds before she notices.  He is sore, starving, withering from thirst, and all these needs combine into a startling desire and redirect at her, as if death, on its departure, has left an ember in him which has caught.  That she lets him have her is startling, too.  It is all startling and shrouded in a veil of not-quite-reality that takes its time to fade.  He is what the world has made him: rough first, then gentle.</p>' + '<p>If you ask him if he loves her, you will earn yourself a stare that straddles non-comprehension and hostility.  Love is as foreign and abstract as god, nothing is going to change that.  But when he looks at her he feels something that he cannot put a word to, that he never noticed with his father, or the doctor, or the street girls who fucked him to stay warm, or the foreign whores, or anyone he has known who might have stirred any species of love in him.  He goes along with the marriage -- a foolish idea, her idea -- without balking.  They are still strangers, in a sense.  What little she knows about him is snippets, vagaries, half-lies.  He can only imagine his knowledge of her is the same.  Married strangers.  Married rule-breakers.  He has rarely broken the rules.  Stern glares and reprimands from the organization, whatever its letters in 1945, when it learns.</p>' + '<p>Byron Fields is a transfer student from Oxford (explanation for the accent), wounded in duty (explanation for the scars, the badly-healed bullet wound), in the States to finish a surgical degree.  He has the papers, the records, the vocabulary, the internist’s knowledge, the last-minute practice with a scalpel, the false-sister/lover.  No end to the care they must take, and at the same time as they worm their way into Project Snow, the strange connection they forged wears thinner.</p>' + '<p>Ask if he loves her in 1952.  Non-comprehension, mild hostility.  He has other things on his mind.  He is the unflappable Snow surgeon (Fields of Snow, to be used in case of emergency), all business, reserved but not unapproachable.  The kind of man you can bring your problems to and expect to get a rational answer from.  And maybe you wouldn’t be wrong if you suggested that the isolation is getting to him (who isn’t it getting to?); or if you quietly remarked that, on occasion, his reactions are not quite what one would expect; or if you wondered if there might have been a faintly dangerous glint in his eyes the last time he looked at you.  He notices, too, when he wakes up mumbling moldy Russian.  He has never not been himself for so long, and while it was rarely a pleasure to be Dmitri Volkov, it was always to that familiar bed of nails that he returned.  Necessary ritual.  Restorative.  Volkov writhes.  Fields frays at the seams.</p>'
+	};
+	
+	var maite = {
+	        title: 'Maite',
+	        name: 'Maite Petrochelli',
+	        id: 'maite',
+	        image: 'images/maite.jpg',
+	        biography: '<p><b>Description:</b></p>' + '<p>Spray of freckles across a heart-shaped face. Snub nose, small lips, a tumble of russet hair. For all that her parts taken individually might suggest a certain appeal, in sum she is an odd thing at the best angle, homely at the worst -- a dour-faced kid whose gaunt frame, long limbs, and hesitant quirk of movement grant her an aspect of a tree insect dressed up as a girl in clothes that don’t quite fit.</p>' + '<p><b>History:</b></p>' + '<p>The first time I ran away, I went to Rebecca Lyttle’s place, down the block. We managed to smoke a joint between us and draw a route from Atlanta to Nashville on her dad’s AAA road map (she wanted to be Dolly Parton, I wanted to be anything at all -- or not <i>anything</i>, I wanted to paint landscapes for a while, what a joke that makes now, right?) before el profe and la profa showed up to drag me home. They grounded me for a week. She drove me to school in the morning and picked me up in the afternoon, not that it helped my grades at all. They took away my radio. I drew monsters all over the walls. They thought I learned a lesson.</p>' + '<p>The second time I did a little better, hitched a ride and made it all the way to the promised land behind the Dunwoody Metroplex before a cop picked me up and called them at work. Papi slapped my face in the middle of the police station, everybody staring and I <i>knew</i> at least the secretary in her turtleneck was thinking poor thing. I liked it, them figuring it was all his fault, driving me to the fuckups and dropouts. Look, I don’t know. They didn’t beat me. They didn’t rape me or starve me. I know a hundred kids who got it worse, and believe me they never understood what I was trying to get away from either. I just couldn’t be there sometimes, like the books and the Wallbangers and the politics were closing in, maybe I could breathe if I got far enough away and they’d tell me <i>just wait until you’re older</i>, Maria Teresa but you don’t know if older’s going to happen. Julie, my best friend until second grade, when we still lived in Jersey, got hit by a car trying to cross the street and that was all there was, never got to do anything. When I thought he was going to kill me -- I don’t think he’s not going to now, but when I thought it was going to happen <i>right then</i> -- it was like see? No guaranteed tomorrow, right? Anyway, I kept leaving, a few days here, a few there, until they weren’t surprised anymore when school called, when they couldn’t find me. I always came back, like the cat. They’re probably still expecting me to show up on the doorstep. But I don’t want to think about that.</p>' + '<p>After a while, I realized I didn’t need to go far to get lost. Downtown might as well be the moon, nobody can find you if you don’t want to be found. That was the last time, with this punk Jer Thornton in his shitty apartment, sucking vodka out of the bottle. I went to get gummy bears, took a shortcut to the 7-Eleven, and that was it, when I woke up my whole body hurt and I couldn’t see. I think that was the only time he apologized, and it wasn’t even an apology, like Sorry, I needed someone. You hear that, you think sex or murder or both, but I got snatched by the one freak in Atlanta looking for an instrument. So he’s killing me slowly instead (which is why he won’t do it himself, tracking and and twisting and listening to the dead, they eat you from the inside once they get in), and the sex, that’s on me, when I thought I was going to go crazy. Not that he’s too upset about it.</p>' + '<p>Here’s what I know: it’s to find somebody who screwed him over, and screwed me, too, I figure -- not that I wouldn’t make him suffer if I had the chance -- and she leaves these snail trails that glow so I can see even though he fucked up my eyes, and I’ve gotten him close. Wherever we are, it’s hot. Loud. We move around but never go very far. He leaves me alone when he goes out to paint traps that sting when they’re tripped (and they aren’t much), but I can’t pass the borders. And he brings people. Just to impress, sometimes, and sometimes to bleed. Better them than me.</p>'
+	};
+	
+	module.exports = [never, anais, edmund, byron, maite];
+
+/***/ },
+/* 243 */
+/*!***************************!*\
+  !*** ./app/data/posts.js ***!
+  \***************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Characters = __webpack_require__(/*! ./characters */ 242);
+	
+	module.exports = {
+	
+		neverPost1: {
+			character: Characters.never,
+			starter: true,
+			summary: 'White noise',
+			text: '<p>Low-budget porn -- South American, maybe; it had an overripe tropical haze -- shuddered and pulsed upward from a screen the size of Never’s hand that he had laid flat on the laminate. Your friendly local pawnbroker was hovering near the end of the counter with an unsharpened pencil fulcrumed between his first two fingers, tapping on the edge with the fossilized eraser and watching the rutting out of the corner of his eye. Dull stuff: girl young but already blasé, big-titted, tattoo of a flower on her collarbone; the man ugly, sunburned back, sweating; the sheets off-yellow and the room peeling, slatted half-open blinds feeding an occasional flare of sunlight into the unsteady eye of the camera lens. It wasn’t a turn on as much as background noise, there for the same reason that some people leave on news feeds or a run a fan. Kill the silence.' + '<p>And silence was effectively slain: the volume was cranked up as high as it would go. Tinny, distorted animal sounds, panting and grunting and fevered slapping of flesh against flesh; the odd incomprehensible exclamation in maybe-Spanish expanded into the most cobwebbed of corners.' + '<p>Except for the spiders and the dust mites and the ghosts and Never, the store was unoccupied. Last sign of life had been a few hours ago, a stout housewifey type with an updo like a malformed second head who had fluttered in and waved around the same square-cut diamond ring she always pawned when money was tight. No one since then, until the jangle of the dented bell above the door announced a visitor. Never swiped the volume down with the side of a pinky, turning it down just enough that he didn’t feel like he had to roar his casual and poorly-pronounced “Funyihng” at the man who had stepped in. Unfamiliar face. Not a regular. And immediately after the greeting slipped off of his tongue, the girl in the video let out a off-kilter, high-pitched noise that communicated more alarm than pleasure. He didn\'t look down.'
+		},
+	
+		neverPost2: {
+			character: Characters.never,
+			starter: true,
+			adoptable: true,
+			summary: 'Another day at the pawnshop',
+			text: '<p>On Thursday a man with bruisedark circles underneath his eyes had staggered in, towing behind him one of those maximally minimal chairs, the kind constructed out of three calligraphic strokes and an artist’s interpretation of a spinal column rendered in chrome. Never, taking a covetous shine to it, had asked few questions, paid out too much and adopted it as his own directly the whine of hinges marked the harried-looking hawker’s outlet. On Tuesday it was in this chair that he reclined behind the counter – fairly supine, feet propped on a subwoofer, contemplating the sensation of his teeth sinking into a soy-braised pig’s ear, soft flesh first and the satisfaction of crisp cartilage – when sounded the crash.' + '<p>It was a messy clatter, obviously the introduction of something fragile to the wooden floor’s company, trailed by a squeak or a squawk of dismay. Just two people in the shop: Never and Ya, the teenage daughter of one of the neighborhood cha chaan teng. For the past few weeks, he had been paying her a little to come around and take out the dog, whose favored expression of boredom was mastication and who was always bored without more exercise than Never was personally willing to supply. A few minutes earlier she had dropped the dog off and remained to loiter among the merchandise, which was fine as long as everything she touched remained in one piece.' + '<p>Only after groping blindly along the countertop, locating the halo of a soapstone bodhisattva-with-lion by the impression it made against his palm, and hurling the figure – as well as he could do with one hand, and the right one – toward the noise (the contact thud was dull, disappointing) did he sit up to assess the damage: dumpling-fed Ya, crouched, frozen in the process of picking up the pieces of what had once been a blown glass hippopotamus, staring across the room at him with eyes opened wide. Bodhisattva-with-lion miraculously intact a few centimeters away. Something about the startled look on her round little rabbit face sent a pulse of irritation up his wrists. He stood, plucked a screwdriver from the counter, and made to follow the first projectile with one better-aimed. She must have realized his intent, because she performed an awkward lurch forward, stumbled to her feet, and hurtled out of the shop with a grind of glass beneath her heels – the impact of the screwdriver rattled the door frame after she had made it through.' + '<p>And so it was that Never, having followed Ya outside, was witness to her almost careening into a woman walking the other way up the street. The sight of the girl interrupting her getaway to offer a nanosecond\'s post-near-collision bow to the other party before scuttling off was enough to inspire an eruption of laughter, for which his dismissive waving of a hand in the woman\'s direction was probably not, he realized, commensurate explanation.'
+	
+		},
+	
+		hweiruPost1: {
+			summary: 'Organized crime is the crime that pays',
+			starter: true,
+			text: '<p>Windchime euphony lilted through the half-open half of double balcony doors, glass panes each bisected with a leaded single helix whose dips and divots shattered the sunset (picturesque carmine oblivion swallowing the horizon) into pale rainbows that swarmed and clung to the walls and shivered. Somewhere below, the usual miasma of saline, fish market, smelted metal, bodies, orchids, the dog whistle whine of the modern age. And it was good to wade through that too, sometimes, but here in the cumulus-tickling heights Hwei-Ru reposed unreachable, dragonfly-dancing her attention back and forth between black lacquered fingernails as filtered through a flute of Chartreuse, and Sardar, hunched forward in his chair beside her: she wished she excelled at the pretense of disinterest. She wished she could watch him untie the turban that, on obscure doctrinal grounds, hid the absurd lengths of his hair. ' + '<p>“I don’t like it,” he was saying. What was there to like? The tip of her nail tapped the rim of the glass in triple meter. One two three, a calculated risk, employing thugs. Couldn’t very well broadcast want ads across the grid. And sometimes they surprised her pleasantly, and sometimes their representative blips fell off the radar and she had to send more thugs to ascertain if they had been murdered and dumped in the ocean, or if they had fled to Madagascar, or if they were braindead and drooling in a corner of some drug den (each a scenario she had encountered in the past). She preferred the calculated part of calculated risks to the risk part. All good fun until someone gets pulled in by the militia and starts telling stories about Mrs. Kitzen and her extracurricular activities. The headaches it caused. One two three.' + '<p>“You think I do?” One finger extended -- pause, please -- she drained the remainder of the liqueur from her glass and stood, artfully fabricating one of the few situations in which she could look down on him for the two-thirds of a second it took him to stand as well. “Oh, stay,” she sighed, though the thought that he acted out of chivalry pleased her (she suspected an ulterior truth, that he didn\'t care for people being able to see the top of his head). “I’m only getting more. How long has it been?”' + '<p>She was halfway across the room. Behind her, “Two weeks.” Too long. She hesitated, glanced out across the balcony, through the morass of fuchsias that gushed from a collection of hanging planters, and brushed the back of her hand against the surface of the glass, wiping away a mote of dust.'
+		},
+	
+		russiaPost1: {
+			starter: true,
+			adoptable: true,
+			summary: 'Mid-May, the middle of nowhere, a wild horse chase',
+			text: '<p>The Count Anatoli Petrovich Shuvalov had, while he lived, possessed a dedication to orderliness that was kindly described by those in his circle as “staunch.”  Less kindly, it was fanatical.  Whenever the subject arose in the course of conversation (“But you, Anatoli Petrovich, turn crimson to see a single thing out of place!”), the count himself invoked his score of years as an imperial <i>rotmistr</i> as the root of his fastidiousness.  Since many of his acquaintances had been similarly installed in the military and experienced no such effects, their acceptance of his explanation was polite but without any real endorsement. In truth Anatoli Petrovich’s character was more inherent than learned, and it reflected in everything he touched: his person, his affairs, his properties.  Even his wife, who herself had no such inborn predilection, spent the twenty years of their marriage noticing crooked picture frames and minutely rotating jardinieres to please him.  It was the least, after all, that she could do.' + '<p>Now that he was gone – and whether the going were to great reward or to proper punishment, who could say? – the widow Ariadna found herself inclined toward the slow unravelling of his impeccably-woven legacy, which she felt wrapped about her shoulders like a shroud.  She had rooms of furniture rearranged at odd angles, draped settees with okapi pelts, perched stuffed eagles at the top of curio cabinets, and filled her chiffonier with the raiment of far-off pagan lands.  Though friends looked on sadly, spoke gingerly, assumed it to be the temporary break of a woman bereft, the wildness that pleased her was imposed not in grief, as they imagined, or with spite, as one might think to watch her at the act, but as an expression of her own sovereignty, new and gratifying and well-earned.' + '<p>The principal Shuvalov residence, a house on Podrezova Street in Petersburg, being also the favored lodging of her only son, did not see the brunt of these atmospheric changes.  The sixteen year-old heir apparent was unusually articulate when it came to disapproving of his mother’s new eccentricities, which he could not recognize for what they were: old eccentricities long bottled.  Ariadna, unable to think of a reason to break her long-standing tradition of at once indulging and avoiding him, thus focussed her attentions rather on Svantovitskoe, the grand old estate whose boundaries sprawled along the southern shores of the Oka River, and where she and the count had always wiled away the too-brief Russian summers.' + '<p>It was toward this same Svantovitskoe which Matvei Tsivilko began to trudge the very moment Winter’s shadow over Moscow seemed at last to lift for good, in late March.  It was Svantovitskoe at which he arrived in early April, following a four-hundred kilometer trek through the muddy countryside.  And it was Svantovitskoe which became the object of his apprehensive stare when, upon his disembarkation from a pony cart whose driver had sullenly agreed to convey him from Ryazan, he became aware of a worrisome number of signs that the premises had been abandoned.' + '<p>The last time he had laid eyes on the property was six years ago, when his family attended a lavish party thrown by the Shuvalovs in honor of father and son’s Name Day.  The trip was not perfectly preserved in his memory, but he recalled with great clarity the impression that the manicured grass, lollipop shrubs, geometric flower beds and grand columns freshly painted white had come together to make in his mind.  Now clumps of knapweed speckled the lawn.  Bushes were untrimmed.  Paint flaked.  Hornets’ nests occupied the upper corners of the porch.' + '<p>He threw the tarnished brass knocker against the door, expecting nothing – or expecting that he would now have to come up with a new plan, when it had been all that he could do to come up with this one.  But a woman answered, a wrinkled housekeeper-crone in a headscarf, and when he announced himself as Ariadna Semyonovna’s relation, she ushered him in without so much as a question toward his bedraggled state.' + '<p>Until the beginning of May, Matvei hid himself in one of the many guest rooms, sleeping more than could be considered healthy and subsisting on the peasant fare shared by the skeleton staff who looked after things while Ariadna was away.  “Recuperation” was a word that he repeated to himself, but he had yet to feel much better than he when he left the city.  At least the smell of printer’s ink and musty books had been flushed from his nostrils.  Even walking past the library was apt to result in a sharp ache at the front of his forehead.' + '<p>Then in swept the lady of the house, accompanied by a retinue of servants and a pack of slavering hounds, each ostentatiously mismatched.  He braced himself for the inevitable demands of explanation, but suffered only a fleeting quizzical look from his mother’s cousin, after which the subject of his unheralded presence took on an aspect of the taboo.  No-one brought it up, at least not around Matvei himself.  And for that, he was grateful.  Grateful enough that, when Ariadna Semyonovna asked him to perform some task – the sort of task at which he would normally balk – he did it without question.  And this is how he found himself on the hard dirt road somewhere between Svantovitskoe and Ryazan, straddling one of the late Anatoli Petrovich Shuvalov’s prized but impractical Akhal-Teke mares, trying to chase down a stallion that, earlier in the morning, had been spotted galloping through a neighboring property.' + '<p>The air had felt unseasonably cool when he set off around ten o’clock, and he had wrapped himself in a black double-breasted coat before departing.  Now that the sun had reached its peak and begun on its course back down the other side of the firmament, Matvei found that he was sweltering underneath the wool and veered his gilded horse to the side of the road, where he tied reins around a crooked alder, stripped off his coat, and stood for a while with his back against the trunk, imagining the likelihood that his quarry had already broken its leg in a muskrat hole and been devoured by wolves.'
+		},
+	
+		vinetaPost1: {
+			starter: true,
+			adoptable: true,
+			summary: 'Old gods in young cities',
+			text: '<p>The Confesor Building lurched upward with naked shame between the flanks of more modest neighbors.  It was not, with its thirty floors, the city of Vineta’s tallest building (Reimer’s Tower, downtown) or even its most recognizable (Symphony Hall -- arguably), but it might have been its least subtle, straddling the sidewalk like a broad-shouldered goliath armor of fused plate glass and black steel.  <i>Look at me</i>, in fading voice.  Developers were bold and flaunted deep pockets in the nineties, when the high rise’s proposal and construction had been met with the usual concerned-citizen falderal: it was a view-ruining eyesore and clashed with every other manmade thing in the dressmaker district, etc.  But the outcry had faded as the units sold out one by one.  And why not?  The view from the south side was exquisite.  Now the few passers-by stalwart enough to face down the wind and pin-sharp raindrops, people who gripped their Burberry umbrellas tighter than their Givenchy wallets, refused the building a second glance.  It had been there as long as they could remember; it had lost its power to surprise or offend.' + '<p>On the twenty-second floor, something older than the Confesor Building, older than Vineta, older maybe than the bedrock into which the city’s foundations were drilled, stood in the shadow of a cloud-dimmed sunset with fingertips and forehead against the cold, clear membrane of the window, staring at the smeared reflection of a woman’s face over which it had only recently garnered a semblance of control, having writhed for a while in the confines of strange vein and sinew, wondering at the sting of time that harried the pale flesh in which it had found itself.' + '<p>Often it had taken a man’s shape, in those years when the sleek dark boys slaughtered villages for him in a dry country; when they worshipped him as the king of knives in Taremu;  when the milites threw their prisoners to slavering animals and cheers rang out as they were rent.  Then he had been dark and sleek himself and had counted days with the chattel and learned their manner of speech and granted what favors they asked, but he was never dying with them.  Never fragile.  Then humanity’s braying had grown tedious, and it had slipped away in other forms and in these forms had not lost – nevermind what the others thought – but deliberately cast away the superfluous trappings of mortality; law and language and time, “civilization,” piece by piece until only hunger and satisfaction remained, satisfaction and hunger, the snake that swallows its tail.  It lived one moment, infinite, with neither past behind nor present ahead.   So to guess how long it had indulged in that cycle, a hundred floods or a thousand since its kin had resigned the mundane world to the mundane hordes, was impossible.  Wretched flesh forced time on it by persistent dying.  Small wonder they felt the need to count seconds, hours, centuries.  They were always running out of time.  It had not meant to come back, but here it was.  She?  Sex had been shed with everything else, but the body was female, and possibly it was the body.  She had yet to decide.' + '<p>Since the infinity fractured, a faraway sun had risen four times.  Hardly anything accomplished.  Perhaps it was enough that the idea of accomplishment had been dredged up from distant memory.  The voice (an angry, confused, frightened remnant of the body’s original inhabitant) was quashed, at least.   They had fought: for the first few days, while the old monster compassed some mastery of human form -- fingers, toes, lips, tongue -- the displaced soul kept trying to wrest control away.  Not now.  Silence, now.  Mostly.  Not knowing how to purge its unlucky bedfellow entirely, it had only shut her away through an unalloyed force of will.' + '<p>There was very little that it would have professed to knowing.  Not when, or how, or why.  Where, a little.  High.  A birds’ aerie place.  It seemed the teeming masses of humanity had constructed a tower and filled it up with artifacts of which even the outwardly familiar were strange.  Outside, rain and countless points of light beneath an unclouded edge of setting sun.  She had not ventured beyond the door.  Not yet.  Not until she knew more.  She expected the man might have answers, but he spoke a tongue she had yet to unravel.  Such was mankind -- inventing more and more sounds for the same thing when only the thing was of any significance.  She had tested one or two old words on him, the most recent she could summon, and received incomprehension for her efforts.  But he kept coming back, after that first appearance with a cup of water when she was struggling, even after the aborted effort to tear out his throat (weak hands, trembling), and surely he must know something.  Only she had to make sense of it with this cage around her, limiting everything.  She heaved a frustrated breath and threw a hand against the window’s surface.  It held fast but reverberated with the thump of the blow.'
+		},
+	
+		gideonPost1: {
+			starter: true,
+			summary: 'We go out walking after midnight',
+			text: '<p>Three in the morning on a Wednesday, and the city-never-sleeps contingent was all out in shabby splendor: sailors and shift workers, nightwalkers with lips painted purple, cokeheads with restless twitching limbs, a Haitian across the street hissing at imaginary devils or real ones. Two tables away a paunchy man in white linen and a dark, drowsy-eyed woman argued in machinegun Spanish.</p>' + '<p>He could have been in Canada by now. Prince Edward Island where a few far-flung scions of the family, who ventured south from time to time for hundredth-birthday celebrations and funerals, had settled during the Civil War. They would have granted him quarter. Blood was stronger than scandal half a continent away. He could have grown a beard, worn sweaters embroidered with wide-antlered stags, relaxed a little and considered what to do from the cover of a mossy coastal cabin. Instead he was at an all-night Cuban diner, alone at a corner table on its sticky outdoor patio under an umbrella that was doing a fine job of keeping moonlight out of his eyes. For whatever that was worth. Fingers curled around, tapped at the side of, a half-full cup of coffee well on its way to lukewarm. He had taken maybe three bites of the frita on the plate in front of him. There was something unhealthy to the Miami air, the humidity shot through with a squalid combination of seasalt and rancid porkfat and exhaust, that strangled the appetite slowly like there was pleasure in it. Maybe it was him. Maybe his tastebuds were poisoned with a grudge. Well, he was doing what he could about that.</p>' + '<p>Since the sun set he had been out placing the same sigil (cross circle dalet, circle dalet cross, schoolboy exercise on a chalkboard: I will not pull Bethanne Talley’s hair) in the kind of out-of-the-way spots – under benches, on the damp brick walls behind alley dumpsters, in phone booths perfumed by puddles of piss – that granted them a chance of not being rubbed away in minutes. Each mark reached out tendrils through space unseen to touch the rest. Enough alive at once formed what you call a fowler’s snare, but one managed to fade by the time two were added. It was a tedious and imperfect process; the repetition of it left his thoughts straying through the corridors of ritual: here were the red shapes and the words from Genesis that would leach the incoherence from his neighbors’ bickering, leave only raw significance which, revealed, would prove the effort wasted because the squabble was clearly about money or drugs or sex. What did he care? Moot anyway – the ingredients and he were spent.</p>' + '<p>Sip of coffee: plain and bitter black, none of that demerara hit they liked to sneak in when he wasn’t paying attention.</p>'
+		},
+	
+		fourteenPost1: {
+			starter: false,
+			summary: 'After the gunshot',
+			text: '<p>It sustains, regardless of whether or not he can distinguish it from the dull air. Gnat-whine, spineshudder, hovering at that same barely-there decibel. <i>Be silent or sing</i> -- but it’s her fault, she who can neither fully focus nor block it out. She digs for an appropriate level of frustration, the will to do something about it, but comes up with fists empty, defeated for the moment by smothered desire and hobbled senses.</p>' + '<p>Several seconds and a sigh pass from the appearance of the weapon to Fourteen’s gathering that it is displayed with the intention of a threat -- and this arises from the exchange, the shift in postures; difficult to link the little thing in the woman’s rough hands to danger. Yet its nose follows him as he moves away. Pauses. Sways a little, left right left, not unsteady (the motion follows the slow cadence of measured breathing) but indecisive, trying to work out which of the two targets is more deserving of its attentions.</p>' + '<p>“No,” comes the spoken response, flat enough to challenge the word it counters. The consequent shot is an eardrum-shattering crack and burst of light that succeeds, at the very least, in startling Fourteen out of her chair and into a huddle against the foot of the bar. The bullet is aimed high, into the space between his shoulder and his ear.</p>'
+		},
+	
+		fieldsPost1: {
+			starter: false,
+			character: Characters.byron,
+			summary: 'An uncomfortable check-in',
+			text: '<p>He snaked his arm away from her shoulder and dipped to extricate the specified suitcase from her grip: his hand covered hers, prying away slender fingers – one, two, three, four – until that small burden, too, became his. A nut-brown Samsonite case purchased second-hand, monogrammed AU (Alexander Unguent, Afanasiy Uladimov, Abraham Underhill …) occupied his other fist and contained his own scant effects. Hers was heavier, maybe, but not very. Light packers, both, for knowing how few things were really indispensable.</p>' + '<p>In that almost-inadvertent way of his, he had fixed the geometry of the schematics in his mind, fitting it somewhere in between the hatbox Moscow apartment that probably belonged to a family of five now instead of him, and the first floor of the Grosse Ile City Hall, where he had spent some time years ago as part of an attempt to infiltrate the naval base. Of course, in three dimensions it was larger. Realer. Observational reticence as they made their way through the honeycomb that had just become their entire world. He marked the wall that separated the dining area from the hospital wing (his domain) before allowing himself to be pulled into the women\'s sector, and he was settling her suitcase atop one of the cots when she spoke.</p>' + '<p>“Бесшабашная." The half-breathed admonishment was supplemented with a chill glare, which he jerked his head around to focus on her the instant she began to talk. Of all people, she should know that a bolted door was no guarantee of confidentiality. “По–английски, сестра моя …” barely a whisper, irritated.</p>' + '<p>Not that he had any expectation of being able to give her orders: she would do exactly as she pleased and get them both strung up if she cared to. But even she had to understand that they were the unremarkable, all-American Fields siblings, at least until they had been able to sweep the premises, mark vents and rents in the walls that maps could not prepare them for. Yet he found he matched her Russian with his, like a drink of cool water down his throat. The last time, he told himself, until they had the luxury of certitude. It was his responsibility to balance her rashness; they could not afford a mess. Elsewhere, options were always available if something went wrong. Here, there was no escape. No extraction. So he drove away the acute desire she had stirred to push her onto the bed and make her quiet that way.</p>' + '<p>"Yes, too late." His evenly-delivered addendum. Then, still quiet but sharper, "Promise me you\'ll be careful, Kisa." Not that they hadn\'t been over it already, a hundred times, but the narrow room and the unnatural light and the filtered taste in the air somehow substantiated a need to say it again.</p>'
+		},
+	
+		maitePost1: {
+			starter: false,
+			character: Characters.maite,
+			summary: 'What should have been abandoned',
+			text: '<p>A half second before the break, the barbed point where she knew her lungs would either seize up or give out, the coughing ebbed, left her sore, neck whiplashed, gulping air thick with a suggestion of metal smelting and spray paint. Smoldering on her arm when she pulled it away from her mouth was a wet spatter, maybe blood but maybe just spit, who could say since that halfbitter iron heaviness filled her mouth more often than she could possibly be bleeding. It wasn’t right, the slow tightening and the sharp struggle, this thing chewing her up because it was sick of its view of her ribcage and he wouldn’t let it out.</p>' + '<p>The rattle of her breath and an open-ocean sucking in her ears kept her from marking the intrusion into “her” space -- also known as where the boundary lines were drawn, but you have to own something before you don’t have anything -- until a girl’s voice burrowed into her awareness, and even then she caught the tail, <i>fucked not going to hurt you swear</i>, jerked up her chin with eyes squeezed shut in an idiotic pantomime of sight. Surprise was a kick, swift hard settled soon into a low throb of fascination.</p>' + '<p>“But do you <i>want</i> to?” she asked in a used-up hiss. If there was any light -- the moon in a high window or a streetlamp peeking through a crack in the wall, it might light the humorless semi-smile that seized at her gnawed lips. Pause to breathe. Added, “Watch the wires.”</p>'
+		}
+	};
+
+/***/ },
+/* 244 */
+/*!*************************************!*\
+  !*** ./app/components/charstrip.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _actions = __webpack_require__(/*! ../actions */ 241);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CharStrip = function (_React$Component) {
+	    _inherits(CharStrip, _React$Component);
+	
+	    function CharStrip(props) {
+	        _classCallCheck(this, CharStrip);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CharStrip).call(this, props));
+	
+	        _this.state = _store2.default.getState();
+	        _this.getClass = _this.getClass.bind(_this);
+	        _this.toggleStrip = _this.toggleStrip.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	        _this.getImage = _this.getImage.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	        return _this;
+	    }
+	
+	    _createClass(CharStrip, [{
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getImage',
+	        value: function getImage(character) {
+	            return 'background-image: url(' + character.image + ')';
+	        }
+	    }, {
+	        key: 'renderCharacters',
+	        value: function renderCharacters() {
+	            return this.state.characters.map(function (character, index) {
+	                return _react2.default.createElement(CharLink, { key: index, character: character });
+	            });
+	        }
+	    }, {
+	        key: 'getClass',
+	        value: function getClass() {
+	            if (this.state.charStripOpen) {
+	                return 'char-strip-open';
+	            } else return 'char-strip-closed';
+	        }
+	    }, {
+	        key: 'toggleStrip',
+	        value: function toggleStrip() {
+	            console.log('toggle');
+	            _actions2.default.toggleStrip();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'char-strip-wrapper' },
+	                _react2.default.createElement('div', { className: 'char-wrapper-toggle', onClick: this.toggleStrip }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'char-strip' },
+	                    this.renderCharacters()
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return CharStrip;
+	}(_react2.default.Component);
+	
+	var CharLink = function (_React$Component2) {
+	    _inherits(CharLink, _React$Component2);
+	
+	    function CharLink(props) {
+	        _classCallCheck(this, CharLink);
+	
+	        var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(CharLink).call(this, props));
+	
+	        _this2.getLink = _this2.getLink.bind(_this2);
+	        return _this2;
+	    }
+	
+	    _createClass(CharLink, [{
+	        key: 'getLink',
+	        value: function getLink() {
+	            return 'characters/' + this.props.character.id;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var style = {
+	                backgroundImage: 'url(' + this.props.character.image + ')'
+	            };
+	
+	            return _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: this.getLink() },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'char-icon', style: style },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'interior' },
+	                        this.props.character.name
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return CharLink;
+	}(_react2.default.Component);
+	
+	module.exports = CharStrip;
+
+/***/ },
+/* 245 */
+/*!**************************************!*\
+  !*** ./app/components/characters.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _charstrip = __webpack_require__(/*! ./charstrip */ 244);
+	
+	var _charstrip2 = _interopRequireDefault(_charstrip);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Characters = function (_React$Component) {
+	    _inherits(Characters, _React$Component);
+	
+	    function Characters(props) {
+	        _classCallCheck(this, Characters);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Characters).call(this, props));
+	
+	        _this.state = _store2.default.getState();
+	        _this.getClass = _this.getClass.bind(_this);
+	
+	        _this.content = _this.content.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	        return _this;
+	    }
+	
+	    _createClass(Characters, [{
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getClass',
+	        value: function getClass() {
+	            if (this.state.charStripOpen) {
+	                return 'char-wrapper-open';
+	            } else return 'char-wrapper-closed';
+	        }
+	    }, {
+	        key: 'content',
+	        value: function content() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: this.getClass() },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'interior-resize' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'I write all the characters.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Old, young, male, female, human, elder god, all whatevers in between. They are connected by their shared tendencies to be damaged, unhappy and prone to fixation. They are often outsiders in relation to the settings they occupy. They are fluent in more languages than I am.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Please find, attached, a handful of mismatched forum apps from the last ~7 years, to serve as a taste of the kind of characters you may run across in your dealings with me.'
+	                    )
+	                ),
+	                _react2.default.createElement(_charstrip2.default, null)
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_fullscreen2.default, { content: this.content });
+	        }
+	    }]);
+	
+	    return Characters;
+	}(_react2.default.Component);
+	
+	module.exports = Characters;
+
+/***/ },
+/* 246 */
+/*!***********************************!*\
+  !*** ./app/components/contact.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Contact = function (_React$Component) {
+	    _inherits(Contact, _React$Component);
+	
+	    function Contact(props) {
+	        _classCallCheck(this, Contact);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Contact).call(this, props));
+	    }
+	
+	    _createClass(Contact, [{
+	        key: 'content',
+	        value: function content() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Test'
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_fullscreen2.default, { content: this.content });
+	        }
+	    }]);
+	
+	    return Contact;
+	}(_react2.default.Component);
+	
+	module.exports = Contact;
+
+/***/ },
+/* 247 */
+/*!***********************************!*\
+  !*** ./app/components/landing.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _actions = __webpack_require__(/*! ../actions */ 241);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Landing = function (_React$Component) {
+	    _inherits(Landing, _React$Component);
+	
+	    function Landing(props) {
+	        _classCallCheck(this, Landing);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Landing).call(this, props));
+	
+	        _this.state = _store2.default.getState();
+	
+	        _this.getView = _this.getView.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	        return _this;
+	    }
+	
+	    _createClass(Landing, [{
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getView',
+	        value: function getView() {
+	            switch (this.state.view) {
+	                case 'title':
+	                    return _react2.default.createElement(Title, { updateView: this.updateView, open: this.state.open, toggleOpen: this.toggleOpen });
+	                case 'about':
+	                    return _react2.default.createElement(Fullscreen, { close: this.updateView, view: this.state.view });
+	                default:
+	                    return true;
+	            }
+	        }
+	    }, {
+	        key: 'updateView',
+	        value: function updateView(view) {
+	            _actions2.default.updateView(view);
+	        }
+	    }, {
+	        key: 'toggleOpen',
+	        value: function toggleOpen() {
+	            _actions2.default.toggleOpen();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.getView()
+	            );
+	        }
+	    }]);
+	
+	    return Landing;
+	}(_react2.default.Component);
+	
+	var Title = function (_React$Component2) {
+	    _inherits(Title, _React$Component2);
+	
+	    function Title(props) {
+	        _classCallCheck(this, Title);
+	
+	        var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Title).call(this, props));
+	
+	        _this2.onMouseOver = _this2.onMouseOver.bind(_this2);
+	        _this2.getClassWrapper = _this2.getClassWrapper.bind(_this2);
+	        return _this2;
+	    }
+	
+	    _createClass(Title, [{
+	        key: 'getClassWrapper',
+	        value: function getClassWrapper() {
+	            if (this.props.open) {
+	                return 'title-wrapper-open';
+	            } else return 'title-wrapper-closed';
+	        }
+	    }, {
+	        key: 'onMouseOver',
+	        value: function onMouseOver() {
+	            this.props.toggleOpen();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: this.getClassWrapper() },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'title', onMouseOver: this.onMouseOver },
+	                        'getinkshedtears'
+	                    )
+	                ),
+	                _react2.default.createElement(Categories, { open: this.props.open, updateView: this.props.updateView })
+	            );
+	        }
+	    }]);
+	
+	    return Title;
+	}(_react2.default.Component);
+	
+	var Categories = function (_React$Component3) {
+	    _inherits(Categories, _React$Component3);
+	
+	    function Categories(props) {
+	        _classCallCheck(this, Categories);
+	
+	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Categories).call(this, props));
+	
+	        _this3.state = {
+	            categories: ['about', 'characters', 'posts', 'contact'],
+	            active: null
+	        };
+	
+	        _this3.getClassWrapper = _this3.getClassWrapper.bind(_this3);
+	        _this3.getCategories = _this3.getCategories.bind(_this3);
+	        _this3.updateView = _this3.updateView.bind(_this3);
+	        _this3.activate = _this3.activate.bind(_this3);
+	        _this3.deactivate = _this3.deactivate.bind(_this3);
+	        _this3.getClassCat = _this3.getClassCat.bind(_this3);
+	        return _this3;
+	    }
+	
+	    _createClass(Categories, [{
+	        key: 'activate',
+	        value: function activate(i) {
+	            this.setState({ active: i });
+	        }
+	    }, {
+	        key: 'deactivate',
+	        value: function deactivate() {
+	            this.setState({ active: null });
+	        }
+	    }, {
+	        key: 'getClassWrapper',
+	        value: function getClassWrapper() {
+	            if (this.props.open) {
+	                return 'category-wrapper-visible';
+	            } else return 'category-wrapper-invisible';
+	        }
+	    }, {
+	        key: 'getClassCat',
+	        value: function getClassCat(i) {
+	            if (this.state.active != null) {
+	                if (this.state.active === i) {
+	                    return 'category-active';
+	                } else return 'category-inactive';
+	            } else return 'category';
+	        }
+	    }, {
+	        key: 'getCategories',
+	        value: function getCategories() {
+	            return this.state.categories.map(function (cat, index) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: 'text-wrapper', key: index },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: cat },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: this.getClassCat(index), onMouseEnter: this.activate.bind(null, index), onMouseLeave: this.deactivate },
+	                            cat
+	                        )
+	                    )
+	                );
+	            }.bind(this));
+	        }
+	    }, {
+	        key: 'updateView',
+	        value: function updateView(view) {
+	            this.props.updateView(view);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: this.getClassWrapper() },
+	                this.getCategories()
+	            );
+	        }
+	    }]);
+	
+	    return Categories;
+	}(_react2.default.Component);
+	
+	module.exports = Landing;
+
+/***/ },
+/* 248 */
+/*!*********************************!*\
+  !*** ./app/components/posts.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Posts = function (_React$Component) {
+	    _inherits(Posts, _React$Component);
+	
+	    function Posts(props) {
+	        _classCallCheck(this, Posts);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Posts).call(this, props));
+	    }
+	
+	    _createClass(Posts, [{
+	        key: 'content',
+	        value: function content() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Test'
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_fullscreen2.default, { content: this.content });
+	        }
+	    }]);
+	
+	    return Posts;
+	}(_react2.default.Component);
+	
+	module.exports = Posts;
 
 /***/ }
 /******/ ]);

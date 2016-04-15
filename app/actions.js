@@ -8,6 +8,16 @@ class Actions {
     toggleOpen() {
         return true;
     }
+    
+    setCharacter(name) {
+        console.log('update character to ' + name)
+        return name;
+    }
+    
+    toggleStrip() {
+        return true;
+    }
+
 }
 
 module.exports = alt.createActions(Actions);
