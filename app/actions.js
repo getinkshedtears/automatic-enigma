@@ -17,6 +17,10 @@ class Actions {
     toggleStrip() {
         return true;
     }
+    
+    setPost(id) {
+        return id;
+    }
 
 }
 

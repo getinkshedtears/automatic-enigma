@@ -1,6 +1,6 @@
 var never = {
         title: 'Never',
-	image: 'images/21.jpg',
+	image: 'images/never.jpg',
         name: 'Never Amirbeyov',
         id: 'never',
         biography: '<center><b>Four Common Misconceptions Surrounding Never Amirbeyov, And Their Confutations</b>' +
@@ -125,7 +125,7 @@ var byron = {
         title: 'Byron',
         name: 'Byron Fields',
         id: 'byron',
-	image: 'images/fields.jpg',
+	image: 'images/byron.jpg',
         biography: '<h2><center>Спасибо, родному Сталину за счастливое детство!</center></h2>' +
         '<p>Grigori Gavrilovich Volkov is a death’s head moth, his son’s ruination.</p>' +
         '<p>The metamorphosis from soft-bellied, soft-spoken poet to state threat begins on February 13th, 1917, when Anya Mikhailovna Volkova leaves to buy bread and never comes home to her husband and newborn son.  The vulturenecked neighbor who, a few days later, returns Anya’s wire-rimmed glasses, wrapped in a blood-speckled handkerchief, testifies that he saw her stumble into a partisan scuffle; that she was twice shot by an undiscriminating Bolshevik – once in the shoulder, and once in the head.  With no contradictory stories emerging from any quarter, and no body returned for burial, this account is inimitably engraved into Volkov canon; it is the fable that haunts all the other fables that Grigori whispers in his motherless son’s ear to lull him to sleep at night.  It is a chrysalis.</p>' +

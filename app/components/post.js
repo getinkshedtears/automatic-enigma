@@ -2,29 +2,29 @@ import React from 'react';
 import Fullscreen from './fullscreen';
 import Store from '../store';
 import Actions from '../actions';
-import CharStrip from './charstrip';
 import BottomStrip from './bottomstrip';
-import {Link} from 'react-router'
+import {Link} from 'react-router';
 
 
 class Character extends React.Component {
     constructor(props) {
         super(props)
 
-        Actions.setCharacter(this.props.params.name);
+        Actions.setPost(this.props.params.post);
 
         this.state = Store.getState();
         
         this.getClass = this.getClass.bind(this);
         this.content = this.content.bind(this);
         this._onChange = this._onChange.bind(this);
-        this.renderBio = this.renderBio.bind(this);
+        this.renderPost = this.renderBio.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
         this.getClassSidebar = this.getClassSidebar.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.toggleSidebar = this.toggleSidebar.bind(this);
         this.getClassPadded = this.getClassPadded.bind(this);
-        this.charPosts = this.charPosts.bind(this);
+        this.postChar = this.postChar.bind(this);
+        this.links = this.links.bind(this);
 
         Store.listen(this._onChange);
     }
@@ -38,13 +38,13 @@ class Character extends React.Component {
     }
     
     componentWillReceiveProps(newProps) {
-        Actions.setCharacter(newProps.params.name)
-        var myDiv = document.getElementById('bio');
+        Actions.setPost(newProps.params.post)
+        var myDiv = document.getElementById('post');
         myDiv.scrollTop = 0;
     }
 
     renderBio() {
-        return {__html: this.state.activeCharacter.biography};
+        return {__html: this.state.activePost.text};
     }
     
     _onChange() {
@@ -76,43 +76,51 @@ class Character extends React.Component {
         this.setState({sidebarOpen : !this.state.sidebarOpen})
     }
     
-    charPosts() {
-        var character = this.state.activeCharacter;
-        var charPosts = [];
-        this.state.posts.forEach(function(post) {
-            if (post.character === character.id) {
-                charPosts.push(post);
-            }  
-        })
-        if (charPosts.length !== 0) {
-            return charPosts.map(function(post, index){
-                var link = '/posts/post/' + post.id;
-                return <Link to = {link}><div className = 'post-wrapper' key = {index}><div className = 'post-middle'><div className = 'post-text'><div dangerouslySetInnerHTML = {{__html : post.text}} /></div></div></div></Link>
-            })
+    links() {
+        return (
+            <div>
+            <Link to = '/posts/starters'><div className = 'posts-link'>
+                <div className = 'interior'>Starters</div>
+                </div></Link>
+            <Link to = '/posts/inmediasres'><div className = 'posts-link'>
+                <div className = 'interior'>In Medias Res</div>
+            </div></Link>
+            <Link to = '/posts'><div className = 'posts-link'>
+                <div className = 'interior'>Posts Home</div>
+            </div></Link>
+            </div>
+        )
+    }
+    
+    postChar() {
+        if (this.state.activePostChar){
+            var link = ('/characters/' + this.state.activePostChar.id);
+            var image = 'url(' + this.state.activePostChar.image + ')';
+            
+            return (
+                
+                <div className = {this.getClassSidebar()}>
+                    <div className = 'sidebarToggle' onClick = {this.toggleSidebar}/>
+                    <Link to = {link}><div className = 'char-icon' style = {{'backgroundImage' : image}}><div className = 'interior'>{this.state.activePostChar.title}</div></div></Link>
+                </div>
+                
+                )
         }
-        else {
-            return null
-        }
+        else return null
     }
     
     content() {
         return (
             <div className = {this.getClass()}>
             
-            <div className = 'interior-resize' id = 'bio'>
-            
-            { this.charPosts() !== null ?
-            <div className = {this.getClassSidebar()}>
-                <div className = 'sidebarToggle' onClick = {this.toggleSidebar}/>
-                    {this.charPosts()}
-                </div>
-                :
-                null
-            }
-            
-            <div className = {this.getClassPadded()} dangerouslySetInnerHTML={this.renderBio()} />
+                <div className = 'interior-resize' id = 'bio'>
+                
+                { this.postChar() }
+                
+                <div className = {this.getClassPadded()} dangerouslySetInnerHTML={this.renderPost()} />
             </div>
-                <BottomStrip contents = {<CharStrip active = {this.props.params.name} />} />
+            
+            <BottomStrip contents = {this.links()} />
             </div>
             )
     }

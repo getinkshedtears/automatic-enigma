@@ -17,15 +17,18 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "jade": "~1.11.0",
+    "json-loader": "^0.5.4",
     "mongoose": "^4.4.12",
     "morgan": "~1.6.1",
     "mysql": "^2.10.2",
+    "nodemailer": "^2.3.2",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-router": "^2.2.1",
     "rrtr": "^2.2.2",
     "serve-favicon": "~2.3.0",
     "stylus": "0.42.3",
+    "superagent": "^1.8.3",
     "webpack": "^1.12.15"
   }
 }

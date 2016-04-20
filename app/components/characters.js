@@ -1,6 +1,7 @@
 import React from 'react';
 import Fullscreen from './fullscreen';
 import Store from '../store';
+import BottomStrip from './bottomstrip';
 import CharStrip from './charstrip';
 
 class Characters extends React.Component {
@@ -13,6 +14,7 @@ class Characters extends React.Component {
         this.content = this.content.bind(this);
         this._onChange = this._onChange.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
+        this.bottom = this.bottom.bind(this);
         
         Store.listen(this._onChange);
     }
@@ -27,9 +29,13 @@ class Characters extends React.Component {
     
     getClass() {
         if (this.state.charStripOpen) {
-            return 'char-wrapper-open'
+            return 'bottomstrip-open'
         }
-        else return 'char-wrapper-closed'
+        else return 'bottomstrip-closed'
+    }
+    
+    bottom() {
+        return <CharStrip />
     }
     
     content() {
@@ -42,7 +48,7 @@ class Characters extends React.Component {
 
                 <p>Please find, attached, a handful of mismatched forum apps from the last ~7 years, to serve as a taste of the kind of characters you may run across in your dealings with me.</p>
             </div>
-            <CharStrip />
+            <BottomStrip contents = {this.bottom()} />
             </div>
             )
     }

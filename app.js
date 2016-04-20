@@ -9,6 +9,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+  mongoose.connect('mongodb://Admin:admin@ds011231.mlab.com:11231/rpappresponses');
 var routes = require('./routes/index');
 
 // view engine setup

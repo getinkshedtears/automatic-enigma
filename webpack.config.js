@@ -10,6 +10,12 @@ var config = {
         path: build_dir,
         filename: 'index.js'
     },
+    node: {
+      fs: "empty",
+      net: "empty",
+      tls: "empty",
+      dns: 'empty'
+    },
     module : {
     loaders : [
       {
@@ -17,6 +23,10 @@ var config = {
         include : app_dir,
         loader : 'babel'
       },
+      {
+        test: /\.json$/,
+        loader: "json-loader"
+      }
     ]
   }
 }

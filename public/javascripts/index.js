@@ -75,11 +75,19 @@
 	
 	var _contact2 = _interopRequireDefault(_contact);
 	
-	var _landing = __webpack_require__(/*! ./components/landing */ 247);
+	var _landing = __webpack_require__(/*! ./components/landing */ 253);
 	
 	var _landing2 = _interopRequireDefault(_landing);
 	
-	var _posts = __webpack_require__(/*! ./components/posts */ 248);
+	var _library = __webpack_require__(/*! ./components/library */ 257);
+	
+	var _library2 = _interopRequireDefault(_library);
+	
+	var _post = __webpack_require__(/*! ./components/post */ 254);
+	
+	var _post2 = _interopRequireDefault(_post);
+	
+	var _posts = __webpack_require__(/*! ./components/posts */ 255);
 	
 	var _posts2 = _interopRequireDefault(_posts);
 	
@@ -97,6 +105,8 @@
 	  _react2.default.createElement(_reactRouter.Route, { path: '/characters', component: _characters2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/characters/:name', component: _character2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/posts', component: _posts2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/posts/:type', component: _library2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/posts/post/:post', component: _post2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _contact2.default })
 	), document.getElementById('anchor'));
 
@@ -25985,10 +25995,45 @@
 	    function About(props) {
 	        _classCallCheck(this, About);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(About).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(About).call(this, props));
+	
+	        _this.state = {
+	            activeThing4: null,
+	            thing4: [' Sometimes a photoblogger; less often a blogger of other things.', ' One who, when the endtimes come, will be able to make a living shaving sheep, spinning yarn, and knitting socks.', ' A massive failure of a webdev, forever starting and not completing apps/projects/games, like Selva: the post-apocalyptic Amazonian jungle romp.', ' Long-time internet roleplayer who can (although not very often) be seen on the RPG-D.', " Gamer, unrepentantly obsessed with The Binding of Isaac, Don't Starve, and Stardew Valley."]
+	        };
+	
+	        _this.setThing4 = _this.setThing4.bind(_this);
+	        _this.content = _this.content.bind(_this);
+	        _this.getThing4Class = _this.getThing4Class.bind(_this);
+	        _this.getThing4 = _this.getThing4.bind(_this);
+	        return _this;
 	    }
 	
 	    _createClass(About, [{
+	        key: 'setThing4',
+	        value: function setThing4(int) {
+	            this.setState({ activeThing4: int });
+	        }
+	    }, {
+	        key: 'getThing4Class',
+	        value: function getThing4Class(int) {
+	
+	            if (this.state.activeThing4 === int) {
+	                return 'thing4Active';
+	            } else return 'thing4Inactive';
+	        }
+	    }, {
+	        key: 'getThing4',
+	        value: function getThing4() {
+	            return this.state.thing4.map(function (thing, index) {
+	                return _react2.default.createElement(
+	                    'span',
+	                    { key: index, className: this.getThing4Class(index) },
+	                    thing
+	                );
+	            }.bind(this));
+	        }
+	    }, {
 	        key: 'content',
 	        value: function content() {
 	            return _react2.default.createElement(
@@ -26060,6 +26105,65 @@
 	                            '3.'
 	                        ),
 	                        ' The would-be lexicographer: 29 year-old cynic, English major, bitter full-time spreadsheet drone, part-time collaborative writer. The attached pages are presented as her roleplaying curriculum vitae, should you have an interest in being part of that last thing.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'important' },
+	                            '4.  '
+	                        ),
+	                        this.getThing4()
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'findMes' },
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: 'http://getinkshedtears.tumblr.com' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'findMe', onMouseEnter: this.setThing4.bind(null, 0), onMouseLeave: this.setThing4.bind(null, null) },
+	                                'Tumblr'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: 'http://www.ravelry.com/people/someboldseer' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'findMe', onMouseEnter: this.setThing4.bind(null, 1), onMouseLeave: this.setThing4.bind(null, null) },
+	                                'Ravelry'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: 'http://selva.gist.space/' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'findMe', onMouseEnter: this.setThing4.bind(null, 2), onMouseLeave: this.setThing4.bind(null, null) },
+	                                'Selva'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: 'http://rpg-directory.org/user-5304.html' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'findMe', onMouseEnter: this.setThing4.bind(null, 3), onMouseLeave: this.setThing4.bind(null, null) },
+	                                'RPG-D'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: 'http://steamcommunity.com/profiles/76561197996737744' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'findMe', onMouseEnter: this.setThing4.bind(null, 4), onMouseLeave: this.setThing4.bind(null, null) },
+	                                'Steam'
+	                            )
+	                        )
 	                    )
 	                )
 	            );
@@ -26162,6 +26266,12 @@
 	
 	var _charstrip2 = _interopRequireDefault(_charstrip);
 	
+	var _bottomstrip = __webpack_require__(/*! ./bottomstrip */ 256);
+	
+	var _bottomstrip2 = _interopRequireDefault(_bottomstrip);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26187,12 +26297,22 @@
 	        _this._onChange = _this._onChange.bind(_this);
 	        _this.renderBio = _this.renderBio.bind(_this);
 	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	        _this.getClassSidebar = _this.getClassSidebar.bind(_this);
+	        _this.componentDidMount = _this.componentDidMount.bind(_this);
+	        _this.toggleSidebar = _this.toggleSidebar.bind(_this);
+	        _this.getClassPadded = _this.getClassPadded.bind(_this);
+	        _this.charPosts = _this.charPosts.bind(_this);
 	
 	        _store2.default.listen(_this._onChange);
 	        return _this;
 	    }
 	
 	    _createClass(Character, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.setState({ sidebarOpen: true });
+	        }
+	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            _store2.default.unlisten(this._onChange);
@@ -26218,8 +26338,62 @@
 	        key: 'getClass',
 	        value: function getClass() {
 	            if (this.state.charStripOpen) {
-	                return 'char-wrapper-open';
-	            } else return 'char-wrapper-closed';
+	                return 'bottomstrip-open';
+	            } else return 'bottomstrip-closed';
+	        }
+	    }, {
+	        key: 'getClassSidebar',
+	        value: function getClassSidebar() {
+	            if (this.state.sidebarOpen) {
+	                return 'sidebar-open';
+	            } else return 'sidebar-closed';
+	        }
+	    }, {
+	        key: 'getClassPadded',
+	        value: function getClassPadded() {
+	            if (this.state.sidebarOpen) {
+	                return 'padded-sidebar';
+	            } else return 'padded';
+	        }
+	    }, {
+	        key: 'toggleSidebar',
+	        value: function toggleSidebar() {
+	            this.setState({ sidebarOpen: !this.state.sidebarOpen });
+	        }
+	    }, {
+	        key: 'charPosts',
+	        value: function charPosts() {
+	            var character = this.state.activeCharacter;
+	            var charPosts = [];
+	            this.state.posts.forEach(function (post) {
+	                if (post.character === character.id) {
+	                    charPosts.push(post);
+	                }
+	            });
+	            if (charPosts.length !== 0) {
+	                return charPosts.map(function (post, index) {
+	                    var link = '/posts/post/' + post.id;
+	                    return _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: link },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'post-wrapper', key: index },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'post-middle' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'post-text' },
+	                                    _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: post.text } })
+	                                )
+	                            )
+	                        )
+	                    );
+	                });
+	            } else {
+	                return null;
+	            }
 	        }
 	    }, {
 	        key: 'content',
@@ -26227,8 +26401,18 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: this.getClass() },
-	                _react2.default.createElement('div', { className: 'interior-resize', id: 'bio', dangerouslySetInnerHTML: this.renderBio() }),
-	                _react2.default.createElement(_charstrip2.default, null)
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'interior-resize', id: 'bio' },
+	                    this.charPosts() !== null ? _react2.default.createElement(
+	                        'div',
+	                        { className: this.getClassSidebar() },
+	                        _react2.default.createElement('div', { className: 'sidebarToggle', onClick: this.toggleSidebar }),
+	                        this.charPosts()
+	                    ) : null,
+	                    _react2.default.createElement('div', { className: this.getClassPadded(), dangerouslySetInnerHTML: this.renderBio() })
+	                ),
+	                _react2.default.createElement(_bottomstrip2.default, { contents: _react2.default.createElement(_charstrip2.default, { active: this.props.params.name }) })
 	            );
 	        }
 	    }, {
@@ -26271,12 +26455,15 @@
 	        this.posts = Posts;
 	        this.activeCharacter = Characters[0];
 	        this.charStripOpen = true;
+	        this.activePost = Posts[0];
+	        this.activePostChar = null;
 	
 	        this.bindListeners({
 	            handleUpdateView: Actions.UPDATE_VIEW,
 	            handleToggleOpen: Actions.TOGGLE_OPEN,
 	            handleSetCharacter: Actions.SET_CHARACTER,
-	            handleToggleStrip: Actions.TOGGLE_STRIP
+	            handleToggleStrip: Actions.TOGGLE_STRIP,
+	            handleSetPost: Actions.SET_POST
 	        });
 	    }
 	
@@ -26302,9 +26489,32 @@
 	            for (var i = 0; i < this.characters.length; i++) {
 	                if (this.characters[i].id === name) {
 	                    character = this.characters[i];
+	                    break;
 	                }
 	            }
 	            this.activeCharacter = character;
+	        }
+	    }, {
+	        key: 'handleSetPost',
+	        value: function handleSetPost(id) {
+	            var post = null;
+	            for (var i = 0; i < this.posts.length; i++) {
+	                if (this.posts[i].id === id) {
+	                    post = this.posts[i];
+	                    break;
+	                }
+	            }
+	            this.activePost = post;
+	
+	            if (this.activePost.character) {
+	                var character = null;
+	                for (var i = 0; i < this.characters.length; i++) {
+	                    if (this.characters[i].id === this.activePost.character) {
+	                        character = this.characters[i];
+	                    }
+	                }
+	                this.activePostChar = character;
+	            }
 	        }
 	    }]);
 	
@@ -28096,6 +28306,11 @@
 	        value: function toggleStrip() {
 	            return true;
 	        }
+	    }, {
+	        key: 'setPost',
+	        value: function setPost(id) {
+	            return id;
+	        }
 	    }]);
 	
 	    return Actions;
@@ -28114,7 +28329,7 @@
 	
 	var never = {
 	        title: 'Never',
-	        image: 'images/21.jpg',
+	        image: 'images/never.jpg',
 	        name: 'Never Amirbeyov',
 	        id: 'never',
 	        biography: '<center><b>Four Common Misconceptions Surrounding Never Amirbeyov, And Their Confutations</b>' + '<p>(which are unlikely to be issued from the wolf’s maw)</p></center>' + '<hr>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">Thirty-two years ago, someone had the poor judgment to name a child after the negation of time and possibility.</span>' + '<div>' + '<span style="width: 15%; float: left; display: inline padding-bottom: 15px;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline padding-bottom: 15px;">' + '<p>Never Amirbeyov does not exist.  Not in the registers, anyway.  For officiality, for the bureaucracy, he is what his parents called him: Enver.  A real name, appropriated from an old acquaintance in an old country.  There was a story once, about what deeds consummated the original Enver’s right to a namesake.  It’s forgotten now, slipped in and drowned somewhere along the passage of time.  No one has called the tributary Enver by his given name these fifteen years.</p>' + '<p>The “Never” that has replaced it derives from the (presumably) innocent misreading of a classmate or a teacher or a government official.  He doesn’t remember, but he liked it.  It stuck -- and lucky the lapsus linguae was in English: he might have been Enfer.  Not that anything would have been different if he had.  Even the natural distorters of ligament and bone cannot hope to remake themselves with a word.</p>' + '<p style="border-top: 1px dashed black; width: 50%; margin-left: 25%; padding-bottom: 10px;"></p>' + '</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">Never is some kind of Russian.</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline;">' + '<p>The theory arises, and not unsoundly, from the Slavic sonance of his surname and the fact that he exercises a blunted version of the Russian language (last honed in earnest while his mother, who -- he <i>might</i> mention -- enjoyed others’ tongues but not other tongues, was still in the picture) in situations calling for obfuscation.  But he is second-generation New Victorian, born and raised.</p>' + '<p>Likewise, his people were not Russians, but Azeri desert hounds.  His line is deep rooted; Mazdeans and Khurramites, acculturated over generations beside the Caspian.  When the dakhmas they had scavenged for thousands of years fell out of fashion, they were obliged to employ subtler, more modern means of finding meals, and thus turned respectable.  Though not without their idiosyncrasies, their clannish tendencies, their inexorable canons, as a tribe they weathered the upheavals with their mundane neighbors none the wiser to their common ancestry with the Bardi.  So they preferred it, and so it was that, despite the changing attitudes of the world, Never’s upbringing stressed keeping head down and heritage bottled.  A sense of oppression was what stirred the first feelings of rancor in him, but that came after.</p>' + '<p>Before, nearly a century ago, Never’s late father returned to Shirvan from Volgograd, bearing a freshly-minted degree in pathological anatomy from the University there.  Second doctor in the family, the elder already operating a practice in Sumqayit with a fat wife and a squalling whelp.  The younger was to marry up: a black-eyed girl from Baku, a few offshoots of the extended family tree away.  She danced with the Çınar Ensemble, and her father was a deputy in the Milli Məclis.  It was all arranged.  Instead, he stole away with a young cousin, a striking girl at whose altar he had worshipped since he was twelve years old.  Their unsanctified coupling shattered taboo, and to avoid reprisal they travelled East, to Krasnoyarsk, where a friend of a friend helped the groom to attain a job performing autopsies at the municipal hospital.</p>' + '<p>This is History 101.  Never, despite his contempt for the good old days -- a reaction to the dogmatic traditionalism his parents, particularly his father, managed to maintain even in the heterodox surroundings of New Victoria -- memorized it by rote when he was too small to know insurgence.  It is as much a part of him as the Ahuna Vairya, de trop but indelible.  What ensued, the details surrounding their southward immigration three decades after this cosmogony, invariably failed to follow in the telling.  He assumes that the circumstances were similar to the ones that caused his family’s eventual disintegration.</p>' + '<p style="border-top: 1px dashed black; width: 50%; margin-left: 25%; padding-bottom: 10px;"></p>' + '</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">The Ossuary is a pawn shop.</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline;">' + '<p>The Ossuary is a crooked two-story construct wedged incongruously between the sleeker, more modern pillars of Wan Chai.  Never, not versed in patina or provenance, swapped its apparent business model from antique dealing to pawnbrokery when he took charge, though it remains marked only by a worn sign painted 骨董.  The 董 is faded just beyond legibility, and hence the name.</p>' + '<p>The real lifeblood of The Ossuary pulses beneath the above-ground facade, in the sepulchral basement room which, in the building’s long-ago incarnation as a tea shop, stored heaps of dried longjing and biluochun.  At present, on irregular nights, it houses the entertainment and the often-cruel games of chance which the grinning Never arranges for a carefully-curated flock of guests.  Some are neck-deep already, without hope of paying their debts the usual way.  Some have simply grown bored of the spinning of roulette wheels at the usual casinos and are titillated by the thought not only of exclusivity but of losing something more precious than cash -- though they lose that, too.  The remainder are there for the spectacle.  Come and see.</p>' + '<p style="border-top: 1px dashed black; width: 50%; margin-left: 25%; padding-bottom: 10px;"></p>' + '</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>False</b></span>' + '<span style="width: 80%; float: left; display: inline; padding-bottom: 15px;">Never is the proprietor of The Ossuary.</span>' + '</div>' + '<div>' + '<span style="width: 15%; float: left; display: inline;"><b>True</b></span>' + '<span style="width: 80%; float: left; display: inline;">' + '<p>Here is how Never wiled away his formative years: tormenting his older sister; earning below-average grades (a lack of effort here, a lack of aptitude there) and classmates\' mixed admiration (pretty eyes and an offhanded disregard for authority); resenting his mother’s abandonment; butting heads with his staid father; barely governing both the hungers that plague his kind and the waves of temper, the startling outbursts, that were his alone; and generally wending his way toward, if not a bad end, then at least not having lived up to expectations.  Here is how his father spent Never’s formative years: gambling away his livelihood.</p>' + '<p>One Spring morning, under the assumption that doing so would be preferable to facing his accrued debts, the latter offed himself, and never mind how he managed it.  The point is that, while he escaped responsibility, all obligations were transferred to the survivors, and “the survivors” boiled down to Never -- his mother having run off with another man when he was nine, and his sister abroad for her work -- a reality that came to light when the thugs arrived to declaim the amount still outstanding.</p>' + '<p>He was nineteen, living a jobless, aimless existence with a put-upon girlfriend.  Lacking both the means and the wherewithal to flee the newfound onus, and struggling with the quandary of procuring flesh without his pathologist father’s providing it, he accepted his creditors’ offer to work off his debts with them.  The arrangement began with picayune tasks but evolved, gradually, into an enforcer’s role, and here the boredom, the frustration, the umbrage, the strain against reticence that he had forever been tamping found outlet.  How much more difficult it is, to repair a hemorrhage than to cause one.  Even now it continues to issue with tumultuous ebb and flow.  In the best of moods, he is a hazardous thing, affable enough, in his blunt irreverence, right up until the moment that he isn’t.</p>' + '<p>These days, he is no longer in debt, but he is still in thrall.  His authority over The Ossuary is an extension of this long-ago agreement, a reward for past services, granted when the previous owner was rendered incapable of carrying out the job.  He tends the shop, both above and below; manages it; hires and fires; and lives on the second floor.  His name (the legal version) appears on the lease.  Still, he likes it there, likes the illusions: propriety, control, respect.  All achievements he was tempered to want but stood steadfastly against working for when he was younger.  But he does not operate without the oversight of a higher power.  The leash is long, yes, but anytime he makes the mistake of feeling like an independent entity, a glance down at his left hand -- the last two fingers missing -- is a reminder of how no-one is free.  </p>' + '</span></div></div>'
@@ -28140,7 +28355,7 @@
 	        title: 'Byron',
 	        name: 'Byron Fields',
 	        id: 'byron',
-	        image: 'images/fields.jpg',
+	        image: 'images/byron.jpg',
 	        biography: '<h2><center>Спасибо, родному Сталину за счастливое детство!</center></h2>' + '<p>Grigori Gavrilovich Volkov is a death’s head moth, his son’s ruination.</p>' + '<p>The metamorphosis from soft-bellied, soft-spoken poet to state threat begins on February 13th, 1917, when Anya Mikhailovna Volkova leaves to buy bread and never comes home to her husband and newborn son.  The vulturenecked neighbor who, a few days later, returns Anya’s wire-rimmed glasses, wrapped in a blood-speckled handkerchief, testifies that he saw her stumble into a partisan scuffle; that she was twice shot by an undiscriminating Bolshevik – once in the shoulder, and once in the head.  With no contradictory stories emerging from any quarter, and no body returned for burial, this account is inimitably engraved into Volkov canon; it is the fable that haunts all the other fables that Grigori whispers in his motherless son’s ear to lull him to sleep at night.  It is a chrysalis.</p>' + '<p>They (capital T, always capital) suggest, strongly, that his work could do more to glorify the state.  He is already so hollow that if he rips any more glorification from his belly he will collapse inward.  Instead he takes a job laying bricks: Пролетарии всех стран, соединяйтесь!  But a writer writes, and his scribblings continue, sore and shaking, by the light of little candle stubs in a corner of his increasingly unkempt apartment.  Before the revolution, he wrote calligraphed odes to sunsets and songbirds, the kind of verses that well-bred ladies memorized beneath the outspread arms of elm trees in summer.  After, his skies are blotted and his birds have pierced breasts and the Tsaritsa and her children have been relieved of poems and whatever else occupied the long halls of their memory before Russia was stained red.  His <i>nouvel oeuvre</i> is published piecemeal in the underground journals that an insurgence-minded literati pass among one another and use to warm their fingers when they are done.  He adopts a pseudonym, but everyone knows the hand behind the swirling, hypnagogic polemics that turn stranger and more virulent with the passing years.</p>' + '<p>Dima grows up with no direct knowledge of the untroubled world he reads about -- and summarily rejects -- in his papa\'s musty library.  His microcosm, all that makes up the known universe, is that Ulitsa Volodarskovo apartment which, while he calls it home, is divided in half to make space for new families; the exhausted mutterings of an inattentive father; the soot-tinged streets of Petrograd and its crowds that reek of fear; the snarling boys at the state-run school where he learns his letters and his arithmetic, his history and his survival of the fittest.  How he retains with almost no effort the lion’s share of everything he sees, reads, hears, is kept close.  The failing marks he earns come with effort.  (Intelligent, opines a gouty instructor to a colleague, but truant, easily distracted, prone to outbursts and to brawls -- a troublesome boy.)</p>' + '<p>Time trudges by.  Gaunt waifs, the remnants of the purged, have begun to infest the streets like lice.  Housewives spit беспризорные like a curse.  The strays pick pockets and steal scraps from dogs.  Evenings, in a show of latent prescience, Dima learns their names and their rough cant.  He takes to running and sparring with them instead of going home.  He harbors a young boy’s envy of their ostensible freedom, but little comprehension of their travails.  When his father hears who his son\'s playmates are, he beats him, crying, <i>you do not belong with them</i>.  Madman\'s truth.</p>' + '<p>When the wolves come (sharp-toothed and lean in sheepskin dusters), no-one is surprised.  They make no excuses as they wrench the poet from his cloister.  Nevermind the boy, eleven years old, curls unshorn, watching from the kitchen doorway in a sleep-muted daze.  Their concern is agitators, not agitators’ brats.  At break of dawn the landlady trots to city hall and reports an orphan taking up valuable space in her building.  In the afternoon a middle-aged man tries to ferry Dmitri Volkov, whom he finds sitting on the floor, waiting for his father, to an orphanage (he will be fed and well looked after; the Party cares for its lost children, мой маленький товарищ), but the boy snarls, slips away and loses himself in the bedlam of crowded streets and backstreets, in the land of hollow-cheeked children who christen him ягненочка: with no home to return to when the sun sets, he is not as bold as he was.  With no rublei to be had from him, they are not so friendly.  They function as a network of packs, and he soon learns his place is at the bottom.  He had a kind of fierceness among schoolboys, but among the unclaimed he is not fierce enough to rise far.  Jungle law: he attacks what is smaller than him, cringes before what is not.  For weeks he weeps, until snow falls and the fountain of his grief freezes over and forms something smooth and impenetrable (В грозных айсбергах марсово поле, И Лебяжья лежит в хрусталях … How quickly he would trade all his useless memories, lines and smells and faces, for a few minutes’ peace of mind.)</p>' + '<p>He is fifteen when the doctor spots him pawing through a dustbin, although he looks younger and feels older and cannot claim any number of years for himself with any certainty, and anyway the doctor does not ask his age, only if he is hungry, which he has been for a thousand days.  More.  It is not the first time he has traded his pride for a morsel (or a swallow, or a stale cigarette).  In truth he has no pride left to trade.  The doctor takes him, not to a fetid alleyway, but to his home, to his study -- the walls of books stir something nostalgic in the boy as he braces himself against the desk -- and it is rough first, then gentle, and the lambkin for his trouble is fed chicken soup the doctor’s daughter cooked, and before he is turned out he is told to come again.</p>' + '<p>Dima does go back again, and again he is used and petted and fed and sent away, and so it continues.  The longer it goes on the more they talk -- and the man becomes <i>the doctor</i> instead of <i>the pervert</i>, извращенец.  He works at City Hospital No. 40, he knows the names of all bones and muscles, his wife is dead, his son moved with the government to Moscow, his daughter toils long hours in the post office, after he is cruel he is tender.  When Dima tells him his father’s name (his tongue has not formed those sounds in what feels like a lifetime), there is something so ugly in the doctor’s laugh that it turns Dima crimson and determined to never speak it out loud again.</p>' + '<p>Listen, the doctor says one day, the Party wants me in Moscow, and you can stay here and rot in the gutter, or you can come with me, the strings are mine for pulling.  You can be my assistant; no worse than those whelps out of medical school.  No one else will do this for you.  Dima does not now, nor will he ever, understand the doctor’s motivations.  One thing he does understand and very well is that between all the world’s knowledge and a warm bed, he would rather have the latter.  Why ask questions whose answers don’t matter?  Petrograd, Leningrad, whatever they call the city anymore, it holds nothing for him.  He agrees.</p>' + '<p>The Moscow project is sinister: in a cramped laboratory on Varsonofevskii Pereulok, they test poisons.  On rats, on birds, on dogs, on prisoners.  This is classified work -- Dima must be sworn in as an agent of the NKVD to perform it, though he does little but clean flasks and take dictation and bite his tongue when the doctor runs fingers along his arm.  Some of the other young men, those medical school whelps, shudder to see the shadow of death creep into the eyes of the living -- but Dima has seen this enough in the sunken eyes of his starving packmates that it does not occur to him to turn away.  An observant officer takes notice of the young man’s callousness and proposes a change of situation.  Yagoda is looking for recruits to serve the cause of the nation.</p>' + '<p>They say with dark humor that the Lubyanka is the tallest building in Moscow, since you can see Siberia from the basement. In defiance of all logic, Dima finds himself somewhere in its viscera, sludging through competency exams and tests of fitness, pledging his allegiance again and again to the state, aiming a pistol at a target, repeating banal phrases in broken English.  He absorbs as he as always absorbed and asks no questions.  A good soldier, his sense of <i>why</i> has been excised somewhere along the way like those fleshy organs -- миндалины, червеобразный отросток -- that are apt to cause more harm than good if left intact.  Preventative, to cut them out before they fester.</p>' + '<p>Pulp novels will take “espionage” and drape it with black velvet romanticism.  Cloak and dagger, spy versus spy.  Dima perceives nothing romantic in his existence, which consists of short stretches in foreign countries -- Germany, France, England -- conveying sensitive information and eliminating Socialism’s many and varied foes, sometimes gaudily and sometimes with the poisons he assisted the doctor (purged in 1938 with 3000 others) to concoct and test, all while a war gnaws away at the integrity of an entire world.  But he is alive, clean, fed.  Fastidious in his spartan flat and forever aware of the alternatives.  Other men his age are scattering pieces of themselves along the western front, but the skillful are too valuable to waste on the battlefield.</p>' + '<p>Not a stretch, to characterize Dima as skilled.  His English is idiomatic, his French passable, his aim precise, his conscience a chasm with no bottom; he can shuffle fictitious personal details back and forth with the dexterity of a cardshark dealing a hand of poker, and he comports himself in a manner almost universally perceived as non-threatening until the very moment he becomes a threat.  Some of his colleagues possess oily charm, and they are sent to make friends and turn politicians.  Some sweat devastation from their pores, and they have other uses.  Dmitri’s ilk are sent on operations that must be handled sleekly, with few ripples.  This is what makes the Canadian disaster such a surprise.</p>' + '<p>Or maybe not so much a surprise.  ведь, the girl is a walking disaster, wildcat in gypsyflesh.  Disaster breeds disaster.  Once before he dealt with her and came away with cuts and bruises for his troubles.  His fault, perhaps.  They tried to use him to teach, but he is no teacher; lacks the aura of authority one needs to command.  She could smell deficiency on him like an animal, no different from the feral children of his youth.  Knowing does little to diminish his indisposition to work with her again.  Stronger: he could strangle her in her sleep and not regret it, if he were not so bound by injunction.  Neither does she seem pleased by the situation.  Nevertheless, there he is between her and a hot lump of lead, pulled like a tide into the line of fire.  He knows better than to ask why.  As the bullet bores into his belly (flash of the morgue in the Специальный кабинет, some gulag trash on a table with his stomach butterflied open, intestines and all on display, and if you ever doubted, you know there can be nothing secret or sacred in the world) he supposes that’s the end of it.  She’ll leave him like a shrugged burden and carry on her duty.  It could have ended worse, in an old capitol alleyway.</p>' + '<p>In twenty-six years, no one taught him religion.  He has no prayers or expectations of either salvation or damnation.  The dead die.  They rot.  Still.  When he wakes, for a few minutes before lucidity blooms, he wonders if this is something that comes after life.  Heaven, Hell, he knows the words in three languages, and he knows that it will not be the former which lies waiting on the other side of his eyelids.  The same as he has met each new unfolding in his life, he faces this without the faintest glimmer of having any choice in the matter.  But there is no esoteric judgment or punishment to meet him, only a dark room and, blurry, the girl, whose face he watches for uncountable seconds before she notices.  He is sore, starving, withering from thirst, and all these needs combine into a startling desire and redirect at her, as if death, on its departure, has left an ember in him which has caught.  That she lets him have her is startling, too.  It is all startling and shrouded in a veil of not-quite-reality that takes its time to fade.  He is what the world has made him: rough first, then gentle.</p>' + '<p>If you ask him if he loves her, you will earn yourself a stare that straddles non-comprehension and hostility.  Love is as foreign and abstract as god, nothing is going to change that.  But when he looks at her he feels something that he cannot put a word to, that he never noticed with his father, or the doctor, or the street girls who fucked him to stay warm, or the foreign whores, or anyone he has known who might have stirred any species of love in him.  He goes along with the marriage -- a foolish idea, her idea -- without balking.  They are still strangers, in a sense.  What little she knows about him is snippets, vagaries, half-lies.  He can only imagine his knowledge of her is the same.  Married strangers.  Married rule-breakers.  He has rarely broken the rules.  Stern glares and reprimands from the organization, whatever its letters in 1945, when it learns.</p>' + '<p>Byron Fields is a transfer student from Oxford (explanation for the accent), wounded in duty (explanation for the scars, the badly-healed bullet wound), in the States to finish a surgical degree.  He has the papers, the records, the vocabulary, the internist’s knowledge, the last-minute practice with a scalpel, the false-sister/lover.  No end to the care they must take, and at the same time as they worm their way into Project Snow, the strange connection they forged wears thinner.</p>' + '<p>Ask if he loves her in 1952.  Non-comprehension, mild hostility.  He has other things on his mind.  He is the unflappable Snow surgeon (Fields of Snow, to be used in case of emergency), all business, reserved but not unapproachable.  The kind of man you can bring your problems to and expect to get a rational answer from.  And maybe you wouldn’t be wrong if you suggested that the isolation is getting to him (who isn’t it getting to?); or if you quietly remarked that, on occasion, his reactions are not quite what one would expect; or if you wondered if there might have been a faintly dangerous glint in his eyes the last time he looked at you.  He notices, too, when he wakes up mumbling moldy Russian.  He has never not been himself for so long, and while it was rarely a pleasure to be Dmitri Volkov, it was always to that familiar bed of nails that he returned.  Necessary ritual.  Restorative.  Volkov writhes.  Fields frays at the seams.</p>'
 	};
 	
@@ -28165,70 +28380,78 @@
 	
 	var Characters = __webpack_require__(/*! ./characters */ 242);
 	
-	module.exports = {
-	
-		neverPost1: {
-			character: Characters.never,
-			starter: true,
-			summary: 'White noise',
-			text: '<p>Low-budget porn -- South American, maybe; it had an overripe tropical haze -- shuddered and pulsed upward from a screen the size of Never’s hand that he had laid flat on the laminate. Your friendly local pawnbroker was hovering near the end of the counter with an unsharpened pencil fulcrumed between his first two fingers, tapping on the edge with the fossilized eraser and watching the rutting out of the corner of his eye. Dull stuff: girl young but already blasé, big-titted, tattoo of a flower on her collarbone; the man ugly, sunburned back, sweating; the sheets off-yellow and the room peeling, slatted half-open blinds feeding an occasional flare of sunlight into the unsteady eye of the camera lens. It wasn’t a turn on as much as background noise, there for the same reason that some people leave on news feeds or a run a fan. Kill the silence.' + '<p>And silence was effectively slain: the volume was cranked up as high as it would go. Tinny, distorted animal sounds, panting and grunting and fevered slapping of flesh against flesh; the odd incomprehensible exclamation in maybe-Spanish expanded into the most cobwebbed of corners.' + '<p>Except for the spiders and the dust mites and the ghosts and Never, the store was unoccupied. Last sign of life had been a few hours ago, a stout housewifey type with an updo like a malformed second head who had fluttered in and waved around the same square-cut diamond ring she always pawned when money was tight. No one since then, until the jangle of the dented bell above the door announced a visitor. Never swiped the volume down with the side of a pinky, turning it down just enough that he didn’t feel like he had to roar his casual and poorly-pronounced “Funyihng” at the man who had stepped in. Unfamiliar face. Not a regular. And immediately after the greeting slipped off of his tongue, the girl in the video let out a off-kilter, high-pitched noise that communicated more alarm than pleasure. He didn\'t look down.'
-		},
-	
-		neverPost2: {
-			character: Characters.never,
-			starter: true,
-			adoptable: true,
-			summary: 'Another day at the pawnshop',
-			text: '<p>On Thursday a man with bruisedark circles underneath his eyes had staggered in, towing behind him one of those maximally minimal chairs, the kind constructed out of three calligraphic strokes and an artist’s interpretation of a spinal column rendered in chrome. Never, taking a covetous shine to it, had asked few questions, paid out too much and adopted it as his own directly the whine of hinges marked the harried-looking hawker’s outlet. On Tuesday it was in this chair that he reclined behind the counter – fairly supine, feet propped on a subwoofer, contemplating the sensation of his teeth sinking into a soy-braised pig’s ear, soft flesh first and the satisfaction of crisp cartilage – when sounded the crash.' + '<p>It was a messy clatter, obviously the introduction of something fragile to the wooden floor’s company, trailed by a squeak or a squawk of dismay. Just two people in the shop: Never and Ya, the teenage daughter of one of the neighborhood cha chaan teng. For the past few weeks, he had been paying her a little to come around and take out the dog, whose favored expression of boredom was mastication and who was always bored without more exercise than Never was personally willing to supply. A few minutes earlier she had dropped the dog off and remained to loiter among the merchandise, which was fine as long as everything she touched remained in one piece.' + '<p>Only after groping blindly along the countertop, locating the halo of a soapstone bodhisattva-with-lion by the impression it made against his palm, and hurling the figure – as well as he could do with one hand, and the right one – toward the noise (the contact thud was dull, disappointing) did he sit up to assess the damage: dumpling-fed Ya, crouched, frozen in the process of picking up the pieces of what had once been a blown glass hippopotamus, staring across the room at him with eyes opened wide. Bodhisattva-with-lion miraculously intact a few centimeters away. Something about the startled look on her round little rabbit face sent a pulse of irritation up his wrists. He stood, plucked a screwdriver from the counter, and made to follow the first projectile with one better-aimed. She must have realized his intent, because she performed an awkward lurch forward, stumbled to her feet, and hurtled out of the shop with a grind of glass beneath her heels – the impact of the screwdriver rattled the door frame after she had made it through.' + '<p>And so it was that Never, having followed Ya outside, was witness to her almost careening into a woman walking the other way up the street. The sight of the girl interrupting her getaway to offer a nanosecond\'s post-near-collision bow to the other party before scuttling off was enough to inspire an eruption of laughter, for which his dismissive waving of a hand in the woman\'s direction was probably not, he realized, commensurate explanation.'
-	
-		},
-	
-		hweiruPost1: {
-			summary: 'Organized crime is the crime that pays',
-			starter: true,
-			text: '<p>Windchime euphony lilted through the half-open half of double balcony doors, glass panes each bisected with a leaded single helix whose dips and divots shattered the sunset (picturesque carmine oblivion swallowing the horizon) into pale rainbows that swarmed and clung to the walls and shivered. Somewhere below, the usual miasma of saline, fish market, smelted metal, bodies, orchids, the dog whistle whine of the modern age. And it was good to wade through that too, sometimes, but here in the cumulus-tickling heights Hwei-Ru reposed unreachable, dragonfly-dancing her attention back and forth between black lacquered fingernails as filtered through a flute of Chartreuse, and Sardar, hunched forward in his chair beside her: she wished she excelled at the pretense of disinterest. She wished she could watch him untie the turban that, on obscure doctrinal grounds, hid the absurd lengths of his hair. ' + '<p>“I don’t like it,” he was saying. What was there to like? The tip of her nail tapped the rim of the glass in triple meter. One two three, a calculated risk, employing thugs. Couldn’t very well broadcast want ads across the grid. And sometimes they surprised her pleasantly, and sometimes their representative blips fell off the radar and she had to send more thugs to ascertain if they had been murdered and dumped in the ocean, or if they had fled to Madagascar, or if they were braindead and drooling in a corner of some drug den (each a scenario she had encountered in the past). She preferred the calculated part of calculated risks to the risk part. All good fun until someone gets pulled in by the militia and starts telling stories about Mrs. Kitzen and her extracurricular activities. The headaches it caused. One two three.' + '<p>“You think I do?” One finger extended -- pause, please -- she drained the remainder of the liqueur from her glass and stood, artfully fabricating one of the few situations in which she could look down on him for the two-thirds of a second it took him to stand as well. “Oh, stay,” she sighed, though the thought that he acted out of chivalry pleased her (she suspected an ulterior truth, that he didn\'t care for people being able to see the top of his head). “I’m only getting more. How long has it been?”' + '<p>She was halfway across the room. Behind her, “Two weeks.” Too long. She hesitated, glanced out across the balcony, through the morass of fuchsias that gushed from a collection of hanging planters, and brushed the back of her hand against the surface of the glass, wiping away a mote of dust.'
-		},
-	
-		russiaPost1: {
-			starter: true,
-			adoptable: true,
-			summary: 'Mid-May, the middle of nowhere, a wild horse chase',
-			text: '<p>The Count Anatoli Petrovich Shuvalov had, while he lived, possessed a dedication to orderliness that was kindly described by those in his circle as “staunch.”  Less kindly, it was fanatical.  Whenever the subject arose in the course of conversation (“But you, Anatoli Petrovich, turn crimson to see a single thing out of place!”), the count himself invoked his score of years as an imperial <i>rotmistr</i> as the root of his fastidiousness.  Since many of his acquaintances had been similarly installed in the military and experienced no such effects, their acceptance of his explanation was polite but without any real endorsement. In truth Anatoli Petrovich’s character was more inherent than learned, and it reflected in everything he touched: his person, his affairs, his properties.  Even his wife, who herself had no such inborn predilection, spent the twenty years of their marriage noticing crooked picture frames and minutely rotating jardinieres to please him.  It was the least, after all, that she could do.' + '<p>Now that he was gone – and whether the going were to great reward or to proper punishment, who could say? – the widow Ariadna found herself inclined toward the slow unravelling of his impeccably-woven legacy, which she felt wrapped about her shoulders like a shroud.  She had rooms of furniture rearranged at odd angles, draped settees with okapi pelts, perched stuffed eagles at the top of curio cabinets, and filled her chiffonier with the raiment of far-off pagan lands.  Though friends looked on sadly, spoke gingerly, assumed it to be the temporary break of a woman bereft, the wildness that pleased her was imposed not in grief, as they imagined, or with spite, as one might think to watch her at the act, but as an expression of her own sovereignty, new and gratifying and well-earned.' + '<p>The principal Shuvalov residence, a house on Podrezova Street in Petersburg, being also the favored lodging of her only son, did not see the brunt of these atmospheric changes.  The sixteen year-old heir apparent was unusually articulate when it came to disapproving of his mother’s new eccentricities, which he could not recognize for what they were: old eccentricities long bottled.  Ariadna, unable to think of a reason to break her long-standing tradition of at once indulging and avoiding him, thus focussed her attentions rather on Svantovitskoe, the grand old estate whose boundaries sprawled along the southern shores of the Oka River, and where she and the count had always wiled away the too-brief Russian summers.' + '<p>It was toward this same Svantovitskoe which Matvei Tsivilko began to trudge the very moment Winter’s shadow over Moscow seemed at last to lift for good, in late March.  It was Svantovitskoe at which he arrived in early April, following a four-hundred kilometer trek through the muddy countryside.  And it was Svantovitskoe which became the object of his apprehensive stare when, upon his disembarkation from a pony cart whose driver had sullenly agreed to convey him from Ryazan, he became aware of a worrisome number of signs that the premises had been abandoned.' + '<p>The last time he had laid eyes on the property was six years ago, when his family attended a lavish party thrown by the Shuvalovs in honor of father and son’s Name Day.  The trip was not perfectly preserved in his memory, but he recalled with great clarity the impression that the manicured grass, lollipop shrubs, geometric flower beds and grand columns freshly painted white had come together to make in his mind.  Now clumps of knapweed speckled the lawn.  Bushes were untrimmed.  Paint flaked.  Hornets’ nests occupied the upper corners of the porch.' + '<p>He threw the tarnished brass knocker against the door, expecting nothing – or expecting that he would now have to come up with a new plan, when it had been all that he could do to come up with this one.  But a woman answered, a wrinkled housekeeper-crone in a headscarf, and when he announced himself as Ariadna Semyonovna’s relation, she ushered him in without so much as a question toward his bedraggled state.' + '<p>Until the beginning of May, Matvei hid himself in one of the many guest rooms, sleeping more than could be considered healthy and subsisting on the peasant fare shared by the skeleton staff who looked after things while Ariadna was away.  “Recuperation” was a word that he repeated to himself, but he had yet to feel much better than he when he left the city.  At least the smell of printer’s ink and musty books had been flushed from his nostrils.  Even walking past the library was apt to result in a sharp ache at the front of his forehead.' + '<p>Then in swept the lady of the house, accompanied by a retinue of servants and a pack of slavering hounds, each ostentatiously mismatched.  He braced himself for the inevitable demands of explanation, but suffered only a fleeting quizzical look from his mother’s cousin, after which the subject of his unheralded presence took on an aspect of the taboo.  No-one brought it up, at least not around Matvei himself.  And for that, he was grateful.  Grateful enough that, when Ariadna Semyonovna asked him to perform some task – the sort of task at which he would normally balk – he did it without question.  And this is how he found himself on the hard dirt road somewhere between Svantovitskoe and Ryazan, straddling one of the late Anatoli Petrovich Shuvalov’s prized but impractical Akhal-Teke mares, trying to chase down a stallion that, earlier in the morning, had been spotted galloping through a neighboring property.' + '<p>The air had felt unseasonably cool when he set off around ten o’clock, and he had wrapped himself in a black double-breasted coat before departing.  Now that the sun had reached its peak and begun on its course back down the other side of the firmament, Matvei found that he was sweltering underneath the wool and veered his gilded horse to the side of the road, where he tied reins around a crooked alder, stripped off his coat, and stood for a while with his back against the trunk, imagining the likelihood that his quarry had already broken its leg in a muskrat hole and been devoured by wolves.'
-		},
-	
-		vinetaPost1: {
-			starter: true,
-			adoptable: true,
-			summary: 'Old gods in young cities',
-			text: '<p>The Confesor Building lurched upward with naked shame between the flanks of more modest neighbors.  It was not, with its thirty floors, the city of Vineta’s tallest building (Reimer’s Tower, downtown) or even its most recognizable (Symphony Hall -- arguably), but it might have been its least subtle, straddling the sidewalk like a broad-shouldered goliath armor of fused plate glass and black steel.  <i>Look at me</i>, in fading voice.  Developers were bold and flaunted deep pockets in the nineties, when the high rise’s proposal and construction had been met with the usual concerned-citizen falderal: it was a view-ruining eyesore and clashed with every other manmade thing in the dressmaker district, etc.  But the outcry had faded as the units sold out one by one.  And why not?  The view from the south side was exquisite.  Now the few passers-by stalwart enough to face down the wind and pin-sharp raindrops, people who gripped their Burberry umbrellas tighter than their Givenchy wallets, refused the building a second glance.  It had been there as long as they could remember; it had lost its power to surprise or offend.' + '<p>On the twenty-second floor, something older than the Confesor Building, older than Vineta, older maybe than the bedrock into which the city’s foundations were drilled, stood in the shadow of a cloud-dimmed sunset with fingertips and forehead against the cold, clear membrane of the window, staring at the smeared reflection of a woman’s face over which it had only recently garnered a semblance of control, having writhed for a while in the confines of strange vein and sinew, wondering at the sting of time that harried the pale flesh in which it had found itself.' + '<p>Often it had taken a man’s shape, in those years when the sleek dark boys slaughtered villages for him in a dry country; when they worshipped him as the king of knives in Taremu;  when the milites threw their prisoners to slavering animals and cheers rang out as they were rent.  Then he had been dark and sleek himself and had counted days with the chattel and learned their manner of speech and granted what favors they asked, but he was never dying with them.  Never fragile.  Then humanity’s braying had grown tedious, and it had slipped away in other forms and in these forms had not lost – nevermind what the others thought – but deliberately cast away the superfluous trappings of mortality; law and language and time, “civilization,” piece by piece until only hunger and satisfaction remained, satisfaction and hunger, the snake that swallows its tail.  It lived one moment, infinite, with neither past behind nor present ahead.   So to guess how long it had indulged in that cycle, a hundred floods or a thousand since its kin had resigned the mundane world to the mundane hordes, was impossible.  Wretched flesh forced time on it by persistent dying.  Small wonder they felt the need to count seconds, hours, centuries.  They were always running out of time.  It had not meant to come back, but here it was.  She?  Sex had been shed with everything else, but the body was female, and possibly it was the body.  She had yet to decide.' + '<p>Since the infinity fractured, a faraway sun had risen four times.  Hardly anything accomplished.  Perhaps it was enough that the idea of accomplishment had been dredged up from distant memory.  The voice (an angry, confused, frightened remnant of the body’s original inhabitant) was quashed, at least.   They had fought: for the first few days, while the old monster compassed some mastery of human form -- fingers, toes, lips, tongue -- the displaced soul kept trying to wrest control away.  Not now.  Silence, now.  Mostly.  Not knowing how to purge its unlucky bedfellow entirely, it had only shut her away through an unalloyed force of will.' + '<p>There was very little that it would have professed to knowing.  Not when, or how, or why.  Where, a little.  High.  A birds’ aerie place.  It seemed the teeming masses of humanity had constructed a tower and filled it up with artifacts of which even the outwardly familiar were strange.  Outside, rain and countless points of light beneath an unclouded edge of setting sun.  She had not ventured beyond the door.  Not yet.  Not until she knew more.  She expected the man might have answers, but he spoke a tongue she had yet to unravel.  Such was mankind -- inventing more and more sounds for the same thing when only the thing was of any significance.  She had tested one or two old words on him, the most recent she could summon, and received incomprehension for her efforts.  But he kept coming back, after that first appearance with a cup of water when she was struggling, even after the aborted effort to tear out his throat (weak hands, trembling), and surely he must know something.  Only she had to make sense of it with this cage around her, limiting everything.  She heaved a frustrated breath and threw a hand against the window’s surface.  It held fast but reverberated with the thump of the blow.'
-		},
-	
-		gideonPost1: {
-			starter: true,
-			summary: 'We go out walking after midnight',
-			text: '<p>Three in the morning on a Wednesday, and the city-never-sleeps contingent was all out in shabby splendor: sailors and shift workers, nightwalkers with lips painted purple, cokeheads with restless twitching limbs, a Haitian across the street hissing at imaginary devils or real ones. Two tables away a paunchy man in white linen and a dark, drowsy-eyed woman argued in machinegun Spanish.</p>' + '<p>He could have been in Canada by now. Prince Edward Island where a few far-flung scions of the family, who ventured south from time to time for hundredth-birthday celebrations and funerals, had settled during the Civil War. They would have granted him quarter. Blood was stronger than scandal half a continent away. He could have grown a beard, worn sweaters embroidered with wide-antlered stags, relaxed a little and considered what to do from the cover of a mossy coastal cabin. Instead he was at an all-night Cuban diner, alone at a corner table on its sticky outdoor patio under an umbrella that was doing a fine job of keeping moonlight out of his eyes. For whatever that was worth. Fingers curled around, tapped at the side of, a half-full cup of coffee well on its way to lukewarm. He had taken maybe three bites of the frita on the plate in front of him. There was something unhealthy to the Miami air, the humidity shot through with a squalid combination of seasalt and rancid porkfat and exhaust, that strangled the appetite slowly like there was pleasure in it. Maybe it was him. Maybe his tastebuds were poisoned with a grudge. Well, he was doing what he could about that.</p>' + '<p>Since the sun set he had been out placing the same sigil (cross circle dalet, circle dalet cross, schoolboy exercise on a chalkboard: I will not pull Bethanne Talley’s hair) in the kind of out-of-the-way spots – under benches, on the damp brick walls behind alley dumpsters, in phone booths perfumed by puddles of piss – that granted them a chance of not being rubbed away in minutes. Each mark reached out tendrils through space unseen to touch the rest. Enough alive at once formed what you call a fowler’s snare, but one managed to fade by the time two were added. It was a tedious and imperfect process; the repetition of it left his thoughts straying through the corridors of ritual: here were the red shapes and the words from Genesis that would leach the incoherence from his neighbors’ bickering, leave only raw significance which, revealed, would prove the effort wasted because the squabble was clearly about money or drugs or sex. What did he care? Moot anyway – the ingredients and he were spent.</p>' + '<p>Sip of coffee: plain and bitter black, none of that demerara hit they liked to sneak in when he wasn’t paying attention.</p>'
-		},
-	
-		fourteenPost1: {
-			starter: false,
-			summary: 'After the gunshot',
-			text: '<p>It sustains, regardless of whether or not he can distinguish it from the dull air. Gnat-whine, spineshudder, hovering at that same barely-there decibel. <i>Be silent or sing</i> -- but it’s her fault, she who can neither fully focus nor block it out. She digs for an appropriate level of frustration, the will to do something about it, but comes up with fists empty, defeated for the moment by smothered desire and hobbled senses.</p>' + '<p>Several seconds and a sigh pass from the appearance of the weapon to Fourteen’s gathering that it is displayed with the intention of a threat -- and this arises from the exchange, the shift in postures; difficult to link the little thing in the woman’s rough hands to danger. Yet its nose follows him as he moves away. Pauses. Sways a little, left right left, not unsteady (the motion follows the slow cadence of measured breathing) but indecisive, trying to work out which of the two targets is more deserving of its attentions.</p>' + '<p>“No,” comes the spoken response, flat enough to challenge the word it counters. The consequent shot is an eardrum-shattering crack and burst of light that succeeds, at the very least, in startling Fourteen out of her chair and into a huddle against the foot of the bar. The bullet is aimed high, into the space between his shoulder and his ear.</p>'
-		},
-	
-		fieldsPost1: {
-			starter: false,
-			character: Characters.byron,
-			summary: 'An uncomfortable check-in',
-			text: '<p>He snaked his arm away from her shoulder and dipped to extricate the specified suitcase from her grip: his hand covered hers, prying away slender fingers – one, two, three, four – until that small burden, too, became his. A nut-brown Samsonite case purchased second-hand, monogrammed AU (Alexander Unguent, Afanasiy Uladimov, Abraham Underhill …) occupied his other fist and contained his own scant effects. Hers was heavier, maybe, but not very. Light packers, both, for knowing how few things were really indispensable.</p>' + '<p>In that almost-inadvertent way of his, he had fixed the geometry of the schematics in his mind, fitting it somewhere in between the hatbox Moscow apartment that probably belonged to a family of five now instead of him, and the first floor of the Grosse Ile City Hall, where he had spent some time years ago as part of an attempt to infiltrate the naval base. Of course, in three dimensions it was larger. Realer. Observational reticence as they made their way through the honeycomb that had just become their entire world. He marked the wall that separated the dining area from the hospital wing (his domain) before allowing himself to be pulled into the women\'s sector, and he was settling her suitcase atop one of the cots when she spoke.</p>' + '<p>“Бесшабашная." The half-breathed admonishment was supplemented with a chill glare, which he jerked his head around to focus on her the instant she began to talk. Of all people, she should know that a bolted door was no guarantee of confidentiality. “По–английски, сестра моя …” barely a whisper, irritated.</p>' + '<p>Not that he had any expectation of being able to give her orders: she would do exactly as she pleased and get them both strung up if she cared to. But even she had to understand that they were the unremarkable, all-American Fields siblings, at least until they had been able to sweep the premises, mark vents and rents in the walls that maps could not prepare them for. Yet he found he matched her Russian with his, like a drink of cool water down his throat. The last time, he told himself, until they had the luxury of certitude. It was his responsibility to balance her rashness; they could not afford a mess. Elsewhere, options were always available if something went wrong. Here, there was no escape. No extraction. So he drove away the acute desire she had stirred to push her onto the bed and make her quiet that way.</p>' + '<p>"Yes, too late." His evenly-delivered addendum. Then, still quiet but sharper, "Promise me you\'ll be careful, Kisa." Not that they hadn\'t been over it already, a hundred times, but the narrow room and the unnatural light and the filtered taste in the air somehow substantiated a need to say it again.</p>'
-		},
-	
-		maitePost1: {
-			starter: false,
-			character: Characters.maite,
-			summary: 'What should have been abandoned',
-			text: '<p>A half second before the break, the barbed point where she knew her lungs would either seize up or give out, the coughing ebbed, left her sore, neck whiplashed, gulping air thick with a suggestion of metal smelting and spray paint. Smoldering on her arm when she pulled it away from her mouth was a wet spatter, maybe blood but maybe just spit, who could say since that halfbitter iron heaviness filled her mouth more often than she could possibly be bleeding. It wasn’t right, the slow tightening and the sharp struggle, this thing chewing her up because it was sick of its view of her ribcage and he wouldn’t let it out.</p>' + '<p>The rattle of her breath and an open-ocean sucking in her ears kept her from marking the intrusion into “her” space -- also known as where the boundary lines were drawn, but you have to own something before you don’t have anything -- until a girl’s voice burrowed into her awareness, and even then she caught the tail, <i>fucked not going to hurt you swear</i>, jerked up her chin with eyes squeezed shut in an idiotic pantomime of sight. Surprise was a kick, swift hard settled soon into a low throb of fascination.</p>' + '<p>“But do you <i>want</i> to?” she asked in a used-up hiss. If there was any light -- the moon in a high window or a streetlamp peeking through a crack in the wall, it might light the humorless semi-smile that seized at her gnawed lips. Pause to breathe. Added, “Watch the wires.”</p>'
-		}
+	var neverPost1 = {
+		id: 'post1',
+		character: 'never',
+		starter: true,
+		summary: 'White noise',
+		text: '<p>Low-budget porn -- South American, maybe; it had an overripe tropical haze -- shuddered and pulsed upward from a screen the size of Never’s hand that he had laid flat on the laminate. Your friendly local pawnbroker was hovering near the end of the counter with an unsharpened pencil fulcrumed between his first two fingers, tapping on the edge with the fossilized eraser and watching the rutting out of the corner of his eye. Dull stuff: girl young but already blasé, big-titted, tattoo of a flower on her collarbone; the man ugly, sunburned back, sweating; the sheets off-yellow and the room peeling, slatted half-open blinds feeding an occasional flare of sunlight into the unsteady eye of the camera lens. It wasn’t a turn on as much as background noise, there for the same reason that some people leave on news feeds or a run a fan. Kill the silence.' + '<p>And silence was effectively slain: the volume was cranked up as high as it would go. Tinny, distorted animal sounds, panting and grunting and fevered slapping of flesh against flesh; the odd incomprehensible exclamation in maybe-Spanish expanded into the most cobwebbed of corners.' + '<p>Except for the spiders and the dust mites and the ghosts and Never, the store was unoccupied. Last sign of life had been a few hours ago, a stout housewifey type with an updo like a malformed second head who had fluttered in and waved around the same square-cut diamond ring she always pawned when money was tight. No one since then, until the jangle of the dented bell above the door announced a visitor. Never swiped the volume down with the side of a pinky, turning it down just enough that he didn’t feel like he had to roar his casual and poorly-pronounced “Funyihng” at the man who had stepped in. Unfamiliar face. Not a regular. And immediately after the greeting slipped off of his tongue, the girl in the video let out a off-kilter, high-pitched noise that communicated more alarm than pleasure. He didn\'t look down.'
 	};
+	
+	var neverPost2 = {
+		id: 'post2',
+		character: 'never',
+		starter: true,
+		adoptable: true,
+		summary: 'Another day at the pawnshop',
+		text: '<p>On Thursday a man with bruisedark circles underneath his eyes had staggered in, towing behind him one of those maximally minimal chairs, the kind constructed out of three calligraphic strokes and an artist’s interpretation of a spinal column rendered in chrome. Never, taking a covetous shine to it, had asked few questions, paid out too much and adopted it as his own directly the whine of hinges marked the harried-looking hawker’s outlet. On Tuesday it was in this chair that he reclined behind the counter – fairly supine, feet propped on a subwoofer, contemplating the sensation of his teeth sinking into a soy-braised pig’s ear, soft flesh first and the satisfaction of crisp cartilage – when sounded the crash.' + '<p>It was a messy clatter, obviously the introduction of something fragile to the wooden floor’s company, trailed by a squeak or a squawk of dismay. Just two people in the shop: Never and Ya, the teenage daughter of one of the neighborhood cha chaan teng. For the past few weeks, he had been paying her a little to come around and take out the dog, whose favored expression of boredom was mastication and who was always bored without more exercise than Never was personally willing to supply. A few minutes earlier she had dropped the dog off and remained to loiter among the merchandise, which was fine as long as everything she touched remained in one piece.' + '<p>Only after groping blindly along the countertop, locating the halo of a soapstone bodhisattva-with-lion by the impression it made against his palm, and hurling the figure – as well as he could do with one hand, and the right one – toward the noise (the contact thud was dull, disappointing) did he sit up to assess the damage: dumpling-fed Ya, crouched, frozen in the process of picking up the pieces of what had once been a blown glass hippopotamus, staring across the room at him with eyes opened wide. Bodhisattva-with-lion miraculously intact a few centimeters away. Something about the startled look on her round little rabbit face sent a pulse of irritation up his wrists. He stood, plucked a screwdriver from the counter, and made to follow the first projectile with one better-aimed. She must have realized his intent, because she performed an awkward lurch forward, stumbled to her feet, and hurtled out of the shop with a grind of glass beneath her heels – the impact of the screwdriver rattled the door frame after she had made it through.' + '<p>And so it was that Never, having followed Ya outside, was witness to her almost careening into a woman walking the other way up the street. The sight of the girl interrupting her getaway to offer a nanosecond\'s post-near-collision bow to the other party before scuttling off was enough to inspire an eruption of laughter, for which his dismissive waving of a hand in the woman\'s direction was probably not, he realized, commensurate explanation.'
+	
+	};
+	
+	var hweiruPost1 = {
+		id: 'post3',
+		summary: 'Organized crime is the crime that pays',
+		starter: true,
+		text: '<p>Windchime euphony lilted through the half-open half of double balcony doors, glass panes each bisected with a leaded single helix whose dips and divots shattered the sunset (picturesque carmine oblivion swallowing the horizon) into pale rainbows that swarmed and clung to the walls and shivered. Somewhere below, the usual miasma of saline, fish market, smelted metal, bodies, orchids, the dog whistle whine of the modern age. And it was good to wade through that too, sometimes, but here in the cumulus-tickling heights Hwei-Ru reposed unreachable, dragonfly-dancing her attention back and forth between black lacquered fingernails as filtered through a flute of Chartreuse, and Sardar, hunched forward in his chair beside her: she wished she excelled at the pretense of disinterest. She wished she could watch him untie the turban that, on obscure doctrinal grounds, hid the absurd lengths of his hair. ' + '<p>“I don’t like it,” he was saying. What was there to like? The tip of her nail tapped the rim of the glass in triple meter. One two three, a calculated risk, employing thugs. Couldn’t very well broadcast want ads across the grid. And sometimes they surprised her pleasantly, and sometimes their representative blips fell off the radar and she had to send more thugs to ascertain if they had been murdered and dumped in the ocean, or if they had fled to Madagascar, or if they were braindead and drooling in a corner of some drug den (each a scenario she had encountered in the past). She preferred the calculated part of calculated risks to the risk part. All good fun until someone gets pulled in by the militia and starts telling stories about Mrs. Kitzen and her extracurricular activities. The headaches it caused. One two three.' + '<p>“You think I do?” One finger extended -- pause, please -- she drained the remainder of the liqueur from her glass and stood, artfully fabricating one of the few situations in which she could look down on him for the two-thirds of a second it took him to stand as well. “Oh, stay,” she sighed, though the thought that he acted out of chivalry pleased her (she suspected an ulterior truth, that he didn\'t care for people being able to see the top of his head). “I’m only getting more. How long has it been?”' + '<p>She was halfway across the room. Behind her, “Two weeks.” Too long. She hesitated, glanced out across the balcony, through the morass of fuchsias that gushed from a collection of hanging planters, and brushed the back of her hand against the surface of the glass, wiping away a mote of dust.'
+	};
+	
+	var russiaPost1 = {
+		id: 'post4',
+		starter: true,
+		adoptable: true,
+		summary: 'Mid-May, the middle of nowhere, a wild horse chase',
+		text: '<p>The Count Anatoli Petrovich Shuvalov had, while he lived, possessed a dedication to orderliness that was kindly described by those in his circle as “staunch.”  Less kindly, it was fanatical.  Whenever the subject arose in the course of conversation (“But you, Anatoli Petrovich, turn crimson to see a single thing out of place!”), the count himself invoked his score of years as an imperial <i>rotmistr</i> as the root of his fastidiousness.  Since many of his acquaintances had been similarly installed in the military and experienced no such effects, their acceptance of his explanation was polite but without any real endorsement. In truth Anatoli Petrovich’s character was more inherent than learned, and it reflected in everything he touched: his person, his affairs, his properties.  Even his wife, who herself had no such inborn predilection, spent the twenty years of their marriage noticing crooked picture frames and minutely rotating jardinieres to please him.  It was the least, after all, that she could do.' + '<p>Now that he was gone – and whether the going were to great reward or to proper punishment, who could say? – the widow Ariadna found herself inclined toward the slow unravelling of his impeccably-woven legacy, which she felt wrapped about her shoulders like a shroud.  She had rooms of furniture rearranged at odd angles, draped settees with okapi pelts, perched stuffed eagles at the top of curio cabinets, and filled her chiffonier with the raiment of far-off pagan lands.  Though friends looked on sadly, spoke gingerly, assumed it to be the temporary break of a woman bereft, the wildness that pleased her was imposed not in grief, as they imagined, or with spite, as one might think to watch her at the act, but as an expression of her own sovereignty, new and gratifying and well-earned.' + '<p>The principal Shuvalov residence, a house on Podrezova Street in Petersburg, being also the favored lodging of her only son, did not see the brunt of these atmospheric changes.  The sixteen year-old heir apparent was unusually articulate when it came to disapproving of his mother’s new eccentricities, which he could not recognize for what they were: old eccentricities long bottled.  Ariadna, unable to think of a reason to break her long-standing tradition of at once indulging and avoiding him, thus focussed her attentions rather on Svantovitskoe, the grand old estate whose boundaries sprawled along the southern shores of the Oka River, and where she and the count had always wiled away the too-brief Russian summers.' + '<p>It was toward this same Svantovitskoe which Matvei Tsivilko began to trudge the very moment Winter’s shadow over Moscow seemed at last to lift for good, in late March.  It was Svantovitskoe at which he arrived in early April, following a four-hundred kilometer trek through the muddy countryside.  And it was Svantovitskoe which became the object of his apprehensive stare when, upon his disembarkation from a pony cart whose driver had sullenly agreed to convey him from Ryazan, he became aware of a worrisome number of signs that the premises had been abandoned.' + '<p>The last time he had laid eyes on the property was six years ago, when his family attended a lavish party thrown by the Shuvalovs in honor of father and son’s Name Day.  The trip was not perfectly preserved in his memory, but he recalled with great clarity the impression that the manicured grass, lollipop shrubs, geometric flower beds and grand columns freshly painted white had come together to make in his mind.  Now clumps of knapweed speckled the lawn.  Bushes were untrimmed.  Paint flaked.  Hornets’ nests occupied the upper corners of the porch.' + '<p>He threw the tarnished brass knocker against the door, expecting nothing – or expecting that he would now have to come up with a new plan, when it had been all that he could do to come up with this one.  But a woman answered, a wrinkled housekeeper-crone in a headscarf, and when he announced himself as Ariadna Semyonovna’s relation, she ushered him in without so much as a question toward his bedraggled state.' + '<p>Until the beginning of May, Matvei hid himself in one of the many guest rooms, sleeping more than could be considered healthy and subsisting on the peasant fare shared by the skeleton staff who looked after things while Ariadna was away.  “Recuperation” was a word that he repeated to himself, but he had yet to feel much better than he when he left the city.  At least the smell of printer’s ink and musty books had been flushed from his nostrils.  Even walking past the library was apt to result in a sharp ache at the front of his forehead.' + '<p>Then in swept the lady of the house, accompanied by a retinue of servants and a pack of slavering hounds, each ostentatiously mismatched.  He braced himself for the inevitable demands of explanation, but suffered only a fleeting quizzical look from his mother’s cousin, after which the subject of his unheralded presence took on an aspect of the taboo.  No-one brought it up, at least not around Matvei himself.  And for that, he was grateful.  Grateful enough that, when Ariadna Semyonovna asked him to perform some task – the sort of task at which he would normally balk – he did it without question.  And this is how he found himself on the hard dirt road somewhere between Svantovitskoe and Ryazan, straddling one of the late Anatoli Petrovich Shuvalov’s prized but impractical Akhal-Teke mares, trying to chase down a stallion that, earlier in the morning, had been spotted galloping through a neighboring property.' + '<p>The air had felt unseasonably cool when he set off around ten o’clock, and he had wrapped himself in a black double-breasted coat before departing.  Now that the sun had reached its peak and begun on its course back down the other side of the firmament, Matvei found that he was sweltering underneath the wool and veered his gilded horse to the side of the road, where he tied reins around a crooked alder, stripped off his coat, and stood for a while with his back against the trunk, imagining the likelihood that his quarry had already broken its leg in a muskrat hole and been devoured by wolves.'
+	};
+	
+	var vinetaPost1 = {
+		id: 'post5',
+		starter: true,
+		adoptable: true,
+		summary: 'Old gods in young cities',
+		text: '<p>The Confesor Building lurched upward with naked shame between the flanks of more modest neighbors.  It was not, with its thirty floors, the city of Vineta’s tallest building (Reimer’s Tower, downtown) or even its most recognizable (Symphony Hall -- arguably), but it might have been its least subtle, straddling the sidewalk like a broad-shouldered goliath armor of fused plate glass and black steel.  <i>Look at me</i>, in fading voice.  Developers were bold and flaunted deep pockets in the nineties, when the high rise’s proposal and construction had been met with the usual concerned-citizen falderal: it was a view-ruining eyesore and clashed with every other manmade thing in the dressmaker district, etc.  But the outcry had faded as the units sold out one by one.  And why not?  The view from the south side was exquisite.  Now the few passers-by stalwart enough to face down the wind and pin-sharp raindrops, people who gripped their Burberry umbrellas tighter than their Givenchy wallets, refused the building a second glance.  It had been there as long as they could remember; it had lost its power to surprise or offend.' + '<p>On the twenty-second floor, something older than the Confesor Building, older than Vineta, older maybe than the bedrock into which the city’s foundations were drilled, stood in the shadow of a cloud-dimmed sunset with fingertips and forehead against the cold, clear membrane of the window, staring at the smeared reflection of a woman’s face over which it had only recently garnered a semblance of control, having writhed for a while in the confines of strange vein and sinew, wondering at the sting of time that harried the pale flesh in which it had found itself.' + '<p>Often it had taken a man’s shape, in those years when the sleek dark boys slaughtered villages for him in a dry country; when they worshipped him as the king of knives in Taremu;  when the milites threw their prisoners to slavering animals and cheers rang out as they were rent.  Then he had been dark and sleek himself and had counted days with the chattel and learned their manner of speech and granted what favors they asked, but he was never dying with them.  Never fragile.  Then humanity’s braying had grown tedious, and it had slipped away in other forms and in these forms had not lost – nevermind what the others thought – but deliberately cast away the superfluous trappings of mortality; law and language and time, “civilization,” piece by piece until only hunger and satisfaction remained, satisfaction and hunger, the snake that swallows its tail.  It lived one moment, infinite, with neither past behind nor present ahead.   So to guess how long it had indulged in that cycle, a hundred floods or a thousand since its kin had resigned the mundane world to the mundane hordes, was impossible.  Wretched flesh forced time on it by persistent dying.  Small wonder they felt the need to count seconds, hours, centuries.  They were always running out of time.  It had not meant to come back, but here it was.  She?  Sex had been shed with everything else, but the body was female, and possibly it was the body.  She had yet to decide.' + '<p>Since the infinity fractured, a faraway sun had risen four times.  Hardly anything accomplished.  Perhaps it was enough that the idea of accomplishment had been dredged up from distant memory.  The voice (an angry, confused, frightened remnant of the body’s original inhabitant) was quashed, at least.   They had fought: for the first few days, while the old monster compassed some mastery of human form -- fingers, toes, lips, tongue -- the displaced soul kept trying to wrest control away.  Not now.  Silence, now.  Mostly.  Not knowing how to purge its unlucky bedfellow entirely, it had only shut her away through an unalloyed force of will.' + '<p>There was very little that it would have professed to knowing.  Not when, or how, or why.  Where, a little.  High.  A birds’ aerie place.  It seemed the teeming masses of humanity had constructed a tower and filled it up with artifacts of which even the outwardly familiar were strange.  Outside, rain and countless points of light beneath an unclouded edge of setting sun.  She had not ventured beyond the door.  Not yet.  Not until she knew more.  She expected the man might have answers, but he spoke a tongue she had yet to unravel.  Such was mankind -- inventing more and more sounds for the same thing when only the thing was of any significance.  She had tested one or two old words on him, the most recent she could summon, and received incomprehension for her efforts.  But he kept coming back, after that first appearance with a cup of water when she was struggling, even after the aborted effort to tear out his throat (weak hands, trembling), and surely he must know something.  Only she had to make sense of it with this cage around her, limiting everything.  She heaved a frustrated breath and threw a hand against the window’s surface.  It held fast but reverberated with the thump of the blow.'
+	};
+	
+	var gideonPost1 = {
+		id: 'post6',
+		starter: true,
+		summary: 'We go out walking after midnight',
+		text: '<p>Three in the morning on a Wednesday, and the city-never-sleeps contingent was all out in shabby splendor: sailors and shift workers, nightwalkers with lips painted purple, cokeheads with restless twitching limbs, a Haitian across the street hissing at imaginary devils or real ones. Two tables away a paunchy man in white linen and a dark, drowsy-eyed woman argued in machinegun Spanish.</p>' + '<p>He could have been in Canada by now. Prince Edward Island where a few far-flung scions of the family, who ventured south from time to time for hundredth-birthday celebrations and funerals, had settled during the Civil War. They would have granted him quarter. Blood was stronger than scandal half a continent away. He could have grown a beard, worn sweaters embroidered with wide-antlered stags, relaxed a little and considered what to do from the cover of a mossy coastal cabin. Instead he was at an all-night Cuban diner, alone at a corner table on its sticky outdoor patio under an umbrella that was doing a fine job of keeping moonlight out of his eyes. For whatever that was worth. Fingers curled around, tapped at the side of, a half-full cup of coffee well on its way to lukewarm. He had taken maybe three bites of the frita on the plate in front of him. There was something unhealthy to the Miami air, the humidity shot through with a squalid combination of seasalt and rancid porkfat and exhaust, that strangled the appetite slowly like there was pleasure in it. Maybe it was him. Maybe his tastebuds were poisoned with a grudge. Well, he was doing what he could about that.</p>' + '<p>Since the sun set he had been out placing the same sigil (cross circle dalet, circle dalet cross, schoolboy exercise on a chalkboard: I will not pull Bethanne Talley’s hair) in the kind of out-of-the-way spots – under benches, on the damp brick walls behind alley dumpsters, in phone booths perfumed by puddles of piss – that granted them a chance of not being rubbed away in minutes. Each mark reached out tendrils through space unseen to touch the rest. Enough alive at once formed what you call a fowler’s snare, but one managed to fade by the time two were added. It was a tedious and imperfect process; the repetition of it left his thoughts straying through the corridors of ritual: here were the red shapes and the words from Genesis that would leach the incoherence from his neighbors’ bickering, leave only raw significance which, revealed, would prove the effort wasted because the squabble was clearly about money or drugs or sex. What did he care? Moot anyway – the ingredients and he were spent.</p>' + '<p>Sip of coffee: plain and bitter black, none of that demerara hit they liked to sneak in when he wasn’t paying attention.</p>'
+	};
+	
+	var fourteenPost1 = {
+		id: 'post7',
+		starter: false,
+		summary: 'After the gunshot',
+		text: '<p>It sustains, regardless of whether or not he can distinguish it from the dull air. Gnat-whine, spineshudder, hovering at that same barely-there decibel. <i>Be silent or sing</i> -- but it’s her fault, she who can neither fully focus nor block it out. She digs for an appropriate level of frustration, the will to do something about it, but comes up with fists empty, defeated for the moment by smothered desire and hobbled senses.</p>' + '<p>Several seconds and a sigh pass from the appearance of the weapon to Fourteen’s gathering that it is displayed with the intention of a threat -- and this arises from the exchange, the shift in postures; difficult to link the little thing in the woman’s rough hands to danger. Yet its nose follows him as he moves away. Pauses. Sways a little, left right left, not unsteady (the motion follows the slow cadence of measured breathing) but indecisive, trying to work out which of the two targets is more deserving of its attentions.</p>' + '<p>“No,” comes the spoken response, flat enough to challenge the word it counters. The consequent shot is an eardrum-shattering crack and burst of light that succeeds, at the very least, in startling Fourteen out of her chair and into a huddle against the foot of the bar. The bullet is aimed high, into the space between his shoulder and his ear.</p>'
+	};
+	
+	var fieldsPost1 = {
+		id: 'post8',
+		starter: false,
+		character: 'byron',
+		summary: 'An uncomfortable check-in',
+		text: '<p>He snaked his arm away from her shoulder and dipped to extricate the specified suitcase from her grip: his hand covered hers, prying away slender fingers – one, two, three, four – until that small burden, too, became his. A nut-brown Samsonite case purchased second-hand, monogrammed AU (Alexander Unguent, Afanasiy Uladimov, Abraham Underhill …) occupied his other fist and contained his own scant effects. Hers was heavier, maybe, but not very. Light packers, both, for knowing how few things were really indispensable.</p>' + '<p>In that almost-inadvertent way of his, he had fixed the geometry of the schematics in his mind, fitting it somewhere in between the hatbox Moscow apartment that probably belonged to a family of five now instead of him, and the first floor of the Grosse Ile City Hall, where he had spent some time years ago as part of an attempt to infiltrate the naval base. Of course, in three dimensions it was larger. Realer. Observational reticence as they made their way through the honeycomb that had just become their entire world. He marked the wall that separated the dining area from the hospital wing (his domain) before allowing himself to be pulled into the women\'s sector, and he was settling her suitcase atop one of the cots when she spoke.</p>' + '<p>“Бесшабашная." The half-breathed admonishment was supplemented with a chill glare, which he jerked his head around to focus on her the instant she began to talk. Of all people, she should know that a bolted door was no guarantee of confidentiality. “По–английски, сестра моя …” barely a whisper, irritated.</p>' + '<p>Not that he had any expectation of being able to give her orders: she would do exactly as she pleased and get them both strung up if she cared to. But even she had to understand that they were the unremarkable, all-American Fields siblings, at least until they had been able to sweep the premises, mark vents and rents in the walls that maps could not prepare them for. Yet he found he matched her Russian with his, like a drink of cool water down his throat. The last time, he told himself, until they had the luxury of certitude. It was his responsibility to balance her rashness; they could not afford a mess. Elsewhere, options were always available if something went wrong. Here, there was no escape. No extraction. So he drove away the acute desire she had stirred to push her onto the bed and make her quiet that way.</p>' + '<p>"Yes, too late." His evenly-delivered addendum. Then, still quiet but sharper, "Promise me you\'ll be careful, Kisa." Not that they hadn\'t been over it already, a hundred times, but the narrow room and the unnatural light and the filtered taste in the air somehow substantiated a need to say it again.</p>'
+	};
+	
+	var maitePost1 = {
+		id: 'post9',
+		starter: false,
+		character: 'maite',
+		summary: 'What should have been abandoned',
+		text: '<p>A half second before the break, the barbed point where she knew her lungs would either seize up or give out, the coughing ebbed, left her sore, neck whiplashed, gulping air thick with a suggestion of metal smelting and spray paint. Smoldering on her arm when she pulled it away from her mouth was a wet spatter, maybe blood but maybe just spit, who could say since that halfbitter iron heaviness filled her mouth more often than she could possibly be bleeding. It wasn’t right, the slow tightening and the sharp struggle, this thing chewing her up because it was sick of its view of her ribcage and he wouldn’t let it out.</p>' + '<p>The rattle of her breath and an open-ocean sucking in her ears kept her from marking the intrusion into “her” space -- also known as where the boundary lines were drawn, but you have to own something before you don’t have anything -- until a girl’s voice burrowed into her awareness, and even then she caught the tail, <i>fucked not going to hurt you swear</i>, jerked up her chin with eyes squeezed shut in an idiotic pantomime of sight. Surprise was a kick, swift hard settled soon into a low throb of fascination.</p>' + '<p>“But do you <i>want</i> to?” she asked in a used-up hiss. If there was any light -- the moon in a high window or a streetlamp peeking through a crack in the wall, it might light the humorless semi-smile that seized at her gnawed lips. Pause to breathe. Added, “Watch the wires.”</p>'
+	};
+	
+	module.exports = [neverPost1, neverPost2, hweiruPost1, russiaPost1, vinetaPost1, gideonPost1, fourteenPost1, fieldsPost1, maitePost1];
 
 /***/ },
 /* 244 */
@@ -28276,8 +28499,6 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CharStrip).call(this, props));
 	
 	        _this.state = _store2.default.getState();
-	        _this.getClass = _this.getClass.bind(_this);
-	        _this.toggleStrip = _this.toggleStrip.bind(_this);
 	        _this._onChange = _this._onChange.bind(_this);
 	        _this.getImage = _this.getImage.bind(_this);
 	
@@ -28303,35 +28524,29 @@
 	    }, {
 	        key: 'renderCharacters',
 	        value: function renderCharacters() {
-	            return this.state.characters.map(function (character, index) {
-	                return _react2.default.createElement(CharLink, { key: index, character: character });
+	            var characters = this.state.characters.sort(function (a, b) {
+	                return a.id > b.id;
 	            });
-	        }
-	    }, {
-	        key: 'getClass',
-	        value: function getClass() {
-	            if (this.state.charStripOpen) {
-	                return 'char-strip-open';
-	            } else return 'char-strip-closed';
-	        }
-	    }, {
-	        key: 'toggleStrip',
-	        value: function toggleStrip() {
-	            console.log('toggle');
-	            _actions2.default.toggleStrip();
+	
+	            characters = characters.map(function (character, index) {
+	                if (this.props.active && this.props.active == character.id) {
+	                    return null;
+	                } else return _react2.default.createElement(CharLink, { key: index, character: character });
+	            }.bind(this));
+	
+	            if (this.props.active) {
+	                characters.push(_react2.default.createElement(Back, null));
+	            }
+	
+	            return characters;
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'char-strip-wrapper' },
-	                _react2.default.createElement('div', { className: 'char-wrapper-toggle', onClick: this.toggleStrip }),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'char-strip' },
-	                    this.renderCharacters()
-	                )
+	                { className: 'char-strip' },
+	                this.renderCharacters()
 	            );
 	        }
 	    }]);
@@ -28372,7 +28587,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'interior' },
-	                        this.props.character.name
+	                        this.props.character.title
 	                    )
 	                )
 	            );
@@ -28380,6 +28595,38 @@
 	    }]);
 	
 	    return CharLink;
+	}(_react2.default.Component);
+	
+	var Back = function (_React$Component3) {
+	    _inherits(Back, _React$Component3);
+	
+	    function Back() {
+	        _classCallCheck(this, Back);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Back).apply(this, arguments));
+	    }
+	
+	    _createClass(Back, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            return _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/characters' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'char-icon' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'interior' },
+	                        'Home'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Back;
 	}(_react2.default.Component);
 	
 	module.exports = CharStrip;
@@ -28407,6 +28654,10 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
+	var _bottomstrip = __webpack_require__(/*! ./bottomstrip */ 256);
+	
+	var _bottomstrip2 = _interopRequireDefault(_bottomstrip);
+	
 	var _charstrip = __webpack_require__(/*! ./charstrip */ 244);
 	
 	var _charstrip2 = _interopRequireDefault(_charstrip);
@@ -28433,6 +28684,7 @@
 	        _this.content = _this.content.bind(_this);
 	        _this._onChange = _this._onChange.bind(_this);
 	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	        _this.bottom = _this.bottom.bind(_this);
 	
 	        _store2.default.listen(_this._onChange);
 	        return _this;
@@ -28452,8 +28704,13 @@
 	        key: 'getClass',
 	        value: function getClass() {
 	            if (this.state.charStripOpen) {
-	                return 'char-wrapper-open';
-	            } else return 'char-wrapper-closed';
+	                return 'bottomstrip-open';
+	            } else return 'bottomstrip-closed';
+	        }
+	    }, {
+	        key: 'bottom',
+	        value: function bottom() {
+	            return _react2.default.createElement(_charstrip2.default, null);
 	        }
 	    }, {
 	        key: 'content',
@@ -28480,7 +28737,7 @@
 	                        'Please find, attached, a handful of mismatched forum apps from the last ~7 years, to serve as a taste of the kind of characters you may run across in your dealings with me.'
 	                    )
 	                ),
-	                _react2.default.createElement(_charstrip2.default, null)
+	                _react2.default.createElement(_bottomstrip2.default, { contents: this.bottom() })
 	            );
 	        }
 	    }, {
@@ -28514,6 +28771,10 @@
 	
 	var _fullscreen2 = _interopRequireDefault(_fullscreen);
 	
+	var _superagent = __webpack_require__(/*! superagent */ 247);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28528,16 +28789,109 @@
 	    function Contact(props) {
 	        _classCallCheck(this, Contact);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Contact).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Contact).call(this, props));
+	
+	        _this.state = {
+	            name: '',
+	            email: '',
+	            message: '',
+	            response: ''
+	        };
+	
+	        _this.updateName = _this.updateName.bind(_this);
+	        _this.updateEmail = _this.updateEmail.bind(_this);
+	        _this.updateMessage = _this.updateMessage.bind(_this);
+	        _this.sendMessage = _this.sendMessage.bind(_this);
+	        _this.content = _this.content.bind(_this);
+	        _this.clearInputs = _this.clearInputs.bind(_this);
+	        return _this;
 	    }
 	
 	    _createClass(Contact, [{
+	        key: 'updateName',
+	        value: function updateName(e) {
+	            this.setState({ name: e.target.value });
+	        }
+	    }, {
+	        key: 'updateEmail',
+	        value: function updateEmail(e) {
+	            this.setState({ email: e.target.value });
+	        }
+	    }, {
+	        key: 'updateMessage',
+	        value: function updateMessage(e) {
+	            this.setState({ message: e.target.value });
+	        }
+	    }, {
+	        key: 'clearInputs',
+	        value: function clearInputs() {
+	            document.getElementById('name').value = '';
+	            document.getElementById('email').value = '';
+	            document.getElementById('message').value = '';
+	        }
+	    }, {
+	        key: 'sendMessage',
+	        value: function sendMessage(e) {
+	            e.preventDefault();
+	
+	            if (this.state.name === '' || this.state.email === '' || this.state.message === '') {
+	                this.setState({ response: 'Please fill in all fields' });
+	            } else {
+	
+	                var message = {
+	                    name: this.state.name,
+	                    email: this.state.email,
+	                    message: this.state.message
+	                };
+	
+	                _superagent2.default.post('../message').send(message).end(function (err, data) {
+	                    if (err) {
+	                        console.log(err);
+	                    }
+	                    this.setState({ response: 'Your message has been successfully sent' });
+	                    this.clearInputs();
+	                }.bind(this));
+	            }
+	        }
+	    }, {
 	        key: 'content',
 	        value: function content() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
-	                'Test'
+	                { className: 'fullscreen-interior' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'formWrapper' },
+	                    _react2.default.createElement(
+	                        'form',
+	                        { onSubmit: this.sendMessage },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { id: 'contactField-name' },
+	                            _react2.default.createElement('input', { id: 'name', type: 'text', placeholder: 'your name', onChange: this.updateName })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { id: 'contactField-email' },
+	                            _react2.default.createElement('input', { id: 'email', type: 'text', placeholder: 'your email (or the best way to get in touch)', onChange: this.updateEmail })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { id: 'messageField' },
+	                            _react2.default.createElement('textarea', { id: 'message', onChange: this.updateMessage, placeholder: 'please make me want to answer you' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { id: 'submitField' },
+	                            _react2.default.createElement('input', { type: 'submit', value: 'send' }),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { id: 'contactMessage' },
+	                                this.state.response
+	                            )
+	                        )
+	                    )
+	                )
 	            );
 	        }
 	    }, {
@@ -28554,6 +28908,1532 @@
 
 /***/ },
 /* 247 */
+/*!************************************!*\
+  !*** ./~/superagent/lib/client.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module dependencies.
+	 */
+	
+	var Emitter = __webpack_require__(/*! emitter */ 248);
+	var reduce = __webpack_require__(/*! reduce */ 249);
+	var requestBase = __webpack_require__(/*! ./request-base */ 250);
+	var isObject = __webpack_require__(/*! ./is-object */ 251);
+	
+	/**
+	 * Root reference for iframes.
+	 */
+	
+	var root;
+	if (typeof window !== 'undefined') { // Browser window
+	  root = window;
+	} else if (typeof self !== 'undefined') { // Web Worker
+	  root = self;
+	} else { // Other environments
+	  root = this;
+	}
+	
+	/**
+	 * Noop.
+	 */
+	
+	function noop(){};
+	
+	/**
+	 * Check if `obj` is a host object,
+	 * we don't want to serialize these :)
+	 *
+	 * TODO: future proof, move to compoent land
+	 *
+	 * @param {Object} obj
+	 * @return {Boolean}
+	 * @api private
+	 */
+	
+	function isHost(obj) {
+	  var str = {}.toString.call(obj);
+	
+	  switch (str) {
+	    case '[object File]':
+	    case '[object Blob]':
+	    case '[object FormData]':
+	      return true;
+	    default:
+	      return false;
+	  }
+	}
+	
+	/**
+	 * Expose `request`.
+	 */
+	
+	var request = module.exports = __webpack_require__(/*! ./request */ 252).bind(null, Request);
+	
+	/**
+	 * Determine XHR.
+	 */
+	
+	request.getXHR = function () {
+	  if (root.XMLHttpRequest
+	      && (!root.location || 'file:' != root.location.protocol
+	          || !root.ActiveXObject)) {
+	    return new XMLHttpRequest;
+	  } else {
+	    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
+	  }
+	  return false;
+	};
+	
+	/**
+	 * Removes leading and trailing whitespace, added to support IE.
+	 *
+	 * @param {String} s
+	 * @return {String}
+	 * @api private
+	 */
+	
+	var trim = ''.trim
+	  ? function(s) { return s.trim(); }
+	  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
+	
+	/**
+	 * Serialize the given `obj`.
+	 *
+	 * @param {Object} obj
+	 * @return {String}
+	 * @api private
+	 */
+	
+	function serialize(obj) {
+	  if (!isObject(obj)) return obj;
+	  var pairs = [];
+	  for (var key in obj) {
+	    if (null != obj[key]) {
+	      pushEncodedKeyValuePair(pairs, key, obj[key]);
+	        }
+	      }
+	  return pairs.join('&');
+	}
+	
+	/**
+	 * Helps 'serialize' with serializing arrays.
+	 * Mutates the pairs array.
+	 *
+	 * @param {Array} pairs
+	 * @param {String} key
+	 * @param {Mixed} val
+	 */
+	
+	function pushEncodedKeyValuePair(pairs, key, val) {
+	  if (Array.isArray(val)) {
+	    return val.forEach(function(v) {
+	      pushEncodedKeyValuePair(pairs, key, v);
+	    });
+	  }
+	  pairs.push(encodeURIComponent(key)
+	    + '=' + encodeURIComponent(val));
+	}
+	
+	/**
+	 * Expose serialization method.
+	 */
+	
+	 request.serializeObject = serialize;
+	
+	 /**
+	  * Parse the given x-www-form-urlencoded `str`.
+	  *
+	  * @param {String} str
+	  * @return {Object}
+	  * @api private
+	  */
+	
+	function parseString(str) {
+	  var obj = {};
+	  var pairs = str.split('&');
+	  var parts;
+	  var pair;
+	
+	  for (var i = 0, len = pairs.length; i < len; ++i) {
+	    pair = pairs[i];
+	    parts = pair.split('=');
+	    obj[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+	  }
+	
+	  return obj;
+	}
+	
+	/**
+	 * Expose parser.
+	 */
+	
+	request.parseString = parseString;
+	
+	/**
+	 * Default MIME type map.
+	 *
+	 *     superagent.types.xml = 'application/xml';
+	 *
+	 */
+	
+	request.types = {
+	  html: 'text/html',
+	  json: 'application/json',
+	  xml: 'application/xml',
+	  urlencoded: 'application/x-www-form-urlencoded',
+	  'form': 'application/x-www-form-urlencoded',
+	  'form-data': 'application/x-www-form-urlencoded'
+	};
+	
+	/**
+	 * Default serialization map.
+	 *
+	 *     superagent.serialize['application/xml'] = function(obj){
+	 *       return 'generated xml here';
+	 *     };
+	 *
+	 */
+	
+	 request.serialize = {
+	   'application/x-www-form-urlencoded': serialize,
+	   'application/json': JSON.stringify
+	 };
+	
+	 /**
+	  * Default parsers.
+	  *
+	  *     superagent.parse['application/xml'] = function(str){
+	  *       return { object parsed from str };
+	  *     };
+	  *
+	  */
+	
+	request.parse = {
+	  'application/x-www-form-urlencoded': parseString,
+	  'application/json': JSON.parse
+	};
+	
+	/**
+	 * Parse the given header `str` into
+	 * an object containing the mapped fields.
+	 *
+	 * @param {String} str
+	 * @return {Object}
+	 * @api private
+	 */
+	
+	function parseHeader(str) {
+	  var lines = str.split(/\r?\n/);
+	  var fields = {};
+	  var index;
+	  var line;
+	  var field;
+	  var val;
+	
+	  lines.pop(); // trailing CRLF
+	
+	  for (var i = 0, len = lines.length; i < len; ++i) {
+	    line = lines[i];
+	    index = line.indexOf(':');
+	    field = line.slice(0, index).toLowerCase();
+	    val = trim(line.slice(index + 1));
+	    fields[field] = val;
+	  }
+	
+	  return fields;
+	}
+	
+	/**
+	 * Check if `mime` is json or has +json structured syntax suffix.
+	 *
+	 * @param {String} mime
+	 * @return {Boolean}
+	 * @api private
+	 */
+	
+	function isJSON(mime) {
+	  return /[\/+]json\b/.test(mime);
+	}
+	
+	/**
+	 * Return the mime type for the given `str`.
+	 *
+	 * @param {String} str
+	 * @return {String}
+	 * @api private
+	 */
+	
+	function type(str){
+	  return str.split(/ *; */).shift();
+	};
+	
+	/**
+	 * Return header field parameters.
+	 *
+	 * @param {String} str
+	 * @return {Object}
+	 * @api private
+	 */
+	
+	function params(str){
+	  return reduce(str.split(/ *; */), function(obj, str){
+	    var parts = str.split(/ *= */)
+	      , key = parts.shift()
+	      , val = parts.shift();
+	
+	    if (key && val) obj[key] = val;
+	    return obj;
+	  }, {});
+	};
+	
+	/**
+	 * Initialize a new `Response` with the given `xhr`.
+	 *
+	 *  - set flags (.ok, .error, etc)
+	 *  - parse header
+	 *
+	 * Examples:
+	 *
+	 *  Aliasing `superagent` as `request` is nice:
+	 *
+	 *      request = superagent;
+	 *
+	 *  We can use the promise-like API, or pass callbacks:
+	 *
+	 *      request.get('/').end(function(res){});
+	 *      request.get('/', function(res){});
+	 *
+	 *  Sending data can be chained:
+	 *
+	 *      request
+	 *        .post('/user')
+	 *        .send({ name: 'tj' })
+	 *        .end(function(res){});
+	 *
+	 *  Or passed to `.send()`:
+	 *
+	 *      request
+	 *        .post('/user')
+	 *        .send({ name: 'tj' }, function(res){});
+	 *
+	 *  Or passed to `.post()`:
+	 *
+	 *      request
+	 *        .post('/user', { name: 'tj' })
+	 *        .end(function(res){});
+	 *
+	 * Or further reduced to a single call for simple cases:
+	 *
+	 *      request
+	 *        .post('/user', { name: 'tj' }, function(res){});
+	 *
+	 * @param {XMLHTTPRequest} xhr
+	 * @param {Object} options
+	 * @api private
+	 */
+	
+	function Response(req, options) {
+	  options = options || {};
+	  this.req = req;
+	  this.xhr = this.req.xhr;
+	  // responseText is accessible only if responseType is '' or 'text' and on older browsers
+	  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
+	     ? this.xhr.responseText
+	     : null;
+	  this.statusText = this.req.xhr.statusText;
+	  this.setStatusProperties(this.xhr.status);
+	  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
+	  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
+	  // getResponseHeader still works. so we get content-type even if getting
+	  // other headers fails.
+	  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
+	  this.setHeaderProperties(this.header);
+	  this.body = this.req.method != 'HEAD'
+	    ? this.parseBody(this.text ? this.text : this.xhr.response)
+	    : null;
+	}
+	
+	/**
+	 * Get case-insensitive `field` value.
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api public
+	 */
+	
+	Response.prototype.get = function(field){
+	  return this.header[field.toLowerCase()];
+	};
+	
+	/**
+	 * Set header related properties:
+	 *
+	 *   - `.type` the content type without params
+	 *
+	 * A response of "Content-Type: text/plain; charset=utf-8"
+	 * will provide you with a `.type` of "text/plain".
+	 *
+	 * @param {Object} header
+	 * @api private
+	 */
+	
+	Response.prototype.setHeaderProperties = function(header){
+	  // content-type
+	  var ct = this.header['content-type'] || '';
+	  this.type = type(ct);
+	
+	  // params
+	  var obj = params(ct);
+	  for (var key in obj) this[key] = obj[key];
+	};
+	
+	/**
+	 * Parse the given body `str`.
+	 *
+	 * Used for auto-parsing of bodies. Parsers
+	 * are defined on the `superagent.parse` object.
+	 *
+	 * @param {String} str
+	 * @return {Mixed}
+	 * @api private
+	 */
+	
+	Response.prototype.parseBody = function(str){
+	  var parse = request.parse[this.type];
+	  if (!parse && isJSON(this.type)) {
+	    parse = request.parse['application/json'];
+	  }
+	  return parse && str && (str.length || str instanceof Object)
+	    ? parse(str)
+	    : null;
+	};
+	
+	/**
+	 * Set flags such as `.ok` based on `status`.
+	 *
+	 * For example a 2xx response will give you a `.ok` of __true__
+	 * whereas 5xx will be __false__ and `.error` will be __true__. The
+	 * `.clientError` and `.serverError` are also available to be more
+	 * specific, and `.statusType` is the class of error ranging from 1..5
+	 * sometimes useful for mapping respond colors etc.
+	 *
+	 * "sugar" properties are also defined for common cases. Currently providing:
+	 *
+	 *   - .noContent
+	 *   - .badRequest
+	 *   - .unauthorized
+	 *   - .notAcceptable
+	 *   - .notFound
+	 *
+	 * @param {Number} status
+	 * @api private
+	 */
+	
+	Response.prototype.setStatusProperties = function(status){
+	  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
+	  if (status === 1223) {
+	    status = 204;
+	  }
+	
+	  var type = status / 100 | 0;
+	
+	  // status / class
+	  this.status = this.statusCode = status;
+	  this.statusType = type;
+	
+	  // basics
+	  this.info = 1 == type;
+	  this.ok = 2 == type;
+	  this.clientError = 4 == type;
+	  this.serverError = 5 == type;
+	  this.error = (4 == type || 5 == type)
+	    ? this.toError()
+	    : false;
+	
+	  // sugar
+	  this.accepted = 202 == status;
+	  this.noContent = 204 == status;
+	  this.badRequest = 400 == status;
+	  this.unauthorized = 401 == status;
+	  this.notAcceptable = 406 == status;
+	  this.notFound = 404 == status;
+	  this.forbidden = 403 == status;
+	};
+	
+	/**
+	 * Return an `Error` representative of this response.
+	 *
+	 * @return {Error}
+	 * @api public
+	 */
+	
+	Response.prototype.toError = function(){
+	  var req = this.req;
+	  var method = req.method;
+	  var url = req.url;
+	
+	  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
+	  var err = new Error(msg);
+	  err.status = this.status;
+	  err.method = method;
+	  err.url = url;
+	
+	  return err;
+	};
+	
+	/**
+	 * Expose `Response`.
+	 */
+	
+	request.Response = Response;
+	
+	/**
+	 * Initialize a new `Request` with the given `method` and `url`.
+	 *
+	 * @param {String} method
+	 * @param {String} url
+	 * @api public
+	 */
+	
+	function Request(method, url) {
+	  var self = this;
+	  this._query = this._query || [];
+	  this.method = method;
+	  this.url = url;
+	  this.header = {}; // preserves header name case
+	  this._header = {}; // coerces header names to lowercase
+	  this.on('end', function(){
+	    var err = null;
+	    var res = null;
+	
+	    try {
+	      res = new Response(self);
+	    } catch(e) {
+	      err = new Error('Parser is unable to parse the response');
+	      err.parse = true;
+	      err.original = e;
+	      // issue #675: return the raw response if the response parsing fails
+	      err.rawResponse = self.xhr && self.xhr.responseText ? self.xhr.responseText : null;
+	      // issue #876: return the http status code if the response parsing fails
+	      err.statusCode = self.xhr && self.xhr.status ? self.xhr.status : null;
+	      return self.callback(err);
+	    }
+	
+	    self.emit('response', res);
+	
+	    if (err) {
+	      return self.callback(err, res);
+	    }
+	
+	    if (res.status >= 200 && res.status < 300) {
+	      return self.callback(err, res);
+	    }
+	
+	    var new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
+	    new_err.original = err;
+	    new_err.response = res;
+	    new_err.status = res.status;
+	
+	    self.callback(new_err, res);
+	  });
+	}
+	
+	/**
+	 * Mixin `Emitter` and `requestBase`.
+	 */
+	
+	Emitter(Request.prototype);
+	for (var key in requestBase) {
+	  Request.prototype[key] = requestBase[key];
+	}
+	
+	/**
+	 * Abort the request, and clear potential timeout.
+	 *
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	Request.prototype.abort = function(){
+	  if (this.aborted) return;
+	  this.aborted = true;
+	  this.xhr.abort();
+	  this.clearTimeout();
+	  this.emit('abort');
+	  return this;
+	};
+	
+	/**
+	 * Set Content-Type to `type`, mapping values from `request.types`.
+	 *
+	 * Examples:
+	 *
+	 *      superagent.types.xml = 'application/xml';
+	 *
+	 *      request.post('/')
+	 *        .type('xml')
+	 *        .send(xmlstring)
+	 *        .end(callback);
+	 *
+	 *      request.post('/')
+	 *        .type('application/xml')
+	 *        .send(xmlstring)
+	 *        .end(callback);
+	 *
+	 * @param {String} type
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	Request.prototype.type = function(type){
+	  this.set('Content-Type', request.types[type] || type);
+	  return this;
+	};
+	
+	/**
+	 * Set responseType to `val`. Presently valid responseTypes are 'blob' and 
+	 * 'arraybuffer'.
+	 *
+	 * Examples:
+	 *
+	 *      req.get('/')
+	 *        .responseType('blob')
+	 *        .end(callback);
+	 *
+	 * @param {String} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	Request.prototype.responseType = function(val){
+	  this._responseType = val;
+	  return this;
+	};
+	
+	/**
+	 * Set Accept to `type`, mapping values from `request.types`.
+	 *
+	 * Examples:
+	 *
+	 *      superagent.types.json = 'application/json';
+	 *
+	 *      request.get('/agent')
+	 *        .accept('json')
+	 *        .end(callback);
+	 *
+	 *      request.get('/agent')
+	 *        .accept('application/json')
+	 *        .end(callback);
+	 *
+	 * @param {String} accept
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	Request.prototype.accept = function(type){
+	  this.set('Accept', request.types[type] || type);
+	  return this;
+	};
+	
+	/**
+	 * Set Authorization field value with `user` and `pass`.
+	 *
+	 * @param {String} user
+	 * @param {String} pass
+	 * @param {Object} options with 'type' property 'auto' or 'basic' (default 'basic')
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	Request.prototype.auth = function(user, pass, options){
+	  if (!options) {
+	    options = {
+	      type: 'basic'
+	    }
+	  }
+	
+	  switch (options.type) {
+	    case 'basic':
+	      var str = btoa(user + ':' + pass);
+	      this.set('Authorization', 'Basic ' + str);
+	    break;
+	
+	    case 'auto':
+	      this.username = user;
+	      this.password = pass;
+	    break;
+	  }
+	  return this;
+	};
+	
+	/**
+	* Add query-string `val`.
+	*
+	* Examples:
+	*
+	*   request.get('/shoes')
+	*     .query('size=10')
+	*     .query({ color: 'blue' })
+	*
+	* @param {Object|String} val
+	* @return {Request} for chaining
+	* @api public
+	*/
+	
+	Request.prototype.query = function(val){
+	  if ('string' != typeof val) val = serialize(val);
+	  if (val) this._query.push(val);
+	  return this;
+	};
+	
+	/**
+	 * Queue the given `file` as an attachment to the specified `field`,
+	 * with optional `filename`.
+	 *
+	 * ``` js
+	 * request.post('/upload')
+	 *   .attach(new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
+	 *   .end(callback);
+	 * ```
+	 *
+	 * @param {String} field
+	 * @param {Blob|File} file
+	 * @param {String} filename
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	Request.prototype.attach = function(field, file, filename){
+	  this._getFormData().append(field, file, filename || file.name);
+	  return this;
+	};
+	
+	Request.prototype._getFormData = function(){
+	  if (!this._formData) {
+	    this._formData = new root.FormData();
+	  }
+	  return this._formData;
+	};
+	
+	/**
+	 * Send `data` as the request body, defaulting the `.type()` to "json" when
+	 * an object is given.
+	 *
+	 * Examples:
+	 *
+	 *       // manual json
+	 *       request.post('/user')
+	 *         .type('json')
+	 *         .send('{"name":"tj"}')
+	 *         .end(callback)
+	 *
+	 *       // auto json
+	 *       request.post('/user')
+	 *         .send({ name: 'tj' })
+	 *         .end(callback)
+	 *
+	 *       // manual x-www-form-urlencoded
+	 *       request.post('/user')
+	 *         .type('form')
+	 *         .send('name=tj')
+	 *         .end(callback)
+	 *
+	 *       // auto x-www-form-urlencoded
+	 *       request.post('/user')
+	 *         .type('form')
+	 *         .send({ name: 'tj' })
+	 *         .end(callback)
+	 *
+	 *       // defaults to x-www-form-urlencoded
+	  *      request.post('/user')
+	  *        .send('name=tobi')
+	  *        .send('species=ferret')
+	  *        .end(callback)
+	 *
+	 * @param {String|Object} data
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	Request.prototype.send = function(data){
+	  var obj = isObject(data);
+	  var type = this._header['content-type'];
+	
+	  // merge
+	  if (obj && isObject(this._data)) {
+	    for (var key in data) {
+	      this._data[key] = data[key];
+	    }
+	  } else if ('string' == typeof data) {
+	    if (!type) this.type('form');
+	    type = this._header['content-type'];
+	    if ('application/x-www-form-urlencoded' == type) {
+	      this._data = this._data
+	        ? this._data + '&' + data
+	        : data;
+	    } else {
+	      this._data = (this._data || '') + data;
+	    }
+	  } else {
+	    this._data = data;
+	  }
+	
+	  if (!obj || isHost(data)) return this;
+	  if (!type) this.type('json');
+	  return this;
+	};
+	
+	/**
+	 * @deprecated
+	 */
+	Response.prototype.parse = function serialize(fn){
+	  if (root.console) {
+	    console.warn("Client-side parse() method has been renamed to serialize(). This method is not compatible with superagent v2.0");
+	  }
+	  this.serialize(fn);
+	  return this;
+	};
+	
+	Response.prototype.serialize = function serialize(fn){
+	  this._parser = fn;
+	  return this;
+	};
+	
+	/**
+	 * Invoke the callback with `err` and `res`
+	 * and handle arity check.
+	 *
+	 * @param {Error} err
+	 * @param {Response} res
+	 * @api private
+	 */
+	
+	Request.prototype.callback = function(err, res){
+	  var fn = this._callback;
+	  this.clearTimeout();
+	  fn(err, res);
+	};
+	
+	/**
+	 * Invoke callback with x-domain error.
+	 *
+	 * @api private
+	 */
+	
+	Request.prototype.crossDomainError = function(){
+	  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
+	  err.crossDomain = true;
+	
+	  err.status = this.status;
+	  err.method = this.method;
+	  err.url = this.url;
+	
+	  this.callback(err);
+	};
+	
+	/**
+	 * Invoke callback with timeout error.
+	 *
+	 * @api private
+	 */
+	
+	Request.prototype.timeoutError = function(){
+	  var timeout = this._timeout;
+	  var err = new Error('timeout of ' + timeout + 'ms exceeded');
+	  err.timeout = timeout;
+	  this.callback(err);
+	};
+	
+	/**
+	 * Enable transmission of cookies with x-domain requests.
+	 *
+	 * Note that for this to work the origin must not be
+	 * using "Access-Control-Allow-Origin" with a wildcard,
+	 * and also must set "Access-Control-Allow-Credentials"
+	 * to "true".
+	 *
+	 * @api public
+	 */
+	
+	Request.prototype.withCredentials = function(){
+	  this._withCredentials = true;
+	  return this;
+	};
+	
+	/**
+	 * Initiate request, invoking callback `fn(res)`
+	 * with an instanceof `Response`.
+	 *
+	 * @param {Function} fn
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	Request.prototype.end = function(fn){
+	  var self = this;
+	  var xhr = this.xhr = request.getXHR();
+	  var query = this._query.join('&');
+	  var timeout = this._timeout;
+	  var data = this._formData || this._data;
+	
+	  // store callback
+	  this._callback = fn || noop;
+	
+	  // state change
+	  xhr.onreadystatechange = function(){
+	    if (4 != xhr.readyState) return;
+	
+	    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
+	    // result in the error "Could not complete the operation due to error c00c023f"
+	    var status;
+	    try { status = xhr.status } catch(e) { status = 0; }
+	
+	    if (0 == status) {
+	      if (self.timedout) return self.timeoutError();
+	      if (self.aborted) return;
+	      return self.crossDomainError();
+	    }
+	    self.emit('end');
+	  };
+	
+	  // progress
+	  var handleProgress = function(e){
+	    if (e.total > 0) {
+	      e.percent = e.loaded / e.total * 100;
+	    }
+	    e.direction = 'download';
+	    self.emit('progress', e);
+	  };
+	  if (this.hasListeners('progress')) {
+	    xhr.onprogress = handleProgress;
+	  }
+	  try {
+	    if (xhr.upload && this.hasListeners('progress')) {
+	      xhr.upload.onprogress = handleProgress;
+	    }
+	  } catch(e) {
+	    // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
+	    // Reported here:
+	    // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
+	  }
+	
+	  // timeout
+	  if (timeout && !this._timer) {
+	    this._timer = setTimeout(function(){
+	      self.timedout = true;
+	      self.abort();
+	    }, timeout);
+	  }
+	
+	  // querystring
+	  if (query) {
+	    query = request.serializeObject(query);
+	    this.url += ~this.url.indexOf('?')
+	      ? '&' + query
+	      : '?' + query;
+	  }
+	
+	  // initiate request
+	  if (this.username && this.password) {
+	    xhr.open(this.method, this.url, true, this.username, this.password);
+	  } else {
+	    xhr.open(this.method, this.url, true);
+	  }
+	
+	  // CORS
+	  if (this._withCredentials) xhr.withCredentials = true;
+	
+	  // body
+	  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !isHost(data)) {
+	    // serialize stuff
+	    var contentType = this._header['content-type'];
+	    var serialize = this._parser || request.serialize[contentType ? contentType.split(';')[0] : ''];
+	    if (!serialize && isJSON(contentType)) serialize = request.serialize['application/json'];
+	    if (serialize) data = serialize(data);
+	  }
+	
+	  // set header fields
+	  for (var field in this.header) {
+	    if (null == this.header[field]) continue;
+	    xhr.setRequestHeader(field, this.header[field]);
+	  }
+	
+	  if (this._responseType) {
+	    xhr.responseType = this._responseType;
+	  }
+	
+	  // send stuff
+	  this.emit('request', this);
+	
+	  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
+	  // We need null here if data is undefined
+	  xhr.send(typeof data !== 'undefined' ? data : null);
+	  return this;
+	};
+	
+	
+	/**
+	 * Expose `Request`.
+	 */
+	
+	request.Request = Request;
+	
+	/**
+	 * GET `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	request.get = function(url, data, fn){
+	  var req = request('GET', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.query(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+	
+	/**
+	 * HEAD `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	request.head = function(url, data, fn){
+	  var req = request('HEAD', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+	
+	/**
+	 * DELETE `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	function del(url, fn){
+	  var req = request('DELETE', url);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+	
+	request['del'] = del;
+	request['delete'] = del;
+	
+	/**
+	 * PATCH `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed} data
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	request.patch = function(url, data, fn){
+	  var req = request('PATCH', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+	
+	/**
+	 * POST `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed} data
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	request.post = function(url, data, fn){
+	  var req = request('POST', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+	
+	/**
+	 * PUT `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	request.put = function(url, data, fn){
+	  var req = request('PUT', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+
+/***/ },
+/* 248 */
+/*!***************************************************!*\
+  !*** ./~/superagent/~/component-emitter/index.js ***!
+  \***************************************************/
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Expose `Emitter`.
+	 */
+	
+	module.exports = Emitter;
+	
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
+	
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
+	};
+	
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+	
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+	
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+	    .push(fn);
+	  return this;
+	};
+	
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.once = function(event, fn){
+	  function on() {
+	    this.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+	
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+	
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+	
+	  // specific event
+	  var callbacks = this._callbacks['$' + event];
+	  if (!callbacks) return this;
+	
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks['$' + event];
+	    return this;
+	  }
+	
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+	
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+	
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks['$' + event];
+	
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+	
+	  return this;
+	};
+	
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+	
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks['$' + event] || [];
+	};
+	
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+	
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
+/* 249 */
+/*!**************************************************!*\
+  !*** ./~/superagent/~/reduce-component/index.js ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Reduce `arr` with `fn`.
+	 *
+	 * @param {Array} arr
+	 * @param {Function} fn
+	 * @param {Mixed} initial
+	 *
+	 * TODO: combatible error handling?
+	 */
+	
+	module.exports = function(arr, fn, initial){  
+	  var idx = 0;
+	  var len = arr.length;
+	  var curr = arguments.length == 3
+	    ? initial
+	    : arr[idx++];
+	
+	  while (idx < len) {
+	    curr = fn.call(null, curr, arr[idx], ++idx, arr);
+	  }
+	  
+	  return curr;
+	};
+
+/***/ },
+/* 250 */
+/*!******************************************!*\
+  !*** ./~/superagent/lib/request-base.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module of mixed-in functions shared between node and client code
+	 */
+	var isObject = __webpack_require__(/*! ./is-object */ 251);
+	
+	/**
+	 * Clear previous timeout.
+	 *
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	exports.clearTimeout = function _clearTimeout(){
+	  this._timeout = 0;
+	  clearTimeout(this._timer);
+	  return this;
+	};
+	
+	/**
+	 * Force given parser
+	 *
+	 * Sets the body parser no matter type.
+	 *
+	 * @param {Function}
+	 * @api public
+	 */
+	
+	exports.parse = function parse(fn){
+	  this._parser = fn;
+	  return this;
+	};
+	
+	/**
+	 * Set timeout to `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	exports.timeout = function timeout(ms){
+	  this._timeout = ms;
+	  return this;
+	};
+	
+	/**
+	 * Faux promise support
+	 *
+	 * @param {Function} fulfill
+	 * @param {Function} reject
+	 * @return {Request}
+	 */
+	
+	exports.then = function then(fulfill, reject) {
+	  return this.end(function(err, res) {
+	    err ? reject(err) : fulfill(res);
+	  });
+	}
+	
+	/**
+	 * Allow for extension
+	 */
+	
+	exports.use = function use(fn) {
+	  fn(this);
+	  return this;
+	}
+	
+	
+	/**
+	 * Get request header `field`.
+	 * Case-insensitive.
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api public
+	 */
+	
+	exports.get = function(field){
+	  return this._header[field.toLowerCase()];
+	};
+	
+	/**
+	 * Get case-insensitive header `field` value.
+	 * This is a deprecated internal API. Use `.get(field)` instead.
+	 *
+	 * (getHeader is no longer used internally by the superagent code base)
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api private
+	 * @deprecated
+	 */
+	
+	exports.getHeader = exports.get;
+	
+	/**
+	 * Set header `field` to `val`, or multiple fields with one object.
+	 * Case-insensitive.
+	 *
+	 * Examples:
+	 *
+	 *      req.get('/')
+	 *        .set('Accept', 'application/json')
+	 *        .set('X-API-Key', 'foobar')
+	 *        .end(callback);
+	 *
+	 *      req.get('/')
+	 *        .set({ Accept: 'application/json', 'X-API-Key': 'foobar' })
+	 *        .end(callback);
+	 *
+	 * @param {String|Object} field
+	 * @param {String} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	
+	exports.set = function(field, val){
+	  if (isObject(field)) {
+	    for (var key in field) {
+	      this.set(key, field[key]);
+	    }
+	    return this;
+	  }
+	  this._header[field.toLowerCase()] = val;
+	  this.header[field] = val;
+	  return this;
+	};
+	
+	/**
+	 * Remove header `field`.
+	 * Case-insensitive.
+	 *
+	 * Example:
+	 *
+	 *      req.get('/')
+	 *        .unset('User-Agent')
+	 *        .end(callback);
+	 *
+	 * @param {String} field
+	 */
+	exports.unset = function(field){
+	  delete this._header[field.toLowerCase()];
+	  delete this.header[field];
+	  return this;
+	};
+	
+	/**
+	 * Write the field `name` and `val` for "multipart/form-data"
+	 * request bodies.
+	 *
+	 * ``` js
+	 * request.post('/upload')
+	 *   .field('foo', 'bar')
+	 *   .end(callback);
+	 * ```
+	 *
+	 * @param {String} name
+	 * @param {String|Blob|File|Buffer|fs.ReadStream} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	exports.field = function(name, val) {
+	  this._getFormData().append(name, val);
+	  return this;
+	};
+
+
+/***/ },
+/* 251 */
+/*!***************************************!*\
+  !*** ./~/superagent/lib/is-object.js ***!
+  \***************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * Check if `obj` is an object.
+	 *
+	 * @param {Object} obj
+	 * @return {Boolean}
+	 * @api private
+	 */
+	
+	function isObject(obj) {
+	  return null != obj && 'object' == typeof obj;
+	}
+	
+	module.exports = isObject;
+
+
+/***/ },
+/* 252 */
+/*!*************************************!*\
+  !*** ./~/superagent/lib/request.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	// The node and browser modules expose versions of this with the
+	// appropriate constructor function bound as first argument
+	/**
+	 * Issue a request:
+	 *
+	 * Examples:
+	 *
+	 *    request('GET', '/users').end(callback)
+	 *    request('/users').end(callback)
+	 *    request('/users', callback)
+	 *
+	 * @param {String} method
+	 * @param {String|Function} url or callback
+	 * @return {Request}
+	 * @api public
+	 */
+	
+	function request(RequestConstructor, method, url) {
+	  // callback
+	  if ('function' == typeof url) {
+	    return new RequestConstructor('GET', method).end(url);
+	  }
+	
+	  // url first
+	  if (2 == arguments.length) {
+	    return new RequestConstructor('GET', method);
+	  }
+	
+	  return new RequestConstructor(method, url);
+	}
+	
+	module.exports = request;
+
+
+/***/ },
+/* 253 */
 /*!***********************************!*\
   !*** ./app/components/landing.js ***!
   \***********************************/
@@ -28786,7 +30666,230 @@
 	module.exports = Landing;
 
 /***/ },
-/* 248 */
+/* 254 */
+/*!********************************!*\
+  !*** ./app/components/post.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _actions = __webpack_require__(/*! ../actions */ 241);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _bottomstrip = __webpack_require__(/*! ./bottomstrip */ 256);
+	
+	var _bottomstrip2 = _interopRequireDefault(_bottomstrip);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Character = function (_React$Component) {
+	    _inherits(Character, _React$Component);
+	
+	    function Character(props) {
+	        _classCallCheck(this, Character);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Character).call(this, props));
+	
+	        _actions2.default.setPost(_this.props.params.post);
+	
+	        _this.state = _store2.default.getState();
+	
+	        _this.getClass = _this.getClass.bind(_this);
+	        _this.content = _this.content.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	        _this.renderPost = _this.renderBio.bind(_this);
+	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	        _this.getClassSidebar = _this.getClassSidebar.bind(_this);
+	        _this.componentDidMount = _this.componentDidMount.bind(_this);
+	        _this.toggleSidebar = _this.toggleSidebar.bind(_this);
+	        _this.getClassPadded = _this.getClassPadded.bind(_this);
+	        _this.postChar = _this.postChar.bind(_this);
+	        _this.links = _this.links.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	        return _this;
+	    }
+	
+	    _createClass(Character, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.setState({ sidebarOpen: true });
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(newProps) {
+	            _actions2.default.setPost(newProps.params.post);
+	            var myDiv = document.getElementById('post');
+	            myDiv.scrollTop = 0;
+	        }
+	    }, {
+	        key: 'renderBio',
+	        value: function renderBio() {
+	            return { __html: this.state.activePost.text };
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getClass',
+	        value: function getClass() {
+	            if (this.state.charStripOpen) {
+	                return 'bottomstrip-open';
+	            } else return 'bottomstrip-closed';
+	        }
+	    }, {
+	        key: 'getClassSidebar',
+	        value: function getClassSidebar() {
+	            if (this.state.sidebarOpen) {
+	                return 'sidebar-open';
+	            } else return 'sidebar-closed';
+	        }
+	    }, {
+	        key: 'getClassPadded',
+	        value: function getClassPadded() {
+	            if (this.state.sidebarOpen) {
+	                return 'padded-sidebar';
+	            } else return 'padded';
+	        }
+	    }, {
+	        key: 'toggleSidebar',
+	        value: function toggleSidebar() {
+	            this.setState({ sidebarOpen: !this.state.sidebarOpen });
+	        }
+	    }, {
+	        key: 'links',
+	        value: function links() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts/starters' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'Starters'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts/inmediasres' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'In Medias Res'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'Posts Home'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'postChar',
+	        value: function postChar() {
+	            if (this.state.activePostChar) {
+	                var link = '/characters/' + this.state.activePostChar.id;
+	                var image = 'url(' + this.state.activePostChar.image + ')';
+	
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: this.getClassSidebar() },
+	                    _react2.default.createElement('div', { className: 'sidebarToggle', onClick: this.toggleSidebar }),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: link },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'char-icon', style: { 'backgroundImage': image } },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'interior' },
+	                                this.state.activePostChar.title
+	                            )
+	                        )
+	                    )
+	                );
+	            } else return null;
+	        }
+	    }, {
+	        key: 'content',
+	        value: function content() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: this.getClass() },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'interior-resize', id: 'bio' },
+	                    this.postChar(),
+	                    _react2.default.createElement('div', { className: this.getClassPadded(), dangerouslySetInnerHTML: this.renderPost() })
+	                ),
+	                _react2.default.createElement(_bottomstrip2.default, { contents: this.links() })
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_fullscreen2.default, { content: this.content });
+	        }
+	    }]);
+	
+	    return Character;
+	}(_react2.default.Component);
+	
+	module.exports = Character;
+
+/***/ },
+/* 255 */
 /*!*********************************!*\
   !*** ./app/components/posts.js ***!
   \*********************************/
@@ -28804,6 +30907,16 @@
 	
 	var _fullscreen2 = _interopRequireDefault(_fullscreen);
 	
+	var _bottomstrip = __webpack_require__(/*! ./bottomstrip */ 256);
+	
+	var _bottomstrip2 = _interopRequireDefault(_bottomstrip);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28818,16 +30931,123 @@
 	    function Posts(props) {
 	        _classCallCheck(this, Posts);
 	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Posts).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Posts).call(this, props));
+	
+	        _this.state = _store2.default.getState();
+	        _this.getClass = _this.getClass.bind(_this);
+	
+	        _this.content = _this.content.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	        _this.links = _this.links.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	
+	        return _this;
 	    }
 	
 	    _createClass(Posts, [{
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getClass',
+	        value: function getClass() {
+	            if (this.state.charStripOpen) {
+	                return 'bottomstrip-open';
+	            } else return 'bottomstrip-closed';
+	        }
+	    }, {
+	        key: 'links',
+	        value: function links() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts/starters' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'Starters'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts/inmediasres' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'In Medias Res'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }, {
 	        key: 'content',
 	        value: function content() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
-	                'Test'
+	                { className: this.getClass() },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'interior-resize' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'While a marginal chance exists that I might be able to chat about your favorite fandom on an OOC level, I am only interested in writing original plots in original settings with original characters. (Yeah, I know, nothing new under the sun.)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'A sprinkling of non-standard weirdness -- ghosts, demons, curses, murderers, secret societies, evil babies -- into an otherwise mundane universe is my favorite thing. Like fleur de sel on chocolate chip cookies. I keep away from wholly fictional worlds, from high fantasy, and from hard science fiction. My happy place is a sort of grimdark fantastic realism.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Plots from scratch are preferable, but I\'ve marked several of my starters as adoptable and would be willing to use them as jumping-off points for something new if such a thing would be appealing. Let me know!'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Your limits, should you have any, will be respected within reason. I have none: fiction has to work very hard to offend me. If you\'re putting that much effort into making me uncomfortable, then you\'re not concentrating hard enough on writing.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'I default to writing in the third person and from the limited perspective of a single main character (from which I\'ll occasionally stray for narrative purposes); but I enjoy writing casts and have no problem moving around a handful of characters in a single scene. I will get upset with you if you try to put words in their mouths.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'As far as I\'m concerned, if you can put words on it and they stay there, it is a viable roleplaying medium. Google Drive, private forums, public forums, blank white webpages with nothing but words, Storium, Tumblr, email: all perfectly acceptable. A very important exception: You will not get me on an instant messaging program unless I think you are just everything. And I don\'t think anyone is everything.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'My typical post is about 3 paragraphs long, but I don\'t spend a lot of time counting words. Introductory offerings are longer. Examples of both can be clicked on to the left.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'I am a writing turtle. I have a personal rule to respond within a week; I don\'t guarantee anything faster than that, but if I had to estimate, I\'d put my average turnaround time at about three days unless we\'re rapid-firing. To compensate for my lack of alacrity, I am mad dependable and will continue writing with you for years if you stick around.'
+	                    )
+	                ),
+	                _react2.default.createElement(_bottomstrip2.default, { contents: this.links() })
 	            );
 	        }
 	    }, {
@@ -28841,6 +31061,279 @@
 	}(_react2.default.Component);
 	
 	module.exports = Posts;
+
+/***/ },
+/* 256 */
+/*!***************************************!*\
+  !*** ./app/components/bottomstrip.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _actions = __webpack_require__(/*! ../actions */ 241);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var BottomStrip = function (_React$Component) {
+	    _inherits(BottomStrip, _React$Component);
+	
+	    function BottomStrip(props) {
+	        _classCallCheck(this, BottomStrip);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BottomStrip).call(this, props));
+	
+	        _this.state = _store2.default.getState();
+	        _this.getClass = _this.getClass.bind(_this);
+	        _this.toggleStrip = _this.toggleStrip.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	        return _this;
+	    }
+	
+	    _createClass(BottomStrip, [{
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getClass',
+	        value: function getClass() {
+	            if (this.state.charStripOpen) {
+	                return 'bottomstrip-open';
+	            } else return 'bottomstrip-closed';
+	        }
+	    }, {
+	        key: 'toggleStrip',
+	        value: function toggleStrip() {
+	            _actions2.default.toggleStrip();
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'bottomstrip-wrapper' },
+	                _react2.default.createElement('div', { className: 'bottomstrip-toggle', onClick: this.toggleStrip }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'bottomstrip' },
+	                    this.props.contents
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return BottomStrip;
+	}(_react2.default.Component);
+	
+	module.exports = BottomStrip;
+
+/***/ },
+/* 257 */
+/*!***********************************!*\
+  !*** ./app/components/library.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _fullscreen = __webpack_require__(/*! ./fullscreen */ 224);
+	
+	var _fullscreen2 = _interopRequireDefault(_fullscreen);
+	
+	var _bottomstrip = __webpack_require__(/*! ./bottomstrip */ 256);
+	
+	var _bottomstrip2 = _interopRequireDefault(_bottomstrip);
+	
+	var _store = __webpack_require__(/*! ../store */ 226);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 166);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Library = function (_React$Component) {
+	    _inherits(Library, _React$Component);
+	
+	    function Library(props) {
+	        _classCallCheck(this, Library);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Library).call(this, props));
+	
+	        _this.state = _store2.default.getState();
+	        _this.getClass = _this.getClass.bind(_this);
+	
+	        console.log('params');
+	        console.log(_this.props.params);
+	
+	        _this.content = _this.content.bind(_this);
+	        _this._onChange = _this._onChange.bind(_this);
+	        _this.componentWillUnmount = _this.componentWillUnmount.bind(_this);
+	        _this.links = _this.links.bind(_this);
+	        _this.getPosts = _this.getPosts.bind(_this);
+	
+	        _store2.default.listen(_this._onChange);
+	
+	        return _this;
+	    }
+	
+	    _createClass(Library, [{
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            _store2.default.unlisten(this._onChange);
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            this.setState(_store2.default.getState());
+	        }
+	    }, {
+	        key: 'getClass',
+	        value: function getClass() {
+	            if (this.state.charStripOpen) {
+	                return 'bottomstrip-open';
+	            } else return 'bottomstrip-closed';
+	        }
+	    }, {
+	        key: 'getPosts',
+	        value: function getPosts() {
+	            var starter = this.props.params.type === 'starters';
+	            var arr = this.state.posts.map(function (post) {
+	                var link = '/posts/post/' + post.id;
+	
+	                if (post.starter === starter) {
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { className: 'library-post-wrapper' },
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: link },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'interior' },
+	                                post.summary
+	                            )
+	                        )
+	                    );
+	                }
+	            });
+	            return arr;
+	        }
+	    }, {
+	        key: 'links',
+	        value: function links() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.props.params.type === 'inmediasres' ? _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts/starters' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'Starters'
+	                        )
+	                    )
+	                ) : _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts/inmediasres' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'In Medias Res'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/posts' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'posts-link' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'interior' },
+	                            'Back'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'content',
+	        value: function content() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: this.getClass() },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'interior-resize' },
+	                    this.getPosts()
+	                ),
+	                _react2.default.createElement(_bottomstrip2.default, { contents: this.links() })
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(_fullscreen2.default, { content: this.content });
+	        }
+	    }]);
+	
+	    return Library;
+	}(_react2.default.Component);
+	
+	module.exports = Library;
 
 /***/ }
 /******/ ]);

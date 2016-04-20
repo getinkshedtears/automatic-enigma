@@ -9,8 +9,6 @@ class CharStrip extends React.Component {
     constructor(props) {
         super(props);
         this.state = Store.getState();
-        this.getClass = this.getClass.bind(this);
-        this.toggleStrip = this.toggleStrip.bind(this);
         this._onChange = this._onChange.bind(this);
         this.getImage = this.getImage.bind(this);
         
@@ -30,31 +28,28 @@ class CharStrip extends React.Component {
     }
     
     renderCharacters() {
-        return this.state.characters.map(function(character, index){
+        var characters = this.state.characters.sort(function(a, b){
+            return a.id > b.id
+        });
+        
+        characters = characters.map(function(character, index){
+            if (this.props.active && this.props.active == character.id) {
+                return null
+            }
+            else 
             return <CharLink key = {index} character = {character} />
-        })   
-    }
-    
-    getClass() {
-        if (this.state.charStripOpen) {
-            return 'char-strip-open'
-        }
-        else return 'char-strip-closed'
-    }
-    
-    toggleStrip() {
-        console.log('toggle')
-        Actions.toggleStrip();
+        }.bind(this))
+        
+        if (this.props.active) {characters.push(<Back />)}
+        
+        return characters;
     }
     
     render() {
         return (
-            <div className = 'char-strip-wrapper'>
-                <div className = 'char-wrapper-toggle' onClick = {this.toggleStrip}/>
                 <div className = 'char-strip'>
                     {this.renderCharacters()}
                 </div>
-            </div>
         )
     }
     
@@ -79,7 +74,20 @@ class CharLink extends React.Component {
         return (
             
             <Link to = {this.getLink()}><div className = 'char-icon' style = {style}>
-                <div className = 'interior'>{this.props.character.name}</div>
+                <div className = 'interior'>{this.props.character.title}</div>
+            </div></Link>
+            
+            )
+    }
+}
+
+class Back extends React.Component {
+    render() {
+        
+        return (
+            
+            <Link to = '/characters'><div className = 'char-icon'>
+                <div className = 'interior'>Home</div>
             </div></Link>
             
             )

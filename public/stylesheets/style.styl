@@ -6,27 +6,74 @@ vertical-align() {
   transform: translateY(-50%)
 }
 
+no-select() {
+  -webkit-touch-callout: none /* iOS Safari */
+  -webkit-user-select: none   /* Chrome/Safari/Opera */
+  -khtml-user-select: none    /* Konqueror */
+  -moz-user-select: none      /* Firefox */
+  -ms-user-select: none       /* IE/Edge */
+  user-select: none           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+button(n)
+  position: absolute
+  width: n
+  height: n
+  border-radius: 50%
+  background: $main-color
+  border: 2px solid rgba(0, 0, 0, .25)
+  transition: $default-transition
+  &:after
+    content: ''
+    width: 0px
+    height: 0px
+    top: (n / 2)
+    left: (n / 2)
+    background: rgba(0, 0, 0, .5)
+    border-radius: 50%
+    position: absolute
+    transition: $default-transition
+  &:hover:after
+    width: n
+    height: n
+    top: 0px
+    left: 0px
+
 $main-color = rgba(230, 230, 230, 1)
 $default-transition = all .4s ease
+
+html
+  height: 100%
 
 body
   padding: 0
   margin: 0
   font-family: 'PT Sans Narrow', sans-serif
-  background: url('/images/bg.jpg') no-repeat center center fixed
-
+  background: url('/images/bg.jpg')
+  background-position: top left
+  background-repeat: no-repeat
+  background-attachment: fixed
+  background-size: contain
+  -moz-background-size: cover
+  -o-background-size: cover
+  -webkit-background-size: cover
+  no-select()
+  cursor: default
 a
   color: black
   text-decoration: none
   transition: $default-transition
 
 .title-wrapper-closed
+  z-index: 10
   font-size: 2em
   position: absolute
   text-align: center
   width: 100%
   margin-top: 15%
-  transition: $default-transition 
+  padding-bottom: 20%
+  transition: $default-transition
   & .title
     display: inline
     transition: $default-transition
@@ -37,6 +84,7 @@ a
   position: absolute
   text-align: center
   width: 100%
+  padding-bottom: 0
   transition: $default-transition
   & .title
     display: inline
@@ -57,6 +105,7 @@ a
   transition: $default-transition
   
 .category-wrapper-visible
+  z-index: -10
   opacity: 1
   position: absolute
   text-align: center
@@ -74,6 +123,7 @@ a
     opacity: 1
     transition: 1s ease
   & .category-inactive
+    opacity: 0
     display: inline-block
     transition: $default-transition
     cursor: default
@@ -84,6 +134,7 @@ a
       color: rgba(0, 0, 0, .1)
   & .category-active
     display: inline-block
+    opacity: 1
     transition: $default-transition 
     cursor: default
     padding: 20px
@@ -93,6 +144,7 @@ a
       cursor: default
 
 .category-wrapper-invisible
+  visibility: none
   z-index: -1
   opacity: 0
   position: absolute
@@ -116,29 +168,9 @@ a
   vertical-align()
   
 .exit
-  position: absolute
-  width: 50px
-  height: 50px
-  border-radius: 50%
+  button(50px)
   right: -15px
   top: -15px
-  background: $main-color
-  border: 2px solid rgba(0, 0, 0, .25)
-  &:after
-    content: ''
-    width: 0px
-    height: 0px
-    top: 25px
-    left: 25px
-    background: black
-    border-radius: 50%
-    position: absolute
-    transition: $default-transition
-  &:hover:after
-    width: 50px
-    height: 50px
-    top: 0px
-    left: 0px
 
 .fullscreen-interior
   height: 80%
@@ -171,6 +203,7 @@ a
   padding-top: 20px
   overflow: hidden
   & .interior-resize
+    position: absolute
     width: 100%
     height: calc(100% - 16vw)
     overflow-y: scroll
@@ -179,7 +212,6 @@ a
     position: absolute
     width: 100%
     bottom: 0px
-    background: rgba(0, 0, 0, .5)
     white-space: nowrap
     overflow-x: scroll
     overflow-y: hidden
@@ -196,9 +228,8 @@ a
   height: calc(100% - 20px)
   overflow: hidden
   & .interior-resize
-    position: absolute
     width: 100%
-    height: calc(100% - 2vw)
+    height: calc(100% - 40px)
     overflow-y: scroll
     margin-bottom: 15vw
     transition: $default-transition
@@ -206,28 +237,298 @@ a
     position: absolute
     width: 100%
     bottom: 0px
-    background: rgba(0, 0, 0, .75)
     & .char-strip
       height: 0
       top: 15vw
       transition: $default-transition
         
 .char-wrapper-toggle
-	width: 100%
-	height: 10px
+	width: 30px
+	height: 30px
+	border-radius: 50%
 	background: rgba(0, 0, 0, .5)
 	transition: $default-transition
-	&:hover
-	  height: 20px
 
 .char-icon
+  position: relative
+  width: 10vw
+  height: 10vw
+  display: inline-block
+  border: 2px solid rgba(50, 50, 50, 1)
+  border-radius: 50%
+  text-align: center
+  margin: 2vw
+  background: no-repeat center center
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  color: rgba(0, 0, 0, 1)
+  transition: $default-transition
+  font-size: 1.5em
+  overflow: hidden
+  &:hover
+    color: rgba(0, 0, 0, 1)
+    & .interior
+      background: rgba(255, 255, 255, .5)
+      color: rgba(0, 0, 0, 1)
+      transition: $default-transition
+  & .interior
+    vertical-align()
+    position: relative
+    color: rgba(0, 0, 0, 0)
+    transition: $default-transition
+    
+.formWrapper
+  position: absolute
+  width: 80%
+  margin-left: 10%
+  height: 100%
+  & input
+    font-family: 'PT Sans Narrow', sans-serif
+
+#contactField-name
+  position: absolute
+  height: 25%
+  width: 100%
+  & input
+    position: relative
+    width: 30%
+    padding: 10px
+    
+#contactField-email
+  position: absolute
+  height: 15%
+  width: 100%
+  top: 15%
+  & input
+    position: relative
+    width: 30%
+    padding: 10px
+    
+#messageField
+  position: absolute
+  height: 55%
+  width: 100%
+  top: 30%
+  & textarea
+    width: 80%
+    height: 80%
+    padding: 10px
+    font-family: 'PT Sans Narrow', sans-serif
+    
+#submitField
+  position: absolute
+  width: 100%
+  height: 15%
+  top: 85%
+  & input[type=submit]
+    bottom: 0
+    width: 10%
+    height: 50%
+    float: left
+    
+#contactMessage
+  float: left
+  margin-left: 30px
+  height: 50%
+  padding: 1px 6px
+  
+.findMes
+  width: 80%
+  margin-left: 10%
+  margin-top: 5%
+  bottom: 0px
+  
+.findMe
+  display: inline-block
+  margin: 15px
+  padding: 10px
+  width: calc(20% - 50px)
+  border-radius: 50%
+  text-align: center
+  transition: $default-transition
+  &:hover
+    background-color: rgba(255, 255, 255, .5)
+  
+.thing4Active
+  color: rgba(0, 0, 0, 1)
+  transition: $default-transition
+  position: absolute
+
+.thing4Inactive
+  color: rgba(0, 0, 0, 0)
+  transition: $default-transition
+  position: absolute
+  
+.sidebar-open
+  position: absolute
+  width: 10%
+  left: 0
+  height: 100%
+  transition: $default-transition
+  & .sidebarToggle
+    button(30px)
+    top: 1em
+    right: -34px
+  & .char-icon
+    top: 1em
+    border-radius: 0
+    position: relative
+    width: 80%
+    margin: auto
+    transition: $default-transition
+    &:hover
+      color: rgba(0, 0, 0, 1)
+      & .interior
+        background: rgba(255, 255, 255, .5)
+        color: rgba(0, 0, 0, 1)
+        transition: $default-transition
+    & .interior
+      vertical-align()
+      position: relative
+      color: rgba(0, 0, 0, 0)
+      transition: $default-transition
+  
+.sidebar-closed
+  position: absolute
+  height: 100%
+  left: -10%
+  width: 10%
+  transition: $default-transition
+  & .sidebarToggle
+    button(30px)
+    top: 1em
+    right: -34px
+  & .char-icon
+    border-radius: 0
+    top: 1em
+    position: relative
+    width: 80%
+    margin: auto
+    transition: $default-transition
+    
+.padded
+  padding-left: 40px
+  padding-right: 20px
+  margin-left: 5%
+  width: calc(90% - 60px)
+  transition: $default-transition
+  
+.padded-sidebar
+  padding-left: 40px
+  padding-right: 20px
+  margin-left: 10%
+  width: calc(90% - 60px)
+  transition: $default-transition
+  
+.post-wrapper
+  position: relative
+  display: inline-block
+  border: 2px solid rgba(50, 50, 50, 1)
+  width: 80%
+  height: 10vw
+  text-align: center
+  background: white
+  margin-top: 10%
+  overflow: hidden
+  &:hover
+    & .post-text
+      top: -200%
+      
+.post-text
+  position: absolute
+  width: 200%
+  left: -50%
+  height: auto
+  top: -10%
+  transition: 6s ease
+  font-size: .75em
+  border-radius: 50%
+  
+.post-middle 
+    border-radius: 50%
+    overflow: hidden
+
+.bottomstrip-toggle
+  button(30px)
+  top: 0px
+  left: 0px
+
+.bottomstrip-open
+  position: absolute
+  width: 80%
+  height: calc(100% - 20px)
+  margin-left: 10%
+  padding-top: 20px
+  overflow: hidden
+  & .interior-resize
+    position: absolute
+    width: 100%
+    height: calc(100% - 16vw)
+    overflow-y: scroll
+    transition: $default-transition
+  & .bottomstrip-wrapper
+    position: absolute
+    width: 100%
+    bottom: 0px
+    white-space: nowrap
+    overflow-x: scroll
+    overflow-y: hidden
+    & .bottomstrip
+      bottom: 0px
+      height: 14vw
+      text-align: center
+      transition: $default-transition
+  & .bottomstrip-toggle
+      top: 0px
+    
+.bottomstrip-closed
+  position: absolute
+  width: 80%
+  margin-left: 10%
+  padding-top: 20px
+  height: calc(100% - 20px)
+  overflow: hidden
+  & .interior-resize
+    width: 100%
+    height: calc(100% - 2vw)
+    overflow-y: scroll
+    margin-bottom: 15vw
+    transition: $default-transition
+  & .bottomstrip-wrapper
+    position: absolute
+    width: 100%
+    bottom: 0px
+    & .bottomstrip
+      height: 0
+      top: 15vw
+      text-align: center
+      transition: $default-transition
+  & .bottomstrip-toggle
+    top: -34px
+
+.posts-link
+  position: relative
   width: 10vw
   height: 10vw
   display: inline-block
   border-radius: 50%
-  border: 2px solid rgba(0, 0, 0, .5)
+  border: 2px solid rgba(50, 50, 50, 1)
   text-align: center
   margin: 2vw
+  color: rgba(0, 0, 0, 1)
+  transition: $default-transition
+  font-size: 1.5em
+  overflow: hidden
   & .interior
     vertical-align()
     position: relative
+    color: rgba(0, 0, 0, 1)
+    transition: $default-transition
+    
+.library-post-wrapper
+  width: 80%
+  margin-left: 10%
+  margin-top: 10px
+  text-align: center
+  padding: 10px
