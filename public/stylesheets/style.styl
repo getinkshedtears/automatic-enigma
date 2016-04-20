@@ -65,45 +65,76 @@ a
   text-decoration: none
   transition: $default-transition
 
-.title-wrapper-closed
-  z-index: 10
-  font-size: 2em
-  position: absolute
+.bottomstrip
   text-align: center
-  width: 100%
-  margin-top: 15%
-  padding-bottom: 20%
   transition: $default-transition
-  & .title
-    display: inline
-    transition: $default-transition
-  
-.title-wrapper-open
-  font-size: 2em
+
+.bottomstrip-open
+  position: absolute
+  width: 80%
+  height: calc(100% - 20px)
+  margin-left: 10%
   padding-top: 20px
+  overflow: hidden
+  & .interior-resize
+    height: calc(100% - 16vw)
+  & .bottomstrip-wrapper
+    white-space: nowrap
+    overflow-x: scroll
+    overflow-y: hidden
+    & .bottomstrip
+      bottom: 0px
+      height: 14vw
+  & .bottomstrip-toggle
+      top: 0px
+    
+.bottomstrip-closed
   position: absolute
-  text-align: center
+  width: 80%
+  margin-left: 10%
+  padding-top: 20px
+  height: calc(100% - 20px)
+  overflow: hidden
+  & .interior-resize
+    height: calc(100% - 2vw)
+    margin-bottom: 15vw
+  & .bottomstrip-wrapper
+    & .bottomstrip
+      height: 0
+      top: 15vw
+  & .bottomstrip-toggle
+    top: -34px
+    
+.bottomstrip-toggle
+  button(30px)
+  top: 0px
+  left: 0px
+    
+.bottomstrip-wrapper
+  bottom: 0px
+  position: absolute
   width: 100%
-  padding-bottom: 0
-  transition: $default-transition
-  & .title
-    display: inline
-    letter-spacing: 4vw
-    transition: 1s ease
-  
+
 .category
   display: inline-block
   cursor: default
   padding: 20px
   transition: $default-transition
   border-radius: 50%
-  
-.text-wrapper
-  width: 25%
+
+.category-wrapper-invisible
+  visibility: none
+  z-index: -1
+  opacity: 0
+  position: absolute
   text-align: center
-  display: inline-block
+  width: 100%
+  margin-top: 15%
   transition: $default-transition
-  
+  font-size: 1.5em
+  & .text-wrapper
+    width: 0
+
 .category-wrapper-visible
   z-index: -10
   opacity: 1
@@ -120,7 +151,6 @@ a
       &:nth-child({$i})
         transition: 1.5s ease
   & .category
-    opacity: 1
     transition: 1s ease
   & .category-inactive
     opacity: 0
@@ -142,112 +172,6 @@ a
     border-radius: 50%
     & a
       cursor: default
-
-.category-wrapper-invisible
-  visibility: none
-  z-index: -1
-  opacity: 0
-  position: absolute
-  text-align: center
-  width: 100%
-  margin-top: 15%
-  transition: $default-transition
-  font-size: 1.5em
-  & .text-wrapper
-    width: 0
-  & .category
-    opacity: 1
-    transition: $default-transition
-    
-.fullscreen
-  position: relative
-  width: 90%
-  height: 90%
-  left: 5%
-  background: rgba(255, 255, 255, .5)
-  vertical-align()
-  
-.exit
-  button(50px)
-  right: -15px
-  top: -15px
-
-.fullscreen-interior
-  height: 80%
-  width: 80%
-  left: 10%
-  vertical-align()
-  overflow-y: auto
-  overflow-x: hidden
-  
-.important
-  font-weight: bold
-  
-.text-header
-  font-size: 1.5em
-  display: inline-block
-  width: 100%
-  text-align: center
-
-.name
-  width: 100%
-  font-size: 2em
-  text-align: center
-  padding-top: 10px
-  
-.char-wrapper-open
-  position: absolute
-  width: 80%
-  height: calc(100% - 20px)
-  margin-left: 10%
-  padding-top: 20px
-  overflow: hidden
-  & .interior-resize
-    position: absolute
-    width: 100%
-    height: calc(100% - 16vw)
-    overflow-y: scroll
-    transition: $default-transition
-  & .char-strip-wrapper
-    position: absolute
-    width: 100%
-    bottom: 0px
-    white-space: nowrap
-    overflow-x: scroll
-    overflow-y: hidden
-    & .char-strip
-      bottom: 0px
-      height: 14vw
-      transition: $default-transition
-    
-.char-wrapper-closed
-  position: absolute
-  width: 80%
-  margin-left: 10%
-  padding-top: 20px
-  height: calc(100% - 20px)
-  overflow: hidden
-  & .interior-resize
-    width: 100%
-    height: calc(100% - 40px)
-    overflow-y: scroll
-    margin-bottom: 15vw
-    transition: $default-transition
-  & .char-strip-wrapper
-    position: absolute
-    width: 100%
-    bottom: 0px
-    & .char-strip
-      height: 0
-      top: 15vw
-      transition: $default-transition
-        
-.char-wrapper-toggle
-	width: 30px
-	height: 30px
-	border-radius: 50%
-	background: rgba(0, 0, 0, .5)
-	transition: $default-transition
 
 .char-icon
   position: relative
@@ -277,67 +201,20 @@ a
     position: relative
     color: rgba(0, 0, 0, 0)
     transition: $default-transition
-    
-.formWrapper
-  position: absolute
-  width: 80%
-  margin-left: 10%
-  height: 100%
-  & input
-    font-family: 'PT Sans Narrow', sans-serif
 
-#contactField-name
-  position: absolute
-  height: 25%
-  width: 100%
-  & input
-    position: relative
-    width: 30%
-    padding: 10px
-    
-#contactField-email
-  position: absolute
-  height: 15%
-  width: 100%
-  top: 15%
-  & input
-    position: relative
-    width: 30%
-    padding: 10px
-    
-#messageField
-  position: absolute
-  height: 55%
-  width: 100%
-  top: 30%
-  & textarea
-    width: 80%
-    height: 80%
-    padding: 10px
-    font-family: 'PT Sans Narrow', sans-serif
-    
-#submitField
+.char-strip
+  transition: $default-transition
+
+.interior-resize
   position: absolute
   width: 100%
-  height: 15%
-  top: 85%
-  & input[type=submit]
-    bottom: 0
-    width: 10%
-    height: 50%
-    float: left
-    
-#contactMessage
-  float: left
-  margin-left: 30px
-  height: 50%
-  padding: 1px 6px
-  
-.findMes
-  width: 80%
-  margin-left: 10%
-  margin-top: 5%
-  bottom: 0px
+  overflow-y: scroll
+  transition: $default-transition
+
+.exit
+  button(50px)
+  right: -15px
+  top: -15px
   
 .findMe
   display: inline-block
@@ -350,63 +227,99 @@ a
   &:hover
     background-color: rgba(255, 255, 255, .5)
   
-.thing4Active
-  color: rgba(0, 0, 0, 1)
-  transition: $default-transition
-  position: absolute
-
-.thing4Inactive
-  color: rgba(0, 0, 0, 0)
-  transition: $default-transition
-  position: absolute
+.findMes
+  width: 80%
+  margin-left: 10%
+  margin-top: 5%
+  bottom: 0px
   
-.sidebar-open
+#form-email
   position: absolute
-  width: 10%
-  left: 0
-  height: 100%
-  transition: $default-transition
-  & .sidebarToggle
-    button(30px)
-    top: 1em
-    right: -34px
-  & .char-icon
-    top: 1em
-    border-radius: 0
+  height: 15%
+  width: 100%
+  top: 15%
+  & input
     position: relative
-    width: 80%
-    margin: auto
-    transition: $default-transition
-    &:hover
-      color: rgba(0, 0, 0, 1)
-      & .interior
-        background: rgba(255, 255, 255, .5)
-        color: rgba(0, 0, 0, 1)
-        transition: $default-transition
-    & .interior
-      vertical-align()
-      position: relative
-      color: rgba(0, 0, 0, 0)
-      transition: $default-transition
+    width: 30%
+    padding: 10px
   
-.sidebar-closed
+#form-name
   position: absolute
-  height: 100%
-  left: -10%
-  width: 10%
-  transition: $default-transition
-  & .sidebarToggle
-    button(30px)
-    top: 1em
-    right: -34px
-  & .char-icon
-    border-radius: 0
-    top: 1em
+  height: 25%
+  width: 100%
+  & input
     position: relative
-    width: 80%
-    margin: auto
-    transition: $default-transition
+    width: 30%
+    padding: 10px
     
+#form-message
+  position: absolute
+  height: 55%
+  width: 100%
+  top: 30%
+  & textarea
+    width: 80%
+    height: 80%
+    padding: 10px
+    font-family: 'PT Sans Narrow', sans-serif
+    
+#form-response
+  float: left
+  margin-left: 30px
+  height: 50%
+  padding: 1px 6px
+  
+#form-submit
+  position: absolute
+  width: 100%
+  height: 15%
+  top: 85%
+  & input[type=submit]
+    bottom: 0
+    width: 10%
+    height: 50%
+    float: left
+  
+#form-wrapper
+  position: absolute
+  width: 80%
+  margin-left: 10%
+  height: 100%
+  & input
+    font-family: 'PT Sans Narrow', sans-serif
+  
+.fullscreen
+  position: relative
+  width: 90%
+  height: 90%
+  left: 5%
+  background: rgba(255, 255, 255, .5)
+  vertical-align()
+  
+.fullscreen-interior
+  height: 80%
+  width: 80%
+  left: 10%
+  vertical-align()
+  overflow-y: auto
+  overflow-x: hidden
+  
+.important
+  font-weight: bold
+  
+.library-post-wrapper
+  width: 80%
+  margin-left: 10%
+  margin-top: 10px
+  text-align: center
+  padding: 10px
+  
+.name
+  width: 100%
+  font-size: 2em
+  text-align: center
+  padding-top: 10px
+  
 .padded
   padding-left: 40px
   padding-right: 20px
@@ -421,92 +334,10 @@ a
   width: calc(90% - 60px)
   transition: $default-transition
   
-.post-wrapper
-  position: relative
-  display: inline-block
-  border: 2px solid rgba(50, 50, 50, 1)
-  width: 80%
-  height: 10vw
-  text-align: center
-  background: white
-  margin-top: 10%
-  overflow: hidden
-  &:hover
-    & .post-text
-      top: -200%
-      
-.post-text
-  position: absolute
-  width: 200%
-  left: -50%
-  height: auto
-  top: -10%
-  transition: 6s ease
-  font-size: .75em
-  border-radius: 50%
-  
 .post-middle 
     border-radius: 50%
     overflow: hidden
-
-.bottomstrip-toggle
-  button(30px)
-  top: 0px
-  left: 0px
-
-.bottomstrip-open
-  position: absolute
-  width: 80%
-  height: calc(100% - 20px)
-  margin-left: 10%
-  padding-top: 20px
-  overflow: hidden
-  & .interior-resize
-    position: absolute
-    width: 100%
-    height: calc(100% - 16vw)
-    overflow-y: scroll
-    transition: $default-transition
-  & .bottomstrip-wrapper
-    position: absolute
-    width: 100%
-    bottom: 0px
-    white-space: nowrap
-    overflow-x: scroll
-    overflow-y: hidden
-    & .bottomstrip
-      bottom: 0px
-      height: 14vw
-      text-align: center
-      transition: $default-transition
-  & .bottomstrip-toggle
-      top: 0px
     
-.bottomstrip-closed
-  position: absolute
-  width: 80%
-  margin-left: 10%
-  padding-top: 20px
-  height: calc(100% - 20px)
-  overflow: hidden
-  & .interior-resize
-    width: 100%
-    height: calc(100% - 2vw)
-    overflow-y: scroll
-    margin-bottom: 15vw
-    transition: $default-transition
-  & .bottomstrip-wrapper
-    position: absolute
-    width: 100%
-    bottom: 0px
-    & .bottomstrip
-      height: 0
-      top: 15vw
-      text-align: center
-      transition: $default-transition
-  & .bottomstrip-toggle
-    top: -34px
-
 .posts-link
   position: relative
   width: 10vw
@@ -526,9 +357,117 @@ a
     color: rgba(0, 0, 0, 1)
     transition: $default-transition
     
-.library-post-wrapper
+.post-text
+  position: absolute
+  width: 200%
+  left: -50%
+  height: auto
+  top: -10%
+  transition: 6s ease
+  font-size: .75em
+  border-radius: 50%
+
+.post-wrapper
+  position: relative
+  display: inline-block
+  border: 2px solid rgba(50, 50, 50, 1)
   width: 80%
-  margin-left: 10%
-  margin-top: 10px
+  height: 10vw
   text-align: center
-  padding: 10px
+  background: white
+  margin-top: 10%
+  overflow: hidden
+  &:hover
+    & .post-text
+      top: -200%
+  
+.sidebar-closed
+  position: absolute
+  height: 100%
+  left: -10%
+  width: 10%
+  transition: $default-transition
+  & .sidebarToggle
+    top: 1em
+  & .char-icon
+    border-radius: 0
+    top: 1em
+    width: 80%
+    margin: auto
+  
+.sidebar-open
+  position: absolute
+  width: 10%
+  left: 0
+  height: 100%
+  transition: $default-transition
+  & .sidebarToggle
+    top: 1em
+  & .char-icon
+    top: 1em
+    border-radius: 0
+    width: 80%
+    margin: auto
+    &:hover
+      color: rgba(0, 0, 0, 1)
+      & .interior
+        background: rgba(255, 255, 255, .5)
+        color: rgba(0, 0, 0, 1)
+        transition: $default-transition
+    & .interior
+      vertical-align()
+      position: relative
+      color: rgba(0, 0, 0, 0)
+      transition: $default-transition
+      
+.sidebarToggle
+  button(30px)
+  right: -34px
+
+.text-header
+  font-size: 1.5em
+  display: inline-block
+  width: 100%
+  text-align: center
+  
+.text-wrapper
+  width: 25%
+  text-align: center
+  display: inline-block
+  transition: $default-transition
+  
+.thing4Active
+  color: rgba(0, 0, 0, 1)
+  transition: $default-transition
+  position: absolute
+
+.thing4Inactive
+  color: rgba(0, 0, 0, 0)
+  transition: $default-transition
+  position: absolute
+
+.title
+  display: inline
+  transition: $default-transition
+
+.title-wrapper-closed
+  z-index: 10
+  font-size: 2em
+  position: absolute
+  text-align: center
+  width: 100%
+  margin-top: 15%
+  padding-bottom: 20%
+  transition: $default-transition
+  
+.title-wrapper-open
+  font-size: 2em
+  padding-top: 20px
+  position: absolute
+  text-align: center
+  width: 100%
+  padding-bottom: 0
+  transition: $default-transition
+  & .title
+    letter-spacing: 4vw
+    transition: 1s ease

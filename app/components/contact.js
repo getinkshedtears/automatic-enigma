@@ -70,24 +70,24 @@ class Contact extends React.Component {
         return (
             <div className = 'fullscreen-interior'>
             
-            <div className = 'formWrapper'>
+            <div id = 'form-wrapper'>
                 <form onSubmit = {this.sendMessage}>
                 
-                    <div id = 'contactField-name'>
+                    <div id = 'form-name'>
                         <input id = 'name' type = 'text' placeholder = 'your name' onChange = {this.updateName} />
                     </div>
                     
-                    <div id = 'contactField-email'>
+                    <div id = 'form-email'>
                         <input id = 'email' type = 'text' placeholder = 'your email (or the best way to get in touch)' onChange = {this.updateEmail} />
                     </div>
                     
-                    <div id = 'messageField'>
+                    <div id = 'form-message'>
                         <textarea id = 'message' onChange = {this.updateMessage} placeholder = 'please make me want to answer you' />
                     </div>
                     
-                    <div id = 'submitField'>
+                    <div id = 'form-submit'>
                         <input type = 'submit' value = 'send' />
-                        <div id = 'contactMessage'>{this.state.response}</div>
+                        <div id = 'form-response'>{this.state.response}</div>
                     </div>
                 </form>
             </div>
