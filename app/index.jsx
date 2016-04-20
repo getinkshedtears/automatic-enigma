@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-var Store = require('./store');
-var Actions = require('./actions');
 import { Router, Route, Link, browserHistory, hashHistory } from 'react-router';
 
 import About from './components/about';

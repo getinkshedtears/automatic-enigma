@@ -1,5 +1,3 @@
-var Characters = require('./characters');
-
 var neverPost1 = {
 	id: 'post1',
     character: 'never',

@@ -2,7 +2,6 @@ import React from 'react';
 import Fullscreen from './fullscreen';
 import Store from '../store';
 import Actions from '../actions';
-import {Link} from 'react-router';
 
 
 class BottomStrip extends React.Component {
