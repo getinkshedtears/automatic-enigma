@@ -87,7 +87,7 @@ class Character extends React.Component {
         if (charPosts.length !== 0) {
             return charPosts.map(function(post, index){
                 var link = '/posts/post/' + post.id;
-                return <Link to = {link}><div className = 'post-wrapper' key = {index}><div className = 'post-middle'><div className = 'post-text'><div dangerouslySetInnerHTML = {{__html : post.text}} /></div></div></div></Link>
+                return <Link to = {link}><div className = 'post-wrapper' key = {index}><div className = 'post-text-wrapper'><div className = 'post-text'><div dangerouslySetInnerHTML = {{__html : post.text}} /></div></div></div></Link>
             })
         }
         else {

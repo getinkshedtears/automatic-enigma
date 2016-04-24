@@ -5,7 +5,7 @@ var Response = require('../models/response');
 /* GET home page. */
     
 router.get('/*', function (req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'remember me as one who loved not wisely' });
 });
 
 router.post('/message', function(req, res){

@@ -385,10 +385,6 @@ a {
   width: calc(90% - 60px);
   transition: all 0.4s ease;
 }
-.post-middle {
-  border-radius: 50%;
-  overflow: hidden;
-}
 .posts-link {
   position: relative;
   width: 10vw;
@@ -421,7 +417,6 @@ a {
   top: -10%;
   transition: 6s ease;
   font-size: 0.75em;
-  border-radius: 50%;
 }
 .post-wrapper {
   position: relative;
