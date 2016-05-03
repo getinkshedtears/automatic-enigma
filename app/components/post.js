@@ -38,6 +38,7 @@ class Character extends React.Component {
     }
     
     componentWillReceiveProps(newProps) {
+        console.log(newProps)
         Actions.setPost(newProps.params.post)
         var myDiv = document.getElementById('post');
         myDiv.scrollTop = 0;
@@ -79,13 +80,13 @@ class Character extends React.Component {
     links() {
         return (
             <div>
-            <Link to = '/posts/starters'><div className = 'posts-link'>
+            <Link to = '/posts/starters'><div className = 'circle-icon'>
                 <div className = 'interior'>Starters</div>
                 </div></Link>
-            <Link to = '/posts/inmediasres'><div className = 'posts-link'>
+            <Link to = '/posts/inmediasres'><div className = 'circle-icon'>
                 <div className = 'interior'>In Medias Res</div>
             </div></Link>
-            <Link to = '/posts'><div className = 'posts-link'>
+            <Link to = '/posts'><div className = 'circle-icon'>
                 <div className = 'interior'>Posts Home</div>
             </div></Link>
             </div>
@@ -93,7 +94,9 @@ class Character extends React.Component {
     }
     
     postChar() {
-        if (this.state.activePostChar){
+        console.log(this.state.activePost)
+        
+        if (this.state.activePost.character){
             var link = ('/characters/' + this.state.activePostChar.id);
             var image = 'url(' + this.state.activePostChar.image + ')';
             
@@ -101,11 +104,12 @@ class Character extends React.Component {
                 
                 <div className = {this.getClassSidebar()}>
                     <div className = 'sidebarToggle' onClick = {this.toggleSidebar}/>
-                    <Link to = {link}><div className = 'char-icon' style = {{'backgroundImage' : image}}><div className = 'interior'>{this.state.activePostChar.title}</div></div></Link>
+                    <Link to = {link}><div className = 'circle-icon' style = {{'backgroundImage' : image}}><div className = 'interior'>{this.state.activePostChar.title}</div></div></Link>
                 </div>
                 
                 )
         }
+        
         else return null
     }
     

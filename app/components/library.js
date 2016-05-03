@@ -58,17 +58,17 @@ class Library extends React.Component {
             <div>
             {this.props.params.type === 'inmediasres'
             ? 
-            <Link to = '/posts/starters'><div className = 'posts-link'>
+            <Link to = '/posts/starters'><div className = 'circle-icon'>
                 <div className = 'interior'>Starters</div>
             </div></Link>
                 :
-            <Link to = '/posts/inmediasres'><div className = 'posts-link'>
+            <Link to = '/posts/inmediasres'><div className = 'circle-icon'>
                 <div className = 'interior'>In Medias Res</div>
             </div></Link>
             }    
                 
                 
-            <Link to = '/posts'><div className = 'posts-link'>
+            <Link to = '/posts'><div className = 'circle-icon'>
                 <div className = 'interior'>Back</div>
             </div></Link>
             </div>

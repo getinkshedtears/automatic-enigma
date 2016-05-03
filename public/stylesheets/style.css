@@ -180,7 +180,7 @@ a {
 .category-wrapper-visible .category-active a {
   cursor: default;
 }
-.char-icon {
+.circle-icon {
   position: relative;
   width: 10vw;
   height: 10vw;
@@ -198,15 +198,15 @@ a {
   font-size: 1.5em;
   overflow: hidden;
 }
-.char-icon:hover {
+.circle-icon:hover {
   color: #000;
 }
-.char-icon:hover .interior {
+.circle-icon:hover .interior {
   background: rgba(255,255,255,0.5);
   color: #000;
   transition: all 0.4s ease;
 }
-.char-icon .interior {
+.circle-icon .interior {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -365,6 +365,13 @@ a {
   text-align: center;
   padding: 10px;
 }
+.library-post-wrapper .interior {
+  display: inline;
+  transition: all 0.4s ease;
+}
+.library-post-wrapper .interior:hover {
+  font-size: 1.5em;
+}
 .name {
   width: 100%;
   font-size: 2em;
@@ -442,7 +449,7 @@ a {
 .sidebar-closed .sidebarToggle {
   top: 1em;
 }
-.sidebar-closed .char-icon {
+.sidebar-closed .circle-icon {
   border-radius: 0;
   top: 1em;
   width: 80%;
@@ -458,21 +465,21 @@ a {
 .sidebar-open .sidebarToggle {
   top: 1em;
 }
-.sidebar-open .char-icon {
+.sidebar-open .circle-icon {
   top: 1em;
   border-radius: 0;
   width: 80%;
   margin: auto;
 }
-.sidebar-open .char-icon:hover {
+.sidebar-open .circle-icon:hover {
   color: #000;
 }
-.sidebar-open .char-icon:hover .interior {
+.sidebar-open .circle-icon:hover .interior {
   background: rgba(255,255,255,0.5);
   color: #000;
   transition: all 0.4s ease;
 }
-.sidebar-open .char-icon .interior {
+.sidebar-open .circle-icon .interior {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);

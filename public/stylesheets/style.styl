@@ -173,7 +173,7 @@ a
     & a
       cursor: default
 
-.char-icon
+.circle-icon
   position: relative
   width: 10vw
   height: 10vw
@@ -303,17 +303,22 @@ a
   vertical-align()
   overflow-y: auto
   overflow-x: hidden
-  
+
 .important
   font-weight: bold
-  
+
 .library-post-wrapper
   width: 80%
   margin-left: 10%
   margin-top: 10px
   text-align: center
   padding: 10px
-  
+  & .interior
+    display: inline
+    transition: $default-transition
+    &:hover
+      font-size: 1.5em
+
 .name
   width: 100%
   font-size: 2em
@@ -384,7 +389,7 @@ a
   transition: $default-transition
   & .sidebarToggle
     top: 1em
-  & .char-icon
+  & .circle-icon
     border-radius: 0
     top: 1em
     width: 80%
@@ -398,7 +403,7 @@ a
   transition: $default-transition
   & .sidebarToggle
     top: 1em
-  & .char-icon
+  & .circle-icon
     top: 1em
     border-radius: 0
     width: 80%

@@ -73,7 +73,7 @@ class CharLink extends React.Component {
         
         return (
             
-            <Link to = {this.getLink()}><div className = 'char-icon' style = {style}>
+            <Link to = {this.getLink()}><div className = 'circle-icon' style = {style}>
                 <div className = 'interior'>{this.props.character.title}</div>
             </div></Link>
             
