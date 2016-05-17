@@ -282,6 +282,10 @@ a {
   width: 30%;
   padding: 10px;
 }
+#form-instructions {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
 #form-name {
   position: absolute;
   height: 25%;
@@ -439,6 +443,14 @@ a {
 .post-wrapper:hover .post-text {
   top: -200%;
 }
+.posts-header {
+  font-size: 3em;
+}
+.posts-p {
+  margin-left: 20px;
+  width: calc(100% - 30px);
+  text-align: justify;
+}
 .sidebar-closed {
   position: absolute;
   height: 100%;
@@ -564,4 +576,10 @@ a {
 .title-wrapper-open .title {
   letter-spacing: 4vw;
   transition: 1s ease;
+}
+#update {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
 }

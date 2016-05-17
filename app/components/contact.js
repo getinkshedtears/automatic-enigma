@@ -70,7 +70,14 @@ class Contact extends React.Component {
         return (
             <div className = 'fullscreen-interior'>
             
+            <div id = 'form-instructions'>
+                    <div>Option 1: Send an email to getinkshedtears <b>at</b> gmail</div>
+                    <div>Option 2: Fill out the form, which I made mostly o see if I could.</div>
+                </div>
+            
             <div id = 'form-wrapper'>
+                
+                
                 <form onSubmit = {this.sendMessage}>
                 
                     <div id = 'form-name'>

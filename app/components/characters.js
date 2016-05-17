@@ -42,11 +42,11 @@ class Characters extends React.Component {
         return (
             <div className = {this.getClass()}>
             <div className = 'interior-resize'>
-                <p>I write all the characters.</p>
+                <p>I make a concerted effort to write all the characters.</p>
 
-                <p>Old, young, male, female, human, elder god, all whatevers in between. They are connected by their shared tendencies to be damaged, unhappy and prone to fixation. They are often outsiders in relation to the settings they occupy. They are fluent in more languages than I am.</p>
+                <p>My collection includes old, young, male, female, human, elder god, and all whatevers in between. They are connected by their shared tendencies to be damaged, unhappy and prone to fixation. They are often outsiders in relation to the settings they occupy. They are fluent in more languages than I am.</p>
 
-                <p>Please find, attached, a handful of mismatched forum apps from the last ~7 years, to serve as a taste of the kind of characters you may run across in your dealings with me.</p>
+                <p>Please find, attached, a handful of mismatched forum apps from the last ~7 years, to serve as a taste of the kind of characters you may run across in your dealings with me.  Note that I <i>prefer</i> not to recycle; most past attempts to squeeze existing characters into settings for which they weren't crafted have failed.</p>
             </div>
             <BottomStrip contents = {this.bottom()} />
             </div>
