@@ -10,7 +10,6 @@ class Actions {
     }
     
     setCharacter(name) {
-        console.log('update character to ' + name)
         return name;
     }
     
@@ -20,6 +19,11 @@ class Actions {
     
     setPost(id) {
         return id;
+    }
+    
+    incrementTitle() {
+        console.log('title increment')
+        return true;
     }
 
 }

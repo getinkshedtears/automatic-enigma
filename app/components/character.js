@@ -4,7 +4,8 @@ import Store from '../store';
 import Actions from '../actions';
 import CharStrip from './charstrip';
 import BottomStrip from './bottomstrip';
-import {Link} from 'react-router'
+import {Link} from 'react-router';
+import Poem from '../data/poem';
 
 
 class Character extends React.Component {
@@ -31,10 +32,12 @@ class Character extends React.Component {
     
     componentDidMount() {
         this.setState({sidebarOpen: true})
+        document.title = Poem[this.state.titleIndex];
     }
     
     componentWillUnmount() {
         Store.unlisten(this._onChange);
+        Actions.incrementTitle();
     }
     
     componentWillReceiveProps(newProps) {

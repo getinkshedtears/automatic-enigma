@@ -3,6 +3,8 @@ import Fullscreen from './fullscreen';
 import BottomStrip from './bottomstrip';
 import Store from '../store';
 import {Link} from 'react-router';
+var Poem = require('../data/poem');
+import Actions from '../actions';
 
 class Posts extends React.Component {
     constructor(props) {
@@ -15,12 +17,20 @@ class Posts extends React.Component {
         this._onChange = this._onChange.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
         this.links = this.links.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
         
         Store.listen(this._onChange);
         
     }
     
+    componentDidMount() {
+        this.setState({sidebarOpen: true});
+        document.title = Poem[this.state.titleIndex];
+        
+    }
+    
     componentWillUnmount() {
+        Actions.incrementTitle();
         Store.unlisten(this._onChange);
     }
     

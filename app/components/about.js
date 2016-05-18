@@ -1,5 +1,9 @@
 import React from 'react';
 import Fullscreen from './fullscreen';
+import Store from '../store';
+import Actions from '../actions';
+import Poem from '../data/poem';
+
 
 class About extends React.Component {
     constructor(props) {
@@ -13,17 +17,40 @@ class About extends React.Component {
                 ' A massive failure of a webdev, forever starting and not completing apps/projects/games, like this website and Selva: the alpha-forever post-apocalyptic Amazonian jungle romp. (Currently being reworked with React.  Look forward to version -2.0!)',
                 ' Long-time internet roleplayer who can (although not very often) be seen lurking around the RPG-D.',
                 " PC gamer who spends too much money on Steam.  Current obsessesions include but are not limited to: The Binding of Isaac, Stardew Valley, Pathologic HD."
-                ]
+                ],
+            store: Store.getState()
         }
+        
+        console.log(this.state)
         
         this.setThing4 = this.setThing4.bind(this);
         this.content = this.content.bind(this);
         this.getThing4Class = this.getThing4Class.bind(this);
         this.getThing4 = this.getThing4.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.componentWillUnmount = this.componentWillUnmount.bind(this);
+        this._onChange = this._onChange.bind(this);
+        
+        Store.listen(this._onChange);
+    }
+    
+    componentDidMount() {
+        document.title = Poem[this.state.store.titleIndex];
+    }
+    
+    componentWillUnmount() {
+        Actions.incrementTitle();
+        Store.unlisten(this._onChange)
     }
     
     setThing4(int) {
         this.setState({activeThing4: int})
+    }
+    
+    _onChange() {
+        this.setState(Object.assign({}, this.state, {
+            store: Store.getState()
+        }))
     }
     
     getThing4Class(int) {
@@ -74,7 +101,7 @@ class About extends React.Component {
                 
                 </div>
                 </div>
-                <div id = 'update'>Last update : 5/17/2016</div>
+                <div id = 'update'>Last update : 5/18/2016</div>
             </div>
             )
     }

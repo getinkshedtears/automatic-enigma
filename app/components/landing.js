@@ -2,6 +2,7 @@ import React from 'react';
 import Store from '../store';
 import Actions from '../actions';
 import { Link } from 'react-router';
+import Poem from '../data/poem';
 
 class Landing extends React.Component {
     constructor(props) {
@@ -10,13 +11,20 @@ class Landing extends React.Component {
         
         this.getView = this.getView.bind(this);
         this._onChange = this._onChange.bind(this);
-        this.componentWillUnmount = this.componentWillUnmount.bind(this)
+        this.componentWillUnmount = this.componentWillUnmount.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
         
         Store.listen(this._onChange);
     }
     
     componentWillUnmount() {
         Store.unlisten(this._onChange);
+        Actions.incrementTitle();
+    }
+    
+    componentDidMount() {
+        this.setState({sidebarOpen: true})
+        document.title = Poem[this.state.titleIndex];
     }
     
     _onChange() {

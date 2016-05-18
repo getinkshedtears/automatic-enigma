@@ -1,6 +1,9 @@
 import React from 'react';
 import Fullscreen from './fullscreen';
 import request from 'superagent';
+import Poem from '../data/poem';
+import Actions from '../actions';
+import Store from '../store';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -10,7 +13,8 @@ class Contact extends React.Component {
             name: '',
             email: '',
             message: '',
-            response: ''
+            response: '',
+            store: Store.getState()
         }
         
         this.updateName = this.updateName.bind(this);
@@ -19,10 +23,21 @@ class Contact extends React.Component {
         this.sendMessage = this.sendMessage.bind(this);
         this.content = this.content.bind(this);
         this.clearInputs = this.clearInputs.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.componentWillUnmount = this.componentWillUnmount.bind(this);
     }
     
     updateName(e) {
         this.setState({name: e.target.value})
+    }
+    
+    componentDidMount() {
+        this.setState({sidebarOpen: true})
+        document.title = Poem[this.state.store.titleIndex];
+    }
+    
+    componentWillUnmount() {
+        Actions.incrementTitle();
     }
     
     updateEmail(e) {

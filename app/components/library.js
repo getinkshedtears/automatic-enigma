@@ -3,6 +3,8 @@ import Fullscreen from './fullscreen';
 import BottomStrip from './bottomstrip';
 import Store from '../store';
 import {Link} from 'react-router';
+import Poem from '../data/poem';
+import Actions from '../actions';
 
 class Library extends React.Component {
     constructor(props) {
@@ -19,12 +21,18 @@ class Library extends React.Component {
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
         this.links = this.links.bind(this);
         this.getPosts = this.getPosts.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
         
         Store.listen(this._onChange);
         
     }
     
+    componentDidMount() {
+        document.title = Poem[this.state.titleIndex];
+    }
+    
     componentWillUnmount() {
+        Actions.incrementTitle();
         Store.unlisten(this._onChange);
     }
     

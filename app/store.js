@@ -2,6 +2,7 @@ var alt = require('./alt');
 var Actions = require('./actions');
 var Characters = require('./data/characters');
 var Posts = require('./data/posts');
+import Poem from './data/poem';
 
 class Store{
     constructor(){
@@ -9,6 +10,7 @@ class Store{
         this.open = false;
         this.characters = Characters;
         this.posts = Posts;
+        this.titleIndex = 0;
         this.activeCharacter = Characters[0];
         this.charStripOpen = true;
         this.activePost = Posts[0];
@@ -19,8 +21,18 @@ class Store{
             handleToggleOpen: Actions.TOGGLE_OPEN,
             handleSetCharacter: Actions.SET_CHARACTER,
             handleToggleStrip: Actions.TOGGLE_STRIP,
-            handleSetPost: Actions.SET_POST
+            handleSetPost: Actions.SET_POST,
+            handleIncrementTitle: Actions.INCREMENT_TITLE
         })
+    }
+    
+    handleIncrementTitle() {
+        if (this.titleIndex + 1 === Poem.length) {
+            this.titleIndex = 0;
+        }
+        
+        else this.titleIndex = this.titleIndex + 1;
+
     }
     
     handleUpdateView(view) {

@@ -11,10 +11,6 @@ import Library from './components/library';
 import Post from './components/post';
 import Posts from './components/posts';
 
-window.onbeforeunload = function (e) {
-  alert('hello')
-}
-
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path ="/" component={Landing}/>

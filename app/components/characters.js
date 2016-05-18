@@ -3,6 +3,8 @@ import Fullscreen from './fullscreen';
 import Store from '../store';
 import BottomStrip from './bottomstrip';
 import CharStrip from './charstrip';
+import Poem from '../data/poem';
+import Actions from '../actions';
 
 class Characters extends React.Component {
     constructor(props) {
@@ -14,6 +16,7 @@ class Characters extends React.Component {
         this.content = this.content.bind(this);
         this._onChange = this._onChange.bind(this);
         this.componentWillUnmount = this.componentWillUnmount.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
         this.bottom = this.bottom.bind(this);
         
         Store.listen(this._onChange);
@@ -21,6 +24,12 @@ class Characters extends React.Component {
     
     componentWillUnmount() {
         Store.unlisten(this._onChange);
+        Actions.incrementTitle();
+    }
+    
+    componentDidMount() {
+        this.setState({sidebarOpen: true});
+        document.title = Poem[this.state.titleIndex];
     }
     
     _onChange() {
