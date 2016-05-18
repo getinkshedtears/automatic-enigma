@@ -14,7 +14,7 @@ class About extends React.Component {
             thing4: [
                 ' Photoblogger attached at the hip to her overworked Nikon DS3200; less often a blogger of other things.',
                 ' One who, come the endtimes, will be able to make an excellent living shaving sheep, spinning yarn, and knitting socks.',
-                ' A massive failure of a webdev, forever starting and not completing apps/projects/games, like this website and Selva: the alpha-forever post-apocalyptic Amazonian jungle romp. (Currently being reworked with React.  Look forward to version -2.0!)',
+                ' A massive failure of a webdev, forever starting and not completing apps/projects/games, like this website and Selva: the eternally-alpha post-apocalyptic Amazonian jungle romp. (Currently being reworked with React.  Look forward to version -2.0!)',
                 ' Long-time internet roleplayer who can (although not very often) be seen lurking around the RPG-D.',
                 " PC gamer who spends too much money on Steam.  Current obsessesions include but are not limited to: The Binding of Isaac, Stardew Valley, Pathologic HD."
                 ],

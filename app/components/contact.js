@@ -87,7 +87,7 @@ class Contact extends React.Component {
             
             <div id = 'form-instructions'>
                     <div>Option 1: Send an email to getinkshedtears <b>at</b> gmail</div>
-                    <div>Option 2: Fill out the form, which I made mostly o see if I could.</div>
+                    <div>Option 2: Fill out the form, which I made mostly to see if I could and which ends up in an inconvenient remote database that I may or may not remember to check.  (Suggestion: use method one.)</div>
                 </div>
             
             <div id = 'form-wrapper'>

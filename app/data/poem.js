@@ -1,6 +1,7 @@
 var poem = [
 
     'What are the roots that clutch, what branches grow',
+    'Out of this stony rubbish? Son of man,',
     'You cannot say, or guess, for you know only',
     'A heap of broken images, where the sun beats',
     'And the dead tree gives no shelter, the cricket no relief',
