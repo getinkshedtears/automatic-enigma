@@ -66,13 +66,13 @@ class Posts extends React.Component {
                         <div className = 'posts-header'>Genre</div>
                         <p className = 'posts-p'>While a marginal chance exists that I might be able to chat about your favorite fandom on an OOC level, I am only interested in writing original plots in original settings with original characters. (Yeah, I know, nothing new under the sun.)</p>
                         <p className = 'posts-p'>An injection of non-standard weirdness -- ghosts, demons, curses, murderers, secret societies, evil babies -- into an otherwise mundane universe is my favorite thing. Like fleur de sel on chocolate chip cookies. I keep away from wholly fictional worlds, from high fantasy, and from hard science fiction. My happy place is a sort of grimdark fantastic realism.  Influences: Lynch, Tarkovsky, Eco, Bolaño, Peake, Donoso.</p>
-                        <p className = 'posts-p'>Plots from scratch are preferable, but I've marked several of my starters as adoptable and would be willing to use them as jumping-off points for something new if such a thing would be appealing. Let me know!</p>
+                        <p className = 'posts-p'>Plots from scratch are preferable, but several of my starters as adoptable and would be willing to use them as jumping-off points for something new if such a thing would be appealing. Let me know!</p>
                     </div>
                     
                     <div>
                         <div className = 'posts-header'>Maturity</div>
-                        <p className = 'posts-p'>Your limits, should you have any, will be respected within reason. I have none: if you're putting so much effort into making me uncomfortable that I'm offended, then you're not concentrating hard enough on writing and we won't work well together.</p>
-                        <p className = 'posts-p'>I'm happy enough to write explicit sex scenes if the plot naturally goes in that direction.  Plotless porn isn't my cup of tea, <i>but</i> I am more likely to be talked into a sexcentric setup if it involves godawful tabboo-breaking elements.</p>
+                        <p className = 'posts-p'>Your limits, should you have any, will be respected within reason. I have none: if you're putting so much effort into making me uncomfortable that I'm offended, then you're not concentrating hard enough on writing, and we won't work well together.</p>
+                        <p className = 'posts-p'>I'm happy enough to write explicit sex scenes if the plot naturally goes in that direction.  Plotless porn isn't my cup of tea, <i>but</i> I am more likely to be talked into a sexcentric setup if it involves godawful taboo-breaking elements.</p>
                     </div>
                     
                     <div>
