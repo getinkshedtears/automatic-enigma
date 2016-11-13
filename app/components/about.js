@@ -12,11 +12,11 @@ class About extends React.Component {
         this.state = {
             activeThing4: null,
             thing4: [
-                ' Photoblogger attached at the hip to her overworked Nikon DS3200; less often a blogger of other things.',
+                ' Photoblogger attached at the hip to her overworked Nikon D5200; less often a blogger of other things.',
                 ' One who, come the endtimes, will be able to make an excellent living shaving sheep, spinning yarn, and knitting socks.',
                 ' A massive failure of a webdev, forever starting and not completing apps/projects/games, like this website and Selva: the eternally-alpha post-apocalyptic Amazonian jungle romp. (Currently being reworked with React.  Look forward to version -2.0!)',
                 ' Long-time internet roleplayer who can (although not very often) be seen lurking around the RPG-D.',
-                " PC gamer who spends too much money on Steam.  Current obsessesions include but are not limited to: The Binding of Isaac, Stardew Valley, Pathologic HD."
+                ' PC gamer who spends too much money on Steam.  Current obsessesions include but are not limited to: The Binding of Isaac, Stardew Valley, Pathologic HD.'
                 ],
             store: Store.getState()
         }
@@ -83,7 +83,7 @@ class About extends React.Component {
         
                     <p><span className = 'important'>2.</span> An acronym taken from the second, third, fourth, and fifth words of a Boris Pasternak poem which begins, in Russian, Февраль. Достать чернил и плакать!, and which a particular translation renders in English as "February. Get ink, shed tears!"</p>
         
-                    <p><span className = 'important'>3.</span> The would-be lexicographer: 29 year-old cynic, malcontent English major, bitter full-time spreadsheet drone, part-time collaborative writer.  Hoosier.  The attached pages are presented as her roleplaying curriculum vitae, should you have an interest in being part of that last thing.</p>
+                    <p><span className = 'important'>3.</span> The would-be lexicographer: 30 year-old cynic, failure of an English major, full-time bank person, part-time collaborative writer.  Hoosier.  The attached pages are presented as her roleplaying curriculum vitae, should you have an interest in being part of that last thing.</p>
                 
                     <p><span className = 'important'>4.&nbsp;&nbsp;</span> 
                     
@@ -101,7 +101,7 @@ class About extends React.Component {
                 
                 </div>
                 </div>
-                <div id = 'update'>Last update : 5/18/2016</div>
+                <div id = 'update'>Last update : 11/13/2016</div>
             </div>
             )
     }
